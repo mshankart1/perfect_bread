@@ -3,7 +3,6 @@ import {
   ContactSection,
   EComPartnerSection,
   FooterSection,
-  HeroSection,
   JourneySection,
   MapSection,
   PartnersSections,
@@ -11,18 +10,19 @@ import {
   RecipeSection,
   TeamSection,
 } from '@/components';
-import { CardContainer } from '@/icons/CardContainer';
 import Image from 'next/image';
+import { client } from '@/sanity/lib/client';
+import { PRODUCT_QUERY } from '@/sanity/lib/queries';
 
 export default async function Home() {
-  // Server-side API call
-  const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000'}/api/products`, {
-    cache: 'force-cache', // or 'force-cache' for static generation
-  });
-  const result = await res.json();
+  let result = [];
+  try {
+    result = await client.fetch(PRODUCT_QUERY);
+  } catch (error) {
+    console.error('Error fetching products:', error);
+  }
   return (
     <div>
-      {/* <CardContainer /> */}
       <Image
         src="/banner/banner_1.jpg"
         width={2000}
@@ -32,7 +32,6 @@ export default async function Home() {
         className="w-full aspect-[1.86/1] object-cover"
       />
       <Image src="/banner_2.jpg" width={2000} height={2000} priority alt="hero image" className="w-full object-cover" />
-      {/* <hr className="border-t-[30px] border-amber-500" /> */}
       <AboutSection />
       <hr className="border-t-[30px] border-amber-500" />
       <JourneySection />
