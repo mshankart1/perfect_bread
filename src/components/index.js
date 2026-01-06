@@ -1,5 +1,13 @@
-export * from "./ui";
-export { Header } from "./Header";
-export { HeroSection } from "./HeroSection";
-export { AboutSection } from "./AboutSection";
-export { JourneySection } from "./JourneySection";
+export * from './ui';
+export { Header } from './Header';
+export { HeroSection } from './HeroSection';
+export { AboutSection } from './AboutSection';
+export { JourneySection } from './JourneySection';
+export { TeamSection } from './TeamSection';
+export { ProductSection } from './ProductSection';
+export { MapSection } from './MapSection';
+export { PartnersSections } from './PartnersSections';
+export { EComPartnerSection } from './EComPartnerSection';
+export { RecipeSection } from './RecipeSection';
+export { ContactSection } from './ContactSection';
+export { FooterSection } from './FooterSection';

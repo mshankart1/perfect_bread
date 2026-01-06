@@ -1,227 +1,172 @@
-"use client";
-import { LeftArrow } from "@/icons";
-import { toHTML } from "@portabletext/to-html";
-import { useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
-import { isArray } from "sanity";
-import { twMerge } from "tailwind-merge";
+'use client';
+import { TimelineArrowSegment } from './TimelineArrowSegment';
+import Slider from 'react-slick/lib/slider';
+import Image from 'next/image';
+import { FaArrowLeft, FaArrowRight } from 'react-icons/fa';
 
 const data2 = [
   {
     year: 1993,
-    image: "/timeline/timeline_1.jpg",
-    title: "THE FLAGSHIP LAUNCH:",
+    image: '/timeline/timeline_1.jpg',
+    title: 'THE BIG START:',
     description:
-      "The early 1990s marked the public opening of the internet, changing communication and business forever.",
+      'Our Managing Director, Mr. H K Bara takes over a sick unit from HFC to reinvent and launch Seeta Foods Pvt. Ltd in industrial town of Faridabad, Haryana in the field of baking.',
   },
   {
     year: 1995,
-    image: "/timeline/timeline_2.jpg",
-    title: "Launch of Windows 95",
+    image: '/timeline/timeline_2.jpg',
+    title: 'THE BRAND ENTRY:',
     description:
-      "Microsoft released Windows 95, revolutionizing home computing with a user-friendly interface.",
+      'Here comes the launch of the brand “PERFECT”, which would become the pioneer in the bread industry in the coming years. We nurtured it, baked the passage of hard work, better quality and today we proudly say it’s the Amitabh Bachan of the bread Industry! Unmatched quality and delivery speaks for',
   },
   {
-    year: 1999,
-    image: "/timeline/timeline_3.jpg",
-    title: "Dot-com Boom",
+    year: 1997,
+    image: '/timeline/timeline_3.jpg',
+    title: 'THE FLAGSHIP LAUNCH:',
     description:
-      "Internet companies exploded in value, marking the peak of the dot-com bubble.",
+      'To cater to the needs of Delhi and NCR Region, LRF FOODS PVT. LTD was launched in the Industrial Area, Faridabad – which later emerged as the flagship company of the group. We were ready to take on the ever increasing demand for better quality and volumes in the ever growing region',
   },
   {
     year: 2001,
-    image: "/timeline/timeline_4.jpg",
-    title: "9/11 Attacks",
+    image: '/timeline/timeline_4.jpg',
+    title: 'THE CORPORATE WAR ROOM:',
     description:
-      "Terrorist attacks on the World Trade Center reshaped global politics, security, and foreign policy.",
+      'Now as we were growing at a lightning speed, we needed a corporate war room to run the show at a bigger level. We launched our corporate office in sector 15, Main market, Faridabad – right in the heart of the city to coordinate and streamline our operations in the ever increasing Delhi – NCR area.',
   },
   {
     year: 2004,
-    image: "/timeline/timeline_5.jpg",
-    title: "Facebook Launched",
+    image: '/timeline/timeline_5.jpg',
+    title: 'Facebook Launched',
     description:
-      "Mark Zuckerberg launched Facebook from a Harvard dorm room, beginning a new era of social networking.",
+      'Mark Zuckerberg launched Facebook from a Harvard dorm room, beginning a new era of social networking.',
   },
   {
     year: 2007,
-    image: "/timeline/timeline_6.jpg",
-    title: "iPhone Revolution",
-    description:
-      "Apple introduced the iPhone, transforming mobile technology and user interaction forever.",
+    image: '/timeline/timeline_6.jpg',
+    title: 'iPhone Revolution',
+    description: 'Apple introduced the iPhone, transforming mobile technology and user interaction forever.',
   },
   {
     year: 2008,
-    image: "/timeline/timeline_7.jpg",
-    title: "Global Financial Crisis",
-    description:
-      "The collapse of Lehman Brothers triggered a worldwide economic meltdown and recession.",
+    image: '/timeline/timeline_7.jpg',
+    title: 'Global Financial Crisis',
+    description: 'The collapse of Lehman Brothers triggered a worldwide economic meltdown and recession.',
   },
   {
     year: 2012,
-    image: "/timeline/timeline_8.jpg",
-    title: "Tesla Model S Debuts",
-    description:
-      "Tesla released the Model S, redefining electric cars with performance and style.",
+    image: '/timeline/timeline_8.jpg',
+    title: 'Tesla Model S Debuts',
+    description: 'Tesla released the Model S, redefining electric cars with performance and style.',
   },
   {
     year: 2015,
-    image: "/timeline/timeline_1.jpg",
-    title: "SpaceX Makes History",
-    description:
-      "SpaceX launched reusable rockets, making spaceflight more affordable and sustainable.",
+    image: '/timeline/timeline_1.jpg',
+    title: 'SpaceX Makes History',
+    description: 'SpaceX launched reusable rockets, making spaceflight more affordable and sustainable.',
   },
   {
     year: 2016,
-    image: "/timeline/timeline_8.jpg",
-    title: "US Election Shock",
-    description:
-      "Donald Trump won the U.S. presidential election, signaling major political shifts worldwide.",
+    image: '/timeline/timeline_8.jpg',
+    title: 'US Election Shock',
+    description: 'Donald Trump won the U.S. presidential election, signaling major political shifts worldwide.',
   },
   {
     year: 2018,
-    image: "/timeline/timeline_5.jpg",
-    title: "GDPR Takes Effect",
-    description:
-      "The European Union's General Data Protection Regulation reshaped how companies handle data privacy.",
-  },
-  {
-    year: 2020,
-    image:
-      "https://upload.wikimedia.org/wikipedia/commons/2/2c/Empty_streets_due_to_lockdown_in_India.jpg",
-    title: "Global Pandemic",
-    description:
-      "COVID-19 disrupted lives globally, leading to lockdowns, remote work, and healthcare transformation.",
-  },
-  {
-    year: 2021,
-    image:
-      "https://upload.wikimedia.org/wikipedia/commons/b/b2/Billionaire_space_race_-_Bezos_Branson_Musk.jpg",
-    title: "Billionaire Space Race",
-    description:
-      "Private space firms led by Musk, Bezos, and Branson launched into low Earth orbit, starting a new era in space tourism.",
-  },
-  {
-    year: 2022,
-    image:
-      "https://upload.wikimedia.org/wikipedia/commons/4/4f/Climate_March_%2848353918597%29.jpg",
-    title: "Climate Action Movement Grows",
-    description:
-      "Worldwide protests and policy shifts pushed climate change to the top of global priorities.",
-  },
-  {
-    year: 2024,
-    image:
-      "https://upload.wikimedia.org/wikipedia/commons/1/1c/OpenAI_Logo.svg",
-    title: "AI Goes Mainstream",
-    description:
-      "Artificial Intelligence, led by models like GPT-4, became central to productivity, creativity, and tech evolution.",
+    image: '/timeline/timeline_5.jpg',
+    title: 'GDPR Takes Effect',
+    description: "The European Union's General Data Protection Regulation reshaped how companies handle data privacy.",
   },
 ];
 
-export function Timeline({data}) {
-  const [width, setWidth] = useState(0);
-  const [parentWidth, setParentWidth] = useState(0);
-  const [index, setIndex] = useState(0);
-  const [selectedYear, setSelectedYear] = useState("1993");
+const ArrowLeft = (props) => (
+  <button
+    {...props}
+    type="button"
+    className={`absolute z-10 left-0 top-1/2 -translate-y-1/2 -translate-x-4/3 bg-primary rounded-full shadow-lg p-3 hover:bg-primary/80 focus:outline-none transition-colors`}
+    aria-label="Previous"
+  >
+    <FaArrowLeft size={20} className="text-white" />
+  </button>
+);
 
-  const yearRef = useRef(null);
-  const parentRef = useRef(null);
+const ArrowRight = (props) => (
+  <button
+    {...props}
+    type="button"
+    className={`absolute z-10 -right-10 top-1/2 -translate-y-1/2 translate-x-1/3 bg-primary rounded-full shadow-lg p-3 hover:bg-primary/80 focus:outline-none transition-colors`}
+    aria-label="Next"
+  >
+    <FaArrowRight size={20} className="text-white" />
+  </button>
+);
 
-  const obj = useMemo(() => {
-    return data &&
-    data.reduce((acc, item) => {
-      acc[item.year] = item;
-      return acc;
-    }, {});
-  }, [data]);
-
-  useEffect(() => {
-    // To get the exact width in decimals we use
-    setWidth(Number(yearRef.current.getBoundingClientRect().width).toFixed(2));
-    setParentWidth(
-      Number(parentRef.current.getBoundingClientRect().width).toFixed(2)
-    );
-    setIndex(
-      Math.floor(parentRef.current.offsetWidth / yearRef.current.offsetWidth)
-    );
-  }, [data]);
-
+export function Timeline({ data }) {
+  var settings = {
+    dots: true,
+    infinite: false,
+    speed: 500,
+    slidesToShow: 4,
+    slidesToScroll: 1,
+    initialSlide: 0,
+    nextArrow: <ArrowRight />,
+    prevArrow: <ArrowLeft />,
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 3,
+          slidesToScroll: 1,
+          infinite: true,
+          dots: true,
+        },
+      },
+      {
+        breakpoint: 600,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 1,
+          initialSlide: 1,
+        },
+      },
+      {
+        breakpoint: 480,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+        },
+      },
+    ],
+  };
   return (
-    <div className="flex flex-col mx-auto w-full justify-center gap-4 my-6 max-w-6xl px-10">
-      <div className="flex mx-auto w-full items-center justify-center gap-4 my-6 max-w-6xl">
-        <button
-          className="p-2 text-white bg-accent rounded-full mt-10 cursor-pointer disabled:cursor-default disabled:bg-disabled"
-          disabled={index === Math.floor(parentWidth / width)}
-          onClick={() => setIndex((prev) => prev - 1)}
-        >
-          <LeftArrow />
-        </button>
-        <div
-          className={twMerge(
-            "flex flex-col overflow-hidden",
-            parentWidth === 0 && "opacity-0"
-          )}
-          style={{
-            width: width
-              ? `${width * Math.floor(parentWidth / width)}px`
-              : "fit-content",
-          }}
-          ref={parentRef}
-        >
-          <div
-            className="flex justify-start flex-nowrap transition-all duration-200"
-            style={{
-              width: width
-                ? `${width * Math.floor(parentWidth / width)}px`
-                : "fit-content",
-              transform: `translateX(-${
-                (index - Math.floor(parentWidth / width)) * width
-              }px)`,
-            }}
-          >
-            {Object.keys(obj).map((year, i) => (
-              <span
-                key={year}
-                className={twMerge(
-                  "px-6 text-2xl py-2 font-light text-accent cursor-pointer",
-                  selectedYear == year && "bg-secondary/30"
-                )}
-                ref={i === 0 ? yearRef : null}
-                onClick={() => setSelectedYear(year)}
-              >
-                {year}
-              </span>
-            ))}
-          </div>
-          <span className="h-0.5 w-full bg-primary"></span>
-        </div>
-        <button
-          className="p-2 text-white bg-accent rounded-full mt-10 rotate-180 cursor-pointer disabled:cursor-default disabled:bg-disabled"
-          disabled={index === data.length}
-          onClick={() => setIndex((prev) => prev + 1)}
-        >
-          <LeftArrow />
-        </button>
-      </div>
-      <div className="p-4 text-white gap-4 bg-secondary flex max-w-2xl mx-auto w-full rounded-4xl">
-        <img
-          src={obj[selectedYear]?.imageUrl}
-          alt={obj[selectedYear]?.title}
-          className="w-50 h-50 rounded-3xl/snug object-cover rounded-3xl aspect-square"
-        />
-        <div className="text-xl flex flex-col font-thin">
-          <span className="font-medium uppercase">
-            {obj[selectedYear]?.title}
-          </span>
-          {isArray(obj[selectedYear]?.description) ? (
-            <span
-              className="prose *:text-white *:text-lg/snug"
-              dangerouslySetInnerHTML={{
-                __html: toHTML(obj[selectedYear]?.description),
-              }}
+    <div className="w-full h-full my-5 container slider-container relative px-8">
+      <Slider {...settings}>
+        {data2.map((item, i) => (
+          <div className="flex-col items-center justify-center" key={item.year}>
+            <div className="flex items-center justify-center">
+              <div className={`w-fit p-8 ${i % 2 === 0 ? 'bg-amber-400' : 'bg-red-400'} mb-12 relative rounded-full`}>
+                <Image
+                  src={item.image}
+                  alt={item.title}
+                  width={1000}
+                  height={1000}
+                  className="w-36 aspect-square shadow-2xl rounded-full object-cover"
+                  style={{ boxShadow: '0 0 10px 3px black' }}
+                />
+                <div
+                  className={`absolute -bottom-8 left-1/2 -translate-x-1/2 w-10 aspect-square ${i % 2 === 0 ? 'bg-amber-400' : 'bg-red-400'}`}
+                  style={{ clipPath: 'polygon(0 0, 100% 0, 50% 100%)' }}
+                ></div>
+              </div>
+            </div>
+            <TimelineArrowSegment
+              year={item.year}
+              title={item.title}
+              description={item.description}
+              color={i % 2 === 0 ? 'yellow' : 'red'}
             />
-          ) : <></>}
-        </div>
-      </div>
+          </div>
+        ))}
+      </Slider>
     </div>
   );
 }

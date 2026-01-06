@@ -1,39 +1,41 @@
-import Image from "next/image";
-import { Heading } from "./ui";
+import Image from 'next/image';
+import { Heading } from './ui';
 
 export async function AboutSection() {
   return (
-    <section id="#about" className="grid-cols-2 items-end grid bg-secondary py-8 px-10 text-white">
-      <div className="flex w-full flex-col gap-6">
-        <Heading>About Us</Heading>
-        <p className="text-xl/snug font-normal text-justify">
-          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Vel facere
-          corporis, labore quae quaerat repudiandae quia cumque, sit ratione
-          reprehenderit ut quo? Suscipit assumenda animi et aut, est tempora
-          dicta accusamus dolorum? Sequi amet facere saepe ea officia deserunt,
-          quam esse dolores iste, quos impedit aliquid id architecto sint,
-          laborum laboriosam. Similique ratione possimus sequi quis! Officia
-          tenetur corporis a sed odio debitis assumenda. Architecto, doloremque
-          sint, placeat earum vero sapiente debitis commodi sed tenetur aperiam
-          optio nesciunt. Repellendus sunt veniam, inventore magnam dignissimos
-          cupiditate molestiae sapiente facilis obcaecati maiores aperiam maxime
-          saepe nobis. Exercitationem, rerum dolorem! Tempora error culpa
-          itaque. Ducimus assumenda temporibus inventore excepturi ab. Ea labore
-          repudiandae cupiditate sunt, non tempora dicta. Illum culpa quis odio
-          eveniet, aut corrupti rem vel repellendus asperiores dolorum ea
-          praesentium molestias aliquam mollitia quibusdam! Doloremque quod
-          dolorum quaerat, nesciunt iure voluptate sed earum minima cumque
-          reiciendis culpa eligendi ab explicabo repudiandae
-          </p>
-      </div>
-      <div className="w-full px-10">
+    <section id="about" className="grid-cols-5 grid py-8 gap-20 px-8 container">
+      <div
+        className="border-6 border-primary col-span-2 max-md:col-span-5 overflow-hidden aspect-[1/1.1] w-full"
+        style={{ borderRadius: '0 40% 0px 40%' }}
+      >
         <Image
-          src="/about_us.png"
+          src="/ceo.png"
           alt="bread"
           width={1000}
           height={1000}
-          className="w-full object-fit"
+          className="w-full object-fit overflow -scale-x-100 pt-10 bg-amber-100"
         />
+      </div>
+      <div className="col-span-3 max-md:col-span-5">
+        <div className="heading text-primary text-left max-md:text-center" style={{ lineHeight: '1.2' }}>
+          OUR HOT <br className="max-md:hidden" /> BAKING STORY
+        </div>
+        <div className="text-accent mt-5 max-md:mt-1 text-5xl max-md:text-2xl max-md:text-center">
+          <span className="font-medium">CRAFTED </span>
+          <span className="text-4xl max-md:text-2xl">BY</span>
+          <div className="text-accent text-5xl max-md:text-3xl mt-2 max-md:mt-0 max-md:inline max-md:ml-2 font-semibold">
+            Dr. H.K Batra !
+          </div>
+        </div>
+        <p className="text-xl/tight mt-3 text-accent font-normal text-justify">
+          In the continual process of creativity and innovation, <strong>PERFECT BREAD’S</strong> evolution and growth
+          as a nationally recognized bakery brand over the last 20 years has been encapsulated through four distinctive
+          Generations.
+        </p>
+        <p className="text-xl/tight mt-3 text-accent font-normal text-justify">
+          Humble Beginnings: From the very beginning of our journey in 1993, we haven’t lost our passion for great food.
+          It’s who we are as people, as bakers, and as family.
+        </p>
       </div>
     </section>
   );
