@@ -3,7 +3,7 @@ import { Heading } from './ui';
 
 export async function AboutSection() {
   return (
-    <section id="about" className="grid-cols-5 grid py-8 gap-20 px-8 container">
+    <section id="about" className="grid-cols-5 grid py-16 max-md:py-10 max-sm:py-6 gap-20 px-8 container">
       <div
         className="border-6 border-primary col-span-2 max-lg:col-span-5 max-lg:w-4/7 max-md:w-2/3 overflow-hidden mx-auto aspect-[1/1.1] w-full"
         style={{ borderRadius: '0 40% 0px 40%' }}

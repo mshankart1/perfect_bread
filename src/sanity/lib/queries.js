@@ -134,3 +134,14 @@ export const PRODUCT_BY_SLUG_QUERY = defineQuery(`
       )
   }
 `);
+
+export const BANNER_QUERY = defineQuery(`*[_type == "banner"] | order(_createdAt asc){
+  _id,
+  title,
+  images[]{
+    _key,
+    asset->{
+      url
+    }
+  }
+}`);

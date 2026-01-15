@@ -2,15 +2,7 @@
 import Image from 'next/image';
 import Slider from 'react-slick/lib/slider';
 
-const banners = [
-  '/banner/banner_1.jpg',
-  '/banner/banner_2.jpg',
-  '/banner/banner_3.jpg',
-  '/banner/banner_4.jpg',
-  '/banner/banner_5.jpg',
-];
-
-export function Banner() {
+export function Banner({ banners }) {
   const settings = {
     dots: false,
     infinite: true,
@@ -26,6 +18,8 @@ export function Banner() {
     cssEase: 'linear',
     className: 'react-slick-no-padding',
   };
+
+  console.log({ banners });
 
   return (
     <div className="slider-container w-full m-0 p-0 overflow-hidden">
@@ -44,11 +38,11 @@ export function Banner() {
         {banners.map((item, idx) => (
           <div key={idx} className="w-full m-0 p-0">
             <Image
-              src={item}
+              src={item.asset.url}
               width={2000}
               height={2000}
               priority
-              alt="hero image"
+              alt={item._key}
               className="w-full max-w-full object-cover aspect-[5/2.3] max-lg:aspect-[1.5] h-auto lg:h-[calc(100vh-64px)]"
             />
           </div>

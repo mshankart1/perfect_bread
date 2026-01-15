@@ -1,36 +1,22 @@
 import { DocumentTextIcon } from '@sanity/icons';
 import { defineField, defineType } from 'sanity';
 
-export const recipeType = defineType({
-  name: 'recipe',
-  title: 'Recipe',
+export const bannerType = defineType({
+  name: 'banner',
+  title: 'Banner',
   type: 'document',
   icon: DocumentTextIcon,
   fields: [
     defineField({
-      name: 'title',
-      title: 'Title',
+      name: 'name',
+      title: 'Banner Name',
       type: 'string',
       validation: (Rule) => Rule.required(),
     }),
     defineField({
-      name: 'card_color',
-      type: 'string',
-      title: 'Card Color',
-      description: 'The color of the card, in hex code (e.g. #ff0000) that will be displayed on the recipe page',
-      validation: (Rule) => Rule.required(),
-    }),
-    defineField({
-      name: 'description',
-      title: 'Description',
-      type: 'text',
-      validation: (Rule) => Rule.required().max(200),
-      description: 'Max 200 characters.',
-    }),
-    defineField({
-      name: 'banner_images',
+      name: 'images',
       type: 'array',
-      title: 'Banner Images',
+      title: 'Images',
       of: [
         {
           type: 'image',
@@ -55,8 +41,8 @@ export const recipeType = defineType({
   ],
   preview: {
     select: {
-      title: 'title',
-      media: 'image',
+      title: 'name',
+      media: 'image.0',
     },
     prepare(selection) {
       return { ...selection };
