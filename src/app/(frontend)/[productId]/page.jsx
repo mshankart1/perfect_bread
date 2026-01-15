@@ -18,7 +18,7 @@ async function getProduct(productId) {
 
 export default async function Page({ params }) {
   const { productId } = await params;
-  const product = await getProduct(productId);
+  const product = await getProduct(decodeURIComponent(productId));
   if (!product) {
     return <div>Product not found</div>;
   }
