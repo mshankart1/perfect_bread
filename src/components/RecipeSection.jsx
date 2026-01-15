@@ -2,45 +2,7 @@
 import { FaArrowLeft, FaArrowRight } from 'react-icons/fa';
 import Slider from 'react-slick/lib/slider';
 import Image from 'next/image';
-import Link from 'next/link';
 
-const data = [
-  {
-    title: 'BREAD PAKORA RECIPE',
-    description:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua....',
-    image: '/product/bread-1.jpg',
-    bgColor: '#FF6B35', // Vibrant Orange
-  },
-  {
-    title: 'BURGER RECIPE',
-    description:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua....',
-    image: '/product/bread-4.jpg',
-    bgColor: '#9B7A9F', // Mauve/Purple
-  },
-  {
-    title: 'GRILLED SANDWICH RECIPE',
-    description:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua....',
-    image: '/product/bread-2.jpg',
-    bgColor: '#E63946', // Bright Red
-  },
-  {
-    title: 'VEGETARIAN PIZZA RECIPE',
-    description:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua....',
-    image: '/product/bread-3.jpg',
-    bgColor: '#2D5016', // Dark Green
-  },
-  {
-    title: 'BURGER RECIPE',
-    description:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua....',
-    image: '/product/bread-4.jpg',
-    bgColor: '#9B7A9F', // Mauve/Purple
-  },
-];
 export function RecipeSection({ recipes }) {
   const ArrowLeft = (props) => {
     const { className, onClick } = props;
