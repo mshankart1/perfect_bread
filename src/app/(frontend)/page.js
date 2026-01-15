@@ -12,42 +12,39 @@ import {
 } from '@/components';
 import Image from 'next/image';
 import { client } from '@/sanity/lib/client';
-import { PRODUCT_QUERY } from '@/sanity/lib/queries';
+import { PRODUCT_QUERY, RECIPE_QUERY } from '@/sanity/lib/queries';
+import { Banner } from '@/components/Banner';
 
 export default async function Home() {
   let result = [];
+  let recipes = [];
   try {
     result = await client.fetch(PRODUCT_QUERY);
+    recipes = await client.fetch(RECIPE_QUERY);
   } catch (error) {
     console.error('Error fetching products:', error);
   }
   return (
-    <div>
-      <Image
-        src="/banner/banner_1.jpg"
-        width={2000}
-        height={2000}
-        priority
-        alt="hero image"
-        className="w-full aspect-[1.86/1] object-cover"
-      />
-      <Image src="/banner_2.jpg" width={2000} height={2000} priority alt="hero image" className="w-full object-cover" />
+    <div className="overflow-y-hidden w-full">
+      <Banner />
+      {/* <Image src="/banner_2.jpg" width={2000} height={2000} priority alt="hero image" className="w-full object-cover" /> */}
       <AboutSection />
-      <hr className="border-t-[30px] border-amber-500" />
+      <hr className="border-t-[30px] lg:border-t-[50px] border-amber-500" />
       <JourneySection />
-      <hr className="border-t-[30px] border-amber-500" />
+      <hr className="border-t-[30px] lg:border-t-[50px] border-amber-500" />
       <TeamSection />
-      <hr className="border-t-[30px] border-red-600" />
+      <hr className="border-t-[30px] lg:border-t-[50px] border-primary" />
       <ProductSection products={result} />
-      <hr className="border-t-[30px] border-amber-500" />
+      <hr className="border-t-[30px] lg:border-t-[50px] border-amber-500" />
       <MapSection />
+      <hr className="border-t-[30px] lg:border-t-[50px] border-primary" />
       <PartnersSections />
+      <hr className="border-t-[30px] lg:border-t-[50px] border-primary" />
       <EComPartnerSection />
-      <hr className="border-t-[30px] border-amber-500" />
-      <RecipeSection />
-      <hr className="border-t-[30px] border-amber-500" />
+      <hr className="border-t-[30px] lg:border-t-[50px] border-amber-500" />
+      <RecipeSection recipes={recipes} />
+      <hr className="border-t-[30px] lg:border-t-[50px] border-amber-500" />
       <ContactSection />
-      <FooterSection />
     </div>
   );
 }

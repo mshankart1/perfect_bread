@@ -6,11 +6,12 @@ import { MdEmail, MdPhone, MdFactory } from 'react-icons/md';
 export function ContactSection() {
   return (
     <section id="contact" className="">
-      <h2 className="heading pt-10">CONTACT US</h2>
-      <div className="mx-auto relative min-h-[350px] bg-[url('/contact-bg.png')] bg-center bg-no-repeat bg-cover">
-        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
+      <h2 className="heading pt-10 text-primary">CONTACT US</h2>
+      <div className="mx-auto relative min-h-[380px] bg-center bg-no-repeat overflow-hidden bg-cover">
+        <div className='absolute bg-[url("/contact-bg.png")] bg-cover bg-center w-full h-full -bottom-1/4' />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
       </div>
-      <div className="container mx-auto grid grid-cols-2 gap-10 my-10 px-4">
+      <div className="container mx-auto grid grid-cols-2 max-md:grid-cols-1 max-md:gap-10 gap-16 my-10 px-4">
         <div className="grid grid-cols-2 gap-4">
           <div className="bg-fuchsia-200 col-span-2 rounded-2xl p-4 gap-2 items-center flex flex-col">
             <GrOrganization className="text-xl size-12" />
@@ -18,7 +19,7 @@ export function ContactSection() {
             <p className="text-lg text-center">
               SCF 71/72 1st floor sector 15, <br /> main market faridabad Haryana-121007
             </p>
-          </div>
+          </div>{' '}
           <div className="bg-fuchsia-200 rounded-2xl p-4 justify-center items-center flex flex-col">
             <MdEmail className="text-xl size-10" />
             <h3 className="text-xl font-bold">Email</h3>
@@ -71,9 +72,9 @@ export function ContactSection() {
             </button>
           </form>
         </div>
-        <div className="col-span-2">
+        <div className="col-span-2 max-md:col-span-1">
           <h4 className="text-4xl mb-7 font-bold ml-4">Plant & Manufacturing</h4>
-          <div className="grid grid-cols-2 px-20 py-10 rounded-xl gap-8 bg-gray-300">
+          <div className="grid grid-cols-2 max-sm:grid-cols-1 max-lg:px-12 max-md:px-8 max-sm:py-8 px-20 py-10 rounded-xl gap-8 bg-gray-300">
             <PlantAndManufacturer />
             <PlantAndManufacturer />
             <PlantAndManufacturer />

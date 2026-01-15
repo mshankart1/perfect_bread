@@ -14,11 +14,11 @@ export function PartnersSections() {
     '/partners/partners_10.jpg',
   ];
   return (
-    <div className="bg-primary py-10 text-white">
+    <div className="bg-primary py-4 text-white">
       <section className="container mx-auto px-4">
-        <h2 className="heading">PERFECT PARTNERS</h2>
+        <h2 className="heading mb-8">PERFECT PARTNERS</h2>
         <div className="grid grid-cols-5 max-lg:grid-cols-4 max-md:grid-cols-3 my-10 gap-10 max-lg:gap-6">
-          {partners.map((image) => (
+          {partners.map((image, index) => (
             <Image
               key={image.split('/').pop()}
               src={image}

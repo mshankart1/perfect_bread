@@ -78,7 +78,7 @@ const data2 = [
   },
 ];
 
-const ArrowLeft = (props) => (
+export const ArrowLeft = (props) => (
   <button
     {...props}
     type="button"
@@ -89,7 +89,7 @@ const ArrowLeft = (props) => (
   </button>
 );
 
-const ArrowRight = (props) => (
+export const ArrowRight = (props) => (
   <button
     {...props}
     type="button"
@@ -104,6 +104,7 @@ export function Timeline({ data }) {
   var settings = {
     dots: true,
     infinite: false,
+    arrows: true,
     speed: 500,
     slidesToShow: 4,
     slidesToScroll: 1,
@@ -138,19 +139,19 @@ export function Timeline({ data }) {
     ],
   };
   return (
-    <div className="w-full h-full my-5 container slider-container relative px-8">
-      <Slider {...settings}>
+    <div className="w-full h-full my-5 container slider-container relative px-16 [&>*]:p-0">
+      <Slider {...settings} className="[&_.slick-slide]:px-2">
         {data2.map((item, i) => (
           <div className="flex-col items-center justify-center" key={item.year}>
             <div className="flex items-center justify-center">
-              <div className={`w-fit p-8 ${i % 2 === 0 ? 'bg-amber-400' : 'bg-red-400'} mb-12 relative rounded-full`}>
+              <div className={`w-fit p-5 ${i % 2 === 0 ? 'bg-amber-400' : 'bg-red-400'} mb-12 relative rounded-full`}>
                 <Image
                   src={item.image}
                   alt={item.title}
                   width={1000}
                   height={1000}
-                  className="w-36 aspect-square shadow-2xl rounded-full object-cover"
-                  style={{ boxShadow: '0 0 10px 3px black' }}
+                  className="w-38 aspect-square rounded-full object-cover"
+                  style={{ boxShadow: '1px 2px 9px 2px black' }}
                 />
                 <div
                   className={`absolute -bottom-8 left-1/2 -translate-x-1/2 w-10 aspect-square ${i % 2 === 0 ? 'bg-amber-400' : 'bg-red-400'}`}

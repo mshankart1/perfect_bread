@@ -2,6 +2,7 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import { FaHamburger, FaHome } from 'react-icons/fa';
 
@@ -18,14 +19,14 @@ const headerItem = [
 
 export function Header() {
   const [isOpen, setIsOpen] = useState(false);
+  const router = useRouter();
   return (
-    <div className="h-16 z-40 flex w-full text-primary bg-white sticky shadow-xl top-0 px-10">
-      <div className="absolute inset-0 bg-[url('/contact-bg.png')] bg-cover bg-top opacity-20 " />
-      <ul className="flex justify-center w-full gap-10 h-16 z-50 items-center max-lg:hidden">
-        <div className="flex gap-10 text-nowrap">
-          <FaHome size={25} />
+    <div className="h-16 z-40 flex w-full text-primary bg-white sticky shadow-xl top-0">
+      <ul className="grid grid-cols-[1fr_auto_1fr] justify-center container overflow font-semibold h-16 z-50 items-center max-lg:hidden">
+        <div className="flex text-nowrap justify-between gap-2 grow">
+          <FaHome size={25} className="cursor-pointer" onClick={() => router.push('/')} />
           <div className="capitalize text-center">
-            <Link href={'#about'}>About Us</Link>
+            <Link href={'/#about'}>About Us</Link>
           </div>
           <div className="capitalize text-center">
             <Link href="#product">Product</Link>
@@ -41,12 +42,13 @@ export function Header() {
           <Image
             src="/perfect_logo.png"
             alt="logo"
-            className="absolute -bottom-[70px] left-1/2 -translate-x-1/2 rounded-full object-cover h-34 w-34 border"
+            className="absolute -bottom-[70px] left-1/2 -translate-x-1/2 rounded-full object-cover h-34 w-34 border cursor-pointer"
             width={1000}
             height={1000}
+            onClick={() => router.push('/')}
           />
         </div>
-        <div className="flex gap-10 text-nowrap items-center">
+        <div className="flex justify-between gap-2 text-nowrap items-center ">
           <div className="capitalize text-center">
             <Link href={'#recipe'}>Recipes</Link>
           </div>
@@ -59,16 +61,17 @@ export function Header() {
           <div className="capitalize text-center">
             <Link href="#contact">Contact Us</Link>
           </div>
-          <input type="text" placeholder="Search....." className="border rounded-3xl px-2 py-1" />
+          <input type="text" placeholder="Search....." className="border rounded-3xl px-2 py-1 w-40" />
         </div>
       </ul>
-      <div className="max-lg:flex flex-row items-center justify-end w-full hidden">
+      <div className="max-lg:flex flex-row items-center px-10 max-sm:px-6 justify-end w-full hidden">
         <Image
           src="/perfect_logo.png"
           alt="logo"
-          className="absolute left-2 z-10 top-0 rounded-full object-cover h-28 w-28 border"
+          className="absolute left-2 z-10 top-0 rounded-full object-cover h-28 w-28 border cursor-pointer"
           width={1000}
           height={1000}
+          onClick={() => router.push('/')}
         />
         <span onClick={() => setIsOpen(!isOpen)} className="cursor-pointer z-10">
           <FaHamburger size={28} />
@@ -76,28 +79,28 @@ export function Header() {
         {/* Dropdown Navbar for mobile view */}
         {isOpen && (
           <div className="absolute right-0 *:hover:bg-primary/40 *:py-2 *:px-4 top-full transition-all duration-300 ease-in-out mt-0 w-full pt-10 text-black bg-white shadow-lg rounded-b-lg z-0 p-4 px-0 flex flex-col gap-0">
-            <Link href={'/'} className="capitalize text-left w-full block">
+            <Link href={'/#about'} className="capitalize text-left w-full block">
               About Us
             </Link>
-            <Link href={'/'} className="capitalize text-left w-full block">
+            <Link href={'#product'} className="capitalize text-left w-full block">
               Product
             </Link>
-            <Link href={'/'} className="capitalize text-left w-full block">
+            <Link href={'#world_beyond_bread'} className="capitalize text-left w-full block">
               World beyond Bread
             </Link>
-            <Link href={'/'} className="capitalize text-left w-full block">
+            <Link href={'#distribution'} className="capitalize text-left w-full block">
               Distribution
             </Link>
-            <Link href={'/'} className="capitalize text-left w-full block">
+            <Link href={'#recipe'} className="capitalize text-left w-full block">
               Recipes
             </Link>
-            <Link href={'/'} className="capitalize text-left w-full block">
+            <Link href={'#blog'} className="capitalize text-left w-full block">
               Blog
             </Link>
-            <Link href={'/'} className="capitalize text-left w-full block">
+            <Link href={'#client'} className="capitalize text-left w-full block">
               Our Client
             </Link>
-            <Link href={'/'} className="capitalize text-left w-full block">
+            <Link href={'#contact'} className="capitalize text-left w-full block">
               Contact Us
             </Link>
             {/* <input type="text" placeholder="Search....." className="border rounded-3xl px-2 py-1 w-full" /> */}

@@ -15,12 +15,12 @@
 
 @layer base {
   html {
-    @apply font-montserrat;
+    @apply font-poppins;
   }
 }
 @layer components {
   .heading {
-    @apply text-6xl max-md:text-4xl font-semibold mb-2 text-center underline underline-offset-[12px] max-md:underline-offset-4;
+    @apply text-6xl max-md:text-4xl font-semibold mb-2 text-center underline underline-offset-[12px] max-md:underline-offset-4 py-3;
   }
   .form-group {
     @apply [&>div>label]:text-lg [&>div>label]:font-medium [&>div>input]:border-1 [&>div>input]:border-gray-400 [&>div>input]:rounded-lg [&>div>input]:p-2 [&>div>textarea]:border-1 [&>div>textarea]:border-gray-400 [&>div>textarea]:rounded-lg [&>div>textarea]:p-2;
@@ -31,9 +31,16 @@
   .container {
     @apply max-w-7xl mx-auto;
   }
+
   .shadow-2xl {
-    --tw-shadow: 0 20px 48px 0 rgb(0 0 0 / 0.5), 0 1.5px 18px 0 rgb(0 0 0 / 0.15);
-    box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+    --tw-shadow-2: 0 20px 48px 0 rgb(0 0 0 / 0.5), 0 1.5px 18px 0 rgb(0 0 0 / 0.15);
+    box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow-2);
+  }
+
+  .shadow {
+    --tw-shadow: 0 0 10px 10px rgb(255 255 0), 0 1.5px 18px 0 rgb(0 0 0 / 0.15);
+    /* box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow); */
+    box-shadow: var(--tw-shadow);
   }
 }
 

@@ -8,11 +8,12 @@ export function EComPartnerSection() {
     '/ecom-partners/instamart.png',
   ];
   return (
-    <section id="client" className="container mx-auto my-10">
-      <h2 className="heading">E-COMMERCE PARTNER</h2>
-      <div className="grid grid-cols-4 gap-4 my-10 px-4">
+    <section id="client" className="container mx-auto my-14 max-lg:my-10">
+      <h2 className="heading text-primary mb-8">E-COMMERCE PARTNER</h2>
+      <div className="grid grid-cols-4 max-sm:grid-cols-2 gap-4 my-10 px-4">
         {partners.map((partner) => (
           <Image
+            key={partner.split('/').pop()}
             src={partner}
             alt={partner}
             width={500}

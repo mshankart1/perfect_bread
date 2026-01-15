@@ -13,6 +13,43 @@ export const productType = defineType({
       validation: (Rule) => Rule.required(),
     }),
     defineField({
+      name: 'heading',
+      type: 'text',
+      validation: (Rule) => Rule.required(),
+    }),
+    defineField({
+      name: 'subtitle',
+      type: 'text',
+    }),
+    defineField({
+      name: 'redirectUrl',
+      type: 'url',
+      title: 'Redirect URL',
+      description: 'The URL to redirect to when the clicked on the buy now button',
+    }),
+    defineField({
+      name: 'nutritionalInformation',
+      title: 'Nutritional Information',
+      type: 'array',
+      of: [
+        defineField({
+          name: 'nutritional_information',
+          title: 'Nutritional Information',
+          type: 'object',
+          fields: [
+            { name: 'name', type: 'string', title: 'Name' },
+            { name: 'quantity', type: 'string', title: 'Quantity' },
+          ],
+        }),
+      ],
+    }),
+    defineField({
+      name: 'color',
+      type: 'string',
+      title: 'Color',
+      description: 'Product color, enter a color name or hex code (e.g. "red" or "#ff0000")',
+    }),
+    defineField({
       name: 'slug',
       type: 'slug',
       options: {
@@ -39,17 +76,23 @@ export const productType = defineType({
       type: 'string',
     }),
     defineField({
-      name: 'image',
-      type: 'image',
-      options: {
-        hotspot: true,
-      },
-      fields: [
-        defineField({
-          name: 'alt',
-          type: 'string',
-          title: 'Alternative text',
-        }),
+      name: 'images',
+      type: 'array',
+      title: 'Images',
+      of: [
+        {
+          type: 'image',
+          options: {
+            hotspot: true,
+          },
+          fields: [
+            defineField({
+              name: 'alt',
+              type: 'string',
+              title: 'Alternative text',
+            }),
+          ],
+        },
       ],
     }),
     defineField({
@@ -66,7 +109,7 @@ export const productType = defineType({
     select: {
       title: 'title',
       author: 'author',
-      media: 'mainImage',
+      media: 'images.0',
     },
     prepare(selection) {
       const { author } = selection;

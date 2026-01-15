@@ -41,7 +41,7 @@ const data = [
     bgColor: '#9B7A9F', // Mauve/Purple
   },
 ];
-export function RecipeSection() {
+export function RecipeSection({ recipes }) {
   const ArrowLeft = (props) => {
     const { className, onClick } = props;
     return (
@@ -94,7 +94,7 @@ export function RecipeSection() {
       {
         breakpoint: 900,
         settings: {
-          slidesToShow: 3,
+          slidesToShow: 2,
           slidesToScroll: 1,
           infinite: true,
           dots: false,
@@ -104,7 +104,7 @@ export function RecipeSection() {
       {
         breakpoint: 600,
         settings: {
-          slidesToShow: 2,
+          slidesToShow: 1,
           slidesToScroll: 1,
           initialSlide: 1,
           arrows: true,
@@ -123,31 +123,25 @@ export function RecipeSection() {
     <div id="recipe" className="bg-[url('/recipes-bg.jpg')] py-16 bg-cover bg-center w-full relative">
       <section className="container mx-auto px-4">
         <h2 className="heading text-primary mb-8 text-center">PERFECT RECIPES</h2>
-        <div className="slider-container">
+        <div className="slider-container max-md:px-6">
           <Slider {...settings} className=" px-6 mx-4  rounded-4xl py-10 backdrop-blur-xs">
-            {data.map((item, i) => (
+            {recipes.map((item, i) => (
               <div key={i} className="h-full slider-item">
                 <div
                   key={i}
-                  className="relative rounded-4xl aspect-[1/1.5] mt-26 h-full slider-item"
-                  style={{ background: item.bgColor }}
+                  className="relative rounded-4xl max-sm:min-h-80 max-md:min-h-96 min-h-96 mt-26 max-md:mt-20 h-full slider-item"
+                  style={{ background: item.card_color }}
                 >
                   <Image
-                    src={item.image}
-                    alt={item.title}
+                    src={item.imageUrl}
+                    alt={item.name}
                     width={500}
                     height={500}
-                    className="w-[70%] object-cover shadow-4xl absolute rounded-full aspect-square -top-24 left-1/2 -translate-x-1/2"
+                    className="w-[70%] max-md:w-[65%] object-cover shadow-4xl absolute rounded-full aspect-square -top-24 max-md:-top-20 left-1/2 -translate-x-1/2"
                   />
-                  <div
-                    className="flex flex-col flex-grow"
-                    style={{
-                      padding: '32px 24px',
-                      minHeight: '240px',
-                    }}
-                  >
+                  <div className="flex flex-col flex-grow px-6 pt-8 max-md:px-4 max-sm:pt-4 max-md:py-0 min-h-0">
                     <h3
-                      className="text-white  pt-24 font-bold mb-4 leading-tight uppercase"
+                      className="text-white pt-24 max-md:pt-20 max-sm:pt-10 font-bold mb-4 leading-tight uppercase"
                       style={{
                         fontSize: '19px',
                         letterSpacing: '1.5px',
@@ -156,10 +150,10 @@ export function RecipeSection() {
                         lineHeight: '1.3',
                       }}
                     >
-                      {item.title}
+                      {item.name}
                     </h3>
                     <p
-                      className="text-white mb-6 flex-grow leading-relaxed"
+                      className="text-white mb-4 max-md:mb-3 flex-grow leading-relaxed"
                       style={{
                         fontSize: '14px',
                         fontFamily: 'sans-serif',
@@ -169,7 +163,7 @@ export function RecipeSection() {
                     >
                       {item.description}
                     </p>
-                    <Link
+                    {/* <Link
                       href="#"
                       className="text-white self-start"
                       style={{
@@ -181,7 +175,7 @@ export function RecipeSection() {
                       }}
                     >
                       Read more
-                    </Link>
+                    </Link> */}
                   </div>
                 </div>
               </div>

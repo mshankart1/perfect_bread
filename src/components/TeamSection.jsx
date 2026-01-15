@@ -5,36 +5,9 @@ import { useEffect, useState } from 'react';
 import { Heading } from './ui';
 import Slider from 'react-slick/lib/slider';
 import { FaArrowLeft, FaArrowRight } from 'react-icons/fa';
+import { ArrowLeft, ArrowRight } from './ui/Timeline';
 
 export function TeamSection() {
-  //   const [data, setData] = useState([]);
-  //   useEffect(async () => {
-  //     const result = await getData('blog');
-  //     setData(result);
-  //   }, []);
-
-  const ArrowLeft = (props) => (
-    <button
-      {...props}
-      type="button"
-      className={`absolute z-10 left-2 top-1/2 -translate-y-1/2 bg-white rounded-full shadow-lg p-3 hover:bg-gray-100 focus:outline-none transition-colors ${props.className || ''}`}
-      aria-label="Previous"
-    >
-      <FaArrowLeft size={20} className="text-gray-800" />
-    </button>
-  );
-
-  const ArrowRight = (props) => (
-    <button
-      {...props}
-      type="button"
-      className={`absolute z-10 right-2 top-1/2 -translate-y-1/2 bg-white rounded-full shadow-lg p-3 hover:bg-gray-100 focus:outline-none transition-colors ${props.className || ''}`}
-      aria-label="Next"
-    >
-      <FaArrowRight size={20} className="text-gray-800" />
-    </button>
-  );
-
   var settings = {
     infinite: false,
     dots: false,
@@ -46,20 +19,35 @@ export function TeamSection() {
     nextArrow: <ArrowRight />,
   };
 
-  const data = ['/team/team_1.png', '/team/team_2.png', '/team/team_3.png', '/team/team_4.png'];
+  const data = [
+    '/team/team_1.jpeg',
+    '/team/team_2.jpeg',
+    '/team/team_3.jpeg',
+    '/team/team_4.jpeg',
+    '/team/team_5.jpeg',
+    '/team/team_6.jpeg',
+    '/team/team_7.jpeg',
+    '/team/team_8.jpeg',
+    '/team/team_9.jpeg',
+    '/team/team_10.jpeg',
+    '/team/team_11.jpeg',
+    '/team/team_12.jpeg',
+    '/team/team_13.jpeg',
+    '/team/team_14.jpeg',
+  ];
   return (
-    <div className="w-full flex flex-col gap-5 justify-center items-center my-5">
-      <h2 className="heading mb-5">PERFECT TEAM</h2>
-      <div className="w-full md:w-3/4 lg:w-1/2 h-full relative slider-container">
+    <div className="w-full flex flex-col gap-5 justify-center items-center my-10">
+      <h2 className="heading mb-8 text-primary">PERFECT TEAM</h2>
+      <div className="w-full md:w-3/4 lg:w-1/2 h-full px-16 relative gap-2 slider-container">
         <Slider {...settings}>
           {data.map((item, i) => (
-            <div key={i} className="px-2 h-full w-full object-cover">
+            <div key={i} className="h-full w-full object-cover">
               <Image
                 src={item}
                 alt={`team member ${i + 1}`}
                 width={2000}
                 height={2000}
-                className="w-full aspect-video object-cover rounded-t-lg"
+                className="w-full aspect-[19/12] object-cover object-top  rounded-3xl border-4 border-primary overflow-hidden"
                 loading="lazy"
               />
             </div>
