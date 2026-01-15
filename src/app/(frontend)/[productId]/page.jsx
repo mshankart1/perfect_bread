@@ -1,8 +1,15 @@
 import { ProductClient } from './page.client';
+import { headers } from 'next/headers';
 
 async function getProduct(productId) {
   try {
-    const baseUrl = typeof window === 'undefined' ? 'http://localhost:3000' : window.location.origin;
+    const headersList = await headers();
+    const host = headersList.get('host');
+    // const protocol = process.env.NODE_ENV === 'production' ? 'https' : 'http';
+    const protocol = 'https';
+    console.log({ protocol, host });
+    const baseUrl = `${protocol}://${host}`;
+
     const res = await fetch(`${baseUrl}/api/products/${productId}`, {
       cache: 'no-store',
     });

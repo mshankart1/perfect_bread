@@ -105,7 +105,7 @@ export function ProductSection({ products = [] }) {
               <div
                 key={product.name + '-' + index}
                 className="border  border-gray-400 hover:shadow-md hover:shadow-black/60 hover:scale-[1.01] aspect-[0.9] max-md:aspect-[0.95] transition-all duration-300 cursor-pointer"
-                onClick={() => router.push(`/${product?.slug || product?._id}`)}
+                onClick={() => router.push(`/${encodeURI(product?.slug) || product?._id}`)}
               >
                 <Image
                   src={product.imageUrl || null}
