@@ -100,7 +100,7 @@ export const ArrowRight = (props) => (
   </button>
 );
 
-export function Timeline({ data }) {
+export function Timeline({ timeline }) {
   var settings = {
     dots: true,
     infinite: false,
@@ -141,12 +141,12 @@ export function Timeline({ data }) {
   return (
     <div className="w-full h-full my-5 container slider-container relative px-16 [&>*]:p-0">
       <Slider {...settings} className="[&_.slick-slide]:px-2">
-        {data2.map((item, i) => (
+        {timeline?.map((item, i) => (
           <div className="flex-col items-center justify-center" key={item.year}>
             <div className="flex items-center justify-center">
               <div className={`w-fit p-5 ${i % 2 === 0 ? 'bg-amber-400' : 'bg-red-400'} mb-12 relative rounded-full`}>
                 <Image
-                  src={item.image}
+                  src={item.imageUrl}
                   alt={item.title}
                   width={1000}
                   height={1000}

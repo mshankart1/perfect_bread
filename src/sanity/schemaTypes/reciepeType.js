@@ -24,7 +24,7 @@ export const recipeType = defineType({
       name: 'description',
       title: 'Description',
       type: 'text',
-      validation: (Rule) => Rule.required().max(200),
+      validation: (Rule) => Rule.required().max(200).error('Description must be less than 200 characters'),
       description: 'Max 200 characters.',
     }),
     defineField({
