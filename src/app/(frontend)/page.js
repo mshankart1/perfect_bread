@@ -21,10 +21,10 @@ export default async function Home() {
   let banners = [];
   let timeline = [];
   try {
-    result = await client.fetch(PRODUCT_QUERY);
-    recipes = await client.fetch(RECIPE_QUERY);
-    banners = await client.fetch(BANNER_QUERY);
-    timeline = await client.fetch(TIMELINE_QUERY);
+    result = await client.fetch(PRODUCT_QUERY, {}, { cache: 'no-store' });
+    recipes = await client.fetch(RECIPE_QUERY, {}, { cache: 'no-store' });
+    banners = await client.fetch(BANNER_QUERY, {}, { cache: 'no-store' });
+    timeline = await client.fetch(TIMELINE_QUERY, {}, { cache: 'no-store' });
   } catch (error) {
     console.error('Error fetching products:', error);
   }
