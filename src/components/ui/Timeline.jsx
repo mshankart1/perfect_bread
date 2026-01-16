@@ -8,7 +8,7 @@ export const ArrowLeft = (props) => (
   <button
     {...props}
     type="button"
-    className={`absolute z-10 left-0 top-1/2 -translate-y-1/2 -translate-x-4/3 bg-primary rounded-full shadow-lg p-3 hover:bg-primary/80 focus:outline-none transition-colors`}
+    className={`absolute z-10 left-0 md:left-0 top-1/2 -translate-y-1/2 -translate-x-1/2 md:-translate-x-4/3 bg-primary rounded-full shadow-lg p-2 md:p-3 hover:bg-primary/80 focus:outline-none transition-colors`}
     aria-label="Previous"
   >
     <FaArrowLeft size={20} className="text-white" />
@@ -19,7 +19,7 @@ export const ArrowRight = (props) => (
   <button
     {...props}
     type="button"
-    className={`absolute z-10 -right-10 top-1/2 -translate-y-1/2 translate-x-1/3 bg-primary rounded-full shadow-lg p-3 hover:bg-primary/80 focus:outline-none transition-colors`}
+    className={`absolute z-10 -right-0 md:-right-10 top-1/2 -translate-y-1/2 translate-x-1/2 md:translate-x-1/3 bg-primary rounded-full shadow-lg p-2 md:p-3 hover:bg-primary/80 focus:outline-none transition-colors`}
     aria-label="Next"
   >
     <FaArrowRight size={20} className="text-white" />
@@ -30,7 +30,7 @@ export function Timeline({ timeline }) {
   var settings = {
     dots: true,
     infinite: false,
-    arrows: true,
+    // arrows: false,
     speed: 500,
     slidesToShow: 4,
     slidesToScroll: 1,
@@ -39,34 +39,38 @@ export function Timeline({ timeline }) {
     prevArrow: <ArrowLeft />,
     responsive: [
       {
-        breakpoint: 1024,
+        breakpoint: 1024, // lg
         settings: {
           slidesToShow: 3,
           slidesToScroll: 1,
           infinite: true,
           dots: true,
+          arrows: false,
         },
       },
       {
-        breakpoint: 600,
+        breakpoint: 768, // md
         settings: {
           slidesToShow: 2,
           slidesToScroll: 1,
           initialSlide: 1,
+          arrows: false,
         },
       },
       {
-        breakpoint: 480,
+        breakpoint: 640, // sm
         settings: {
           slidesToShow: 1,
           slidesToScroll: 1,
+          infinite: true,
+          arrows: false,
         },
       },
     ],
   };
   return (
-    <div className="w-full h-full my-5 container slider-container relative px-16 [&>*]:p-0">
-      <Slider {...settings} className="[&_.slick-slide]:px-2">
+    <div className="w-full h-full my-5 container slider-container relative px-4 md:px-8 lg:px-16 [&>*]:p-0">
+      <Slider {...settings} className="[&_.slick-slide]:px-1 md:[&_.slick-slide]:px-2">
         {timeline?.map((item, i) => (
           <div className="flex-col items-center justify-center" key={item.year}>
             <div className="flex items-center justify-center">

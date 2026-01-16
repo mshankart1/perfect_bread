@@ -32,6 +32,22 @@ export const bannerType = defineType({
           ],
         },
       ],
+      description:
+        'You can add multiple images at once by clicking "Upload" and selecting several files in the file picker dialog.',
+    }),
+    defineField({
+      name: 'type',
+      type: 'string',
+      title: 'Type',
+      validation: (Rule) => Rule.required(),
+      options: {
+        list: [
+          { title: 'First Banner', value: 'first_banner' },
+          { title: 'Second Banner', value: 'second_banner' },
+          { title: 'Team Section Banner', value: 'team_section' },
+        ],
+        layout: 'radio',
+      },
     }),
     defineField({
       name: 'publishedAt',

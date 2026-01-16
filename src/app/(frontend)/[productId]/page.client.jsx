@@ -146,7 +146,7 @@ export function ProductClient({ product }) {
         </div>
       </div>
       <div className="w-full bg-yellow-400 pt-16 max-md:pt-10 max-sm:pt-8 pb-4">
-        <div className="w-full px-16 max-md:px-10 max-sm:px-6 bg-white container rounded-t-4xl grid grid-cols-3 gap-6">
+        <div className="w-full px-16 max-md:px-10 max-sm:px-6 bg-white container rounded-t-4xl grid grid-cols-3 max-sm:grid-cols-1 gap-6">
           <h2 className="text-4xl col-span-3 mt-6 font-bold text-center" style={{ color: color }}>
             SIMILAR PRODUCTS
           </h2>

@@ -19,8 +19,6 @@ export function Banner({ banners }) {
     className: 'react-slick-no-padding',
   };
 
-  console.log({ banners });
-
   return (
     <div className="slider-container w-full m-0 p-0 overflow-hidden">
       <style jsx global>{`

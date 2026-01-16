@@ -53,8 +53,11 @@ const stores = [
 
 export function MapSection() {
   return (
-    <section id="distribution" className="flex flex-col items-center justify-center gap-8 my-10 container mx-auto">
-      <h2 className="heading mb-8">PERFECT REACH</h2>
+    <section
+      id="distribution"
+      className="flex flex-col items-center justify-center gap-8 max-md:gap-3 my-10 container mx-auto"
+    >
+      <h2 className="heading mb-8 max-md:mb-3 text-primary">PERFECT REACH</h2>
       <div className="grid grid-cols-2 max-md:grid-cols-1 px-4 gap-8 w-full">
         {/* Map */}
         <div className="w-full h-full">

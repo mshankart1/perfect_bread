@@ -1,6 +1,6 @@
 'use client';
 import Image from 'next/image';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { FaArrowLeft, FaArrowRight } from 'react-icons/fa';
 import Slider from 'react-slick';
 import { useRouter } from 'next/navigation';
@@ -44,6 +44,7 @@ var settings = {
         slidesToShow: 3,
         slidesToScroll: 1,
         infinite: true,
+        arrows: false,
         dots: true,
       },
     },
@@ -54,6 +55,7 @@ var settings = {
         slidesToScroll: 1,
         initialSlide: 1,
         infinite: true,
+        arrows: false,
         dots: true,
       },
     },
@@ -63,6 +65,7 @@ var settings = {
         slidesToShow: 1,
         slidesToScroll: 1,
         infinite: true,
+        arrows: false,
         dots: true,
       },
     },
@@ -100,7 +103,7 @@ export function ProductSection({ products = [] }) {
           ))}
         </div>
         {showAll ? (
-          <div className="grid grid-cols-4 max-md:grid-cols-2 max-md:px-4 max-lg:grid-cols-3 gap-4">
+          <div className="grid grid-cols-4 max-md:grid-cols-2 max-md:px-2 max-lg:grid-cols-3 gap-4">
             {products.map((product, index) => (
               <div
                 key={product.name + '-' + index}
@@ -127,7 +130,7 @@ export function ProductSection({ products = [] }) {
             ))}
           </div>
         ) : (
-          <div className="slider-container w-full mb-10 px-8">
+          <div className="slider-container w-full mb-10 px-8 max-md:px-2">
             <Slider {...settings} className="[&_.slick-slide]:px-2">
               {Array.isArray(allProducts[selectedCategory]) &&
                 allProducts[selectedCategory].map((item, index) => (
