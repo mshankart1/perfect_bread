@@ -10,8 +10,9 @@ async function getProduct(productId) {
     const baseUrl = `${protocol}://${host}`;
 
     const res = await fetch(`${baseUrl}/api/products/${productId}`, {
-      cache: 'no-store',
+      next: { revalidate: 120 },
     });
+
     if (!res.ok) {
       return null;
     }
