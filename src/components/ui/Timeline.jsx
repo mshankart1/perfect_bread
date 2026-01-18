@@ -4,33 +4,38 @@ import Slider from 'react-slick/lib/slider';
 import Image from 'next/image';
 import { FaArrowLeft, FaArrowRight } from 'react-icons/fa';
 
-export const ArrowLeft = (props) => (
-  <button
-    {...props}
-    type="button"
-    className={`absolute z-10 left-0 md:left-0 top-1/2 -translate-y-1/2 -translate-x-1/2 md:-translate-x-4/3 bg-primary rounded-full shadow-lg p-2 md:p-3 hover:bg-primary/80 focus:outline-none transition-colors`}
-    aria-label="Previous"
-  >
-    <FaArrowLeft size={20} className="text-white" />
-  </button>
-);
+export const ArrowLeft = (props) => {
+  const { classes, ...rest } = props;
+  return (
+    <button
+      {...rest}
+      type="button"
+      className={`absolute z-10 left-0 md:left-0 top-1/2 -translate-y-1/2 -translate-x-1/2 md:-translate-x-4/3 bg-primary rounded-full shadow-lg p-2 md:p-3 hover:bg-primary/80 focus:outline-none transition-colors ${classes || ''}`}
+      aria-label="Previous"
+    >
+      <FaArrowLeft size={20} className="text-white" />
+    </button>
+  );
+};
 
-export const ArrowRight = (props) => (
-  <button
-    {...props}
-    type="button"
-    className={`absolute z-10 -right-0 md:-right-10 top-1/2 -translate-y-1/2 translate-x-1/2 md:translate-x-1/3 bg-primary rounded-full shadow-lg p-2 md:p-3 hover:bg-primary/80 focus:outline-none transition-colors`}
-    aria-label="Next"
-  >
-    <FaArrowRight size={20} className="text-white" />
-  </button>
-);
+export const ArrowRight = (props) => {
+  const { classes, ...rest } = props;
+  return (
+    <button
+      {...rest}
+      type="button"
+      className={`absolute z-10 -right-0 md:-right-10 top-1/2 -translate-y-1/2 translate-x-1/2 md:translate-x-1/3 bg-primary rounded-full shadow-lg p-2 md:p-3 hover:bg-primary/80 focus:outline-none transition-colors ${classes || ''}`}
+      aria-label="Next"
+    >
+      <FaArrowRight size={20} className="text-white" />
+    </button>
+  );
+};
 
 export function Timeline({ timeline }) {
   var settings = {
     dots: true,
     infinite: false,
-    // arrows: false,
     speed: 500,
     slidesToShow: 4,
     slidesToScroll: 1,

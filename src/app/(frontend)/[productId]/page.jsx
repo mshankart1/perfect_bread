@@ -5,8 +5,7 @@ async function getProduct(productId) {
   try {
     const headersList = await headers();
     const host = headersList.get('host');
-    // const protocol = process.env.NODE_ENV === 'production' ? 'https' : 'http';
-    const protocol = 'https';
+    const protocol = 'http';
     const baseUrl = `${protocol}://${host}`;
 
     const res = await fetch(`${baseUrl}/api/products/${productId}`, {

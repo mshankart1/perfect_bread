@@ -34,7 +34,7 @@ export const timelineType = defineType({
     defineField({
       name: 'description',
       type: 'text',
-      validation: (Rule) => Rule.required().max(200).error('Description must be less than 200 characters'),
+      validation: (Rule) => Rule.required().max(300).error('Description must be less than 300 characters'),
     }),
   ],
   preview: {

@@ -2,20 +2,75 @@
 
 import { Collapse } from '@/components';
 import Image from 'next/image';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { FaDroplet } from 'react-icons/fa6';
 import { FaFlask } from 'react-icons/fa';
 import { GiPalmTree } from 'react-icons/gi';
 import { useRouter } from 'next/navigation';
+import Slider from 'react-slick/lib/slider';
+import { ArrowLeft, ArrowRight } from '@/components/ui/Timeline';
+import { toHTML } from '@portabletext/to-html';
+
+const settings = {
+  infinite: true,
+  speed: 500,
+  slidesToShow: 3,
+  slidesToScroll: 1,
+  initialSlide: 0,
+  nextArrow: <ArrowRight classes="md:translate-x-1/5 z-40" />,
+  prevArrow: <ArrowLeft classes="md:-translate-x-11/10 z-40" />,
+  responsive: [
+    {
+      breakpoint: 1024, // lg
+      settings: {
+        slidesToShow: 3,
+        slidesToScroll: 1,
+        infinite: true,
+        arrows: false,
+      },
+    },
+    {
+      breakpoint: 768, // md
+      settings: {
+        slidesToShow: 2,
+        slidesToScroll: 1,
+        initialSlide: 1,
+        arrows: false,
+      },
+    },
+    {
+      breakpoint: 640, // sm
+      settings: {
+        slidesToShow: 2,
+        slidesToScroll: 1,
+        infinite: true,
+        arrows: false,
+      },
+    },
+  ],
+};
 
 export function ProductClient({ product }) {
   const router = useRouter();
   const [currentImage, setCurrentImage] = useState(product?.images?.[0]);
   const color = product?.color || '#cb1f2b';
+
+  const html = toHTML(product.ingredients, {
+    components: {
+      block: {
+        h1: ({ children }) => `<h1>${children}</h1>`,
+        h2: ({ children }) => `<h2 className="text-xl">${children}</h2>`,
+        h3: ({ children }) =>
+          `<h3 style="background-color: ${color}; color: white; padding: 10px 15px; font-size: 1.2rem; line-height: 1.2; border-radius: 5px;">${children}</h3>`,
+        normal: ({ children }) => `<p style="font-size: 1.1rem;">${children}</p>`,
+      },
+    },
+  });
+
   return (
     <>
       <div className="container">
-        <div className="grid grid-cols-2 max-md:grid-cols-1 max-lg:px-4 my-5 mt-30 gap-x-10 max-md:mt-16">
+        <div className="grid grid-cols-2 max-md:grid-cols-1 max-lg:px-4 my-5 mt-20 gap-x-10 max-md:mt-14">
           <div className="w-full">
             <Image
               src={currentImage?.asset?.url || null}
@@ -43,52 +98,56 @@ export function ProductClient({ product }) {
                 ))}
             </div>
           </div>
-          <div className="w-full flex flex-col max-md:mt-10">
+          <div className="w-full flex flex-col max-md:mt-6">
             <h1 className="text-5xl max-lg:text-4xl font-bold whitespace-pre-line" style={{ color: color }}>
               {product?.heading}
             </h1>
+            <h3 className="text-2xl font-bold" style={{ color: color }}>
+              {product?.weight ? product?.weight + ' gms' : ''}
+            </h3>
             <p className="text-lg mt-2 whitespace-pre-line" style={{ color: color }}>
               {product?.subtitle}
             </p>
-            <div className="grid grid-cols-3 max-lg:grid-cols-2 [&>div]:pt-5 mt-3">
-              <div
-                className="flex flex-col border-primary items-center px-4 justify-center gap-5 border-2 border-l-0 max-xs:border-r-0 max-xs:col-span-1"
-                // style={{ borderColor: color }}
-              >
-                <div className="relative bg-primary text-white rounded-full w-fit p-3">
-                  <FaFlask size={20} />
-                  <div className="absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 bg-white rotate-45 rounded-full z-2 w-8 h-0.5 flex items-center justify-center"></div>
+            {/* Health Benefits */}
+            {product.category.toLowerCase() !== 'rusk' && (
+              <div className="grid grid-cols-3 max-lg:grid-cols-2 [&>div]:pt-5 mt-3">
+                <div
+                  className="flex flex-col border-primary items-center px-4 justify-center gap-5 border-2 border-l-0 max-xs:border-r-0 max-xs:col-span-1"
+                  // style={{ borderColor: color }}
+                >
+                  <div className="relative bg-primary text-white rounded-full w-fit p-3">
+                    <FaFlask size={20} />
+                    <div className="absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 bg-white rotate-45 rounded-full z-2 w-8 h-0.5 flex items-center justify-center"></div>
+                  </div>
+                  <span className="text-lg text-center min-h-16">No Preservatives</span>
                 </div>
-                <span className="text-lg text-center min-h-16">No Preservatives</span>
-              </div>
-              <div
-                className="flex flex-col items-center px-4 border-primary justify-center gap-5 border-2 border-l-0 max-lg:border-r-0 max-xs:border-t-0 max-xs:col-span-1"
-                // style={{ borderColor: color }}
-              >
-                <div className="relative bg-primary text-white rounded-full w-fit p-3">
-                  <FaDroplet size={20} />
-                  <div className="absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 bg-white rotate-45 rounded-full z-2 w-8 h-0.5 flex items-center  justify-center"></div>
+                <div
+                  className="flex flex-col items-center px-4 border-primary justify-center gap-5 border-2 border-l-0 max-lg:border-r-0 max-xs:border-t-0 max-xs:col-span-1"
+                  // style={{ borderColor: color }}
+                >
+                  <div className="relative bg-primary text-white rounded-full w-fit p-3">
+                    <FaDroplet size={20} />
+                    <div className="absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 bg-white rotate-45 rounded-full z-2 w-8 h-0.5 flex items-center  justify-center"></div>
+                  </div>
+                  <span className="text-lg text-center min-h-16">Zero Cholesterol Trans Fat</span>
                 </div>
-                <span className="text-lg text-center min-h-16">Zero Cholesterol Trans Fat</span>
-              </div>
-              <div
-                className="flex flex-col items-center px-4 justify-center gap-5 border-2 border-primary border-x-0 max-lg:border-t-0 max-lg:col-span-2 max-xs:col-span-1"
-                // style={{ borderColor: color }}
-              >
-                <div className="relative bg-primary text-white rounded-full w-fit p-3">
-                  <GiPalmTree size={20} />
-                  <div className="absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 bg-white rotate-45 rounded-full z-2 w-8 h-0.5 flex items-center justify-center"></div>
+                <div
+                  className="flex flex-col items-center px-4 justify-center gap-5 border-2 border-primary border-x-0 max-lg:border-t-0 max-lg:col-span-2 max-xs:col-span-1"
+                  // style={{ borderColor: color }}
+                >
+                  <div className="relative bg-primary text-white rounded-full w-fit p-3">
+                    <GiPalmTree size={20} />
+                    <div className="absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 bg-white rotate-45 rounded-full z-2 w-8 h-0.5 flex items-center justify-center"></div>
+                  </div>
+                  <span className="text-lg text-center min-h-16">No Palm Oil</span>
                 </div>
-                <span className="text-lg text-center min-h-16">No Palm Oil</span>
               </div>
-            </div>
+            )}
             <div
-              href={product?.redirectUrl || null}
-              target="_blank"
-              className="btn px-4 py-2 text-white rounded-lg w-fit my-8 max-lg:my-6 max-md:my-4 min-w-32 text-center font-semibold text-2xl max-lg:text-lg cursor-pointer"
+              className="btn px-4 py-2 text-white rounded-lg w-fit my-8 max-lg:my-6 max-md:my-4 min-w-32 text-center font-semibold text-2xl max-lg:text-lg cursor-default"
               style={{ backgroundColor: color }}
             >
-              BUY NOW
+              AVAILABLE ON
             </div>
             <div className="grid grid-cols-4 max-lg:grid-cols-2 max-lg:px-6 max-xs:px-3 gap-6 mb-8 max-lg:mb-6 max-md:mb-4 [&>img]:self-center">
               <Image
@@ -125,10 +184,18 @@ export function ProductClient({ product }) {
               />
             </div>
             <div className="flex flex-col gap-2">
-              <Collapse heading={'INGREDIENTS'}></Collapse>
+              <Collapse heading={'INGREDIENTS'}>
+                <div dangerouslySetInnerHTML={{ __html: html }} className="text-center flex flex-col gap-3 px-4 py-3" />
+              </Collapse>
               {product?.nutritionalInformation?.length > 0 && (
                 <Collapse heading={'NUTRITIONAL - INFORMATION'}>
                   <div className="flex flex-col mb-3">
+                    <div
+                      className="flex justify-between items-center border-b px-2 border-gray-400 bg-gray-200 py-2 font-semibold"
+                    >
+                      <span className="text-lg text-wrap">Parameters</span>
+                      <p className="text-base">Typical Value Per 100 g</p>
+                    </div>
                     {product?.nutritionalInformation?.map((info) => (
                       <div
                         key={info._key}
@@ -150,28 +217,34 @@ export function ProductClient({ product }) {
           <h2 className="text-4xl col-span-3 mt-6 font-bold text-center" style={{ color: color }}>
             SIMILAR PRODUCTS
           </h2>
-          {product?.related?.map((related, index) => (
-            <div
-              key={related.name + '-' + index}
-              className="hover:scale-[1.02] cursor-pointer transition-all duration-300 border border-gray-400 mb-4"
-              onClick={() => router.push(`/${related?.slug || related?._id}`)}
-            >
-              <Image
-                src={related.imageUrl || null}
-                alt={related?._id}
-                width={500}
-                height={500}
-                priority
-                className="w-full object-cover aspect-[1]"
-              />
-              <div className="flex flex-col pt-2 px-2 pb-4 max-md:min-h-28 min-h-26 justify-center">
-                <span className="font-bold text-lg mask-clip-fill  text-center">{related.title.split(' - ')[0]}</span>
-                <span className="text-lg text-gray-700 min-h-5 text-center">
-                  {`(${related.weight ? related.weight + ' gms' : ''})`}
-                </span>
-              </div>
-            </div>
-          ))}
+          <div className="col-span-3">
+            <Slider {...settings}>
+              {product?.related?.map((related, index) => (
+                <div
+                  key={related.name + '-' + index}
+                  className="hover:scale-[1.02] cursor-pointer transition-all duration-300 border border-gray-400 mb-4"
+                  onClick={() => router.push(`/${related?.slug || related?._id}`)}
+                >
+                  <Image
+                    src={related.imageUrl || null}
+                    alt={related?._id}
+                    width={500}
+                    height={500}
+                    priority
+                    className="w-full object-cover aspect-[1]"
+                  />
+                  <div className="flex flex-col pt-2 px-2 pb-4 max-md:min-h-28 min-h-26 justify-center">
+                    <span className="font-bold text-lg mask-clip-fill  text-center">
+                      {related.title.split(' - ')[0]}
+                    </span>
+                    <span className="text-lg text-gray-700 min-h-5 text-center">
+                      {`(${related.weight ? related.weight + ' gms' : ''})`}
+                    </span>
+                  </div>
+                </div>
+              ))}
+            </Slider>
+          </div>
         </div>
       </div>
     </>

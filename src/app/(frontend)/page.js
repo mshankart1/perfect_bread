@@ -31,7 +31,7 @@ export default async function Home() {
   return (
     <div className="overflow-y-hidden w-full">
       <Banner banners={banners.filter((banner) => banner.type === 'first_banner')[0].images} />
-      {/* <Image src="/banner_2.jpg" width={2000} height={2000} priority alt="hero image" className="w-full object-cover" /> */}
+      <Image src="/perfect-banner.jpg" width={2000} height={2000} priority alt="hero image" className="w-full object-cover" />
       <AboutSection />
       <hr className="border-t-[30px] lg:border-t-[50px] border-amber-500" />
       <JourneySection timeline={timeline} />

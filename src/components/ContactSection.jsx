@@ -13,19 +13,19 @@ export function ContactSection() {
       </div>
       <div className="container mx-auto grid grid-cols-2 max-md:grid-cols-1 max-md:gap-10 gap-16 my-10 px-4">
         <div className="grid grid-cols-2 gap-4">
-          <div className="bg-fuchsia-200 col-span-2 rounded-2xl p-4 gap-2 items-center flex flex-col">
+          <div className="bg-[#ffe8f2] col-span-2 rounded-2xl p-4 gap-2 items-center flex flex-col">
             <GrOrganization className="text-xl size-12" />
             <h3 className="text-xl font-bold">Head Office</h3>
             <p className="text-lg text-center">
               SCF 71/72 1st floor sector 15, <br /> main market faridabad Haryana-121007
             </p>
           </div>{' '}
-          <div className="bg-fuchsia-200 rounded-2xl p-4 justify-center items-center flex flex-col">
+          <div className="bg-[#ffe8f2] rounded-2xl p-4 justify-center items-center flex flex-col">
             <MdEmail className="text-xl size-10" />
             <h3 className="text-xl font-bold">Email</h3>
             <p className="text-lg text-center">info@perfectbread.com</p>
           </div>
-          <div className="bg-fuchsia-200 rounded-2xl p-4 justify-center items-center flex flex-col">
+          <div className="bg-[#ffe8f2] rounded-2xl p-4 justify-center items-center flex flex-col">
             <MdPhone className="text-xl size-10" />
             <h3 className="text-xl font-bold">Phone</h3>
             <p className="text-lg text-center">0129-4871451</p>
@@ -74,7 +74,7 @@ export function ContactSection() {
         </div>
         <div className="col-span-2 max-md:col-span-1">
           <h4 className="text-4xl mb-7 font-bold ml-4">Plant & Manufacturing</h4>
-          <div className="grid grid-cols-2 max-sm:grid-cols-1 max-lg:px-12 max-md:px-8 max-sm:py-8 px-20 py-10 rounded-xl gap-8 bg-gray-300">
+          <div className="grid grid-cols-2 max-sm:grid-cols-1 max-lg:px-12 max-md:px-8 max-sm:py-8 px-20 py-10 rounded-xl gap-8 bg-[#efefef]">
             <PlantAndManufacturer />
             <PlantAndManufacturer />
             <PlantAndManufacturer />

@@ -28,23 +28,17 @@ export const recipeType = defineType({
       description: 'Max 200 characters.',
     }),
     defineField({
-      name: 'banner_images',
-      type: 'array',
-      title: 'Banner Images',
-      of: [
-        {
-          type: 'image',
-          options: {
-            hotspot: true,
-          },
-          fields: [
-            defineField({
-              name: 'alt',
-              type: 'string',
-              title: 'Alternative text',
-            }),
-          ],
-        },
+      name: 'image',
+      type: 'image',
+      options: {
+        hotspot: true,
+      },
+      fields: [
+        defineField({
+          name: 'alt',
+          type: 'string',
+          title: 'Alternative text',
+        }),
       ],
     }),
     defineField({

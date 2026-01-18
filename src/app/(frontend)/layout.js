@@ -3,11 +3,14 @@ import { SanityLive } from '@/sanity/lib/live';
 import Head from 'next/head';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
+import { client } from '@/sanity/lib/client';
+import { PRODUCT_QUERY } from '@/sanity/lib/queries';
 
-export default function RootLayout({ children }) {
+export default async function RootLayout({ children }) {
+  let products = await client.fetch(PRODUCT_QUERY, {}, { next: { revalidate: 120 } });
   return (
     <>
-      <Header />
+      <Header products={products} />
       {children}
       <SanityLive />
       <FooterSection />

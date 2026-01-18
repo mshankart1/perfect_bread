@@ -81,40 +81,15 @@
   height: 48px;
 }
 
-/* Recipe Carousel Styles */
-/* .recipe-slider 
-
-.recipe-slider 
-
-.recipe-slider 
-
-.recipe-slider .slick-track {
-  display: flex;
-  align-items: stretch;
+::-webkit-scrollbar {
+  width: 4px;
 }
 
-.recipe-slider 
-.recipe-slider .slick-arrow.slick-prev {
-  left: -60px !important;
+::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 4px;
 }
 
-.recipe-slider .slick-arrow.slick-next {
-  right: -60px !important;
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
 }
-
-.recipe-slider .slick-arrow::before {
-  display: none;
-}
-
-.recipe-slider .slick-arrow.slick-disabled {
-  opacity: 0.5;
-  cursor: not-allowed;
-}
-
-.recipe-slider .slick-slide {
-  outline: none;
-}
-
-.recipe-slider .slick-slide * {
-  outline: none;
-} */

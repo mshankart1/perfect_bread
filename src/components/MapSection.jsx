@@ -4,22 +4,22 @@ const stores = [
   {
     location: 'Delhi NCR',
     sites: ['Ghaziabad', 'Vaishali', 'Noida', 'Kalkaji', 'Vasant Vihar', 'Tagore Garden'],
-    color: '#ff0000',
+    color: '#d1212e',
   },
   {
     location: 'Haryana',
     sites: ['Panchkula', 'Ambala', 'Kurukshetra', 'Karnal', 'Panipat', 'Rohtak', 'Jhajjar', 'Faridabad', 'Gurugram'],
-    color: '#0000ff',
+    color: '#fdc629',
   },
   {
     location: 'Rajasthan',
     sites: ['Alwar', 'Jhunjhunu'],
-    color: '#00ff00',
+    color: '#247ad1',
   },
   {
     location: 'Punjab',
     sites: ['Amritsar', 'Kapurthala', 'Rupnagar', 'Jalandhar'],
-    color: '#ffff00',
+    color: '#4c1401',
   },
   {
     location: 'Uttar Pradesh',
@@ -37,17 +37,17 @@ const stores = [
       'Mathura',
       'Agra',
     ],
-    color: '#800080',
+    color: '#19b0ff',
   },
   {
     location: 'Uttarakhand',
     sites: ['Uttarkashi', 'Tehri Garhwal', 'Dehradun', 'Haridwar'],
-    color: '#ffa500',
+    color: '#80008f',
   },
   {
     location: 'Madhya Pradesh',
     sites: ['Sheopur', 'Morena'],
-    color: '#ffc0cb',
+    color: '#008e37',
   },
 ];
 
@@ -68,13 +68,13 @@ export function MapSection() {
         <div className="w-full h-full columns-2 gap-2 mx-4">
           {stores.map((store) => (
             <div key={store.location} className="break-inside-avoid mb-6">
-              <div className="flex gap-4 items-center mb-2">
+              <div className="flex gap-4 items-center mb-2 hover:scale-[1.05] transition-all duration-300 cursor-default">
                 <SiHomeassistantcommunitystore className="w-8 h-8" style={{ color: store.color }} />
-                <h3 className="text-2xl font-bold">{store.location}</h3>
+                <h3 className="text-2xl font-bold cursor-default">{store.location}</h3>
               </div>
-              <ul className="list-none ml-12 text-lg text-gray-800">
+              <ul className="list-none ml-12 text-lg cursor-default text-gray-800">
                 {store.sites.map((site) => (
-                  <li key={site}>{site}</li>
+                  <li key={site} className="hover:scale-[1.03] transition-all duration-300 cursor-default">{site}</li>
                 ))}
               </ul>
             </div>

@@ -1,5 +1,5 @@
 import { DocumentTextIcon } from '@sanity/icons';
-import { defineArrayMember, defineField, defineType } from 'sanity';
+import { defineField, defineType } from 'sanity';
 
 export const productType = defineType({
   name: 'product',
@@ -42,6 +42,10 @@ export const productType = defineType({
           ],
         }),
       ],
+      options: {
+        layout: 'table',
+      },
+      description: 'Add any nutritional info label and value. Click "Add item" for more rows.',
     }),
     defineField({
       name: 'color',
@@ -57,16 +61,25 @@ export const productType = defineType({
       },
     }),
     defineField({
+      name: 'ingredients',
+      title: 'Ingredients',
+      type: 'blockContent',
+    }),
+    defineField({
+      name: 'description',
+      type: 'blockContent',
+    }),
+    defineField({
       name: 'category',
       type: 'string',
       options: {
         list: [
-          { title: 'Bun And Pav', value: 'Bun And Pav' },
-          { title: 'Flat Bread', value: 'Flat Bread' },
-          { title: 'Health And Wellness', value: 'Health And Wellness' },
-          { title: 'Rusk', value: 'Rusk' },
-          { title: 'Sweet Bread', value: 'Sweet Bread' },
-          { title: 'White Bread', value: 'White Bread' },
+          { title: 'Bun & Pav', value: 'bun & pav' },
+          { title: 'Flat Bread', value: 'flat bread' },
+          { title: 'Health And Wellness', value: 'health & wellness' },
+          { title: 'Rusk', value: 'rusk' },
+          { title: 'Sweet Bakery', value: 'sweet bakery' },
+          { title: 'White Bread', value: 'white bread' },
         ],
         layout: 'dropdown',
       },
@@ -100,20 +113,20 @@ export const productType = defineType({
       type: 'datetime',
       initialValue: new Date().toISOString(),
     }),
-    defineField({
-      name: 'description',
-      type: 'blockContent',
-    }),
   ],
   preview: {
     select: {
       title: 'title',
-      author: 'author',
+      subtitle: 'category',
       media: 'images.0',
     },
     prepare(selection) {
-      const { author } = selection;
-      return { ...selection, subtitle: author && `by ${author}` };
+      const { title, subtitle, media } = selection;
+      return {
+        title: title,
+        subtitle: subtitle || 'No category',
+        media: media,
+      };
     },
   },
 });

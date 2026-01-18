@@ -96,7 +96,7 @@ export function RecipeSection({ recipes }) {
                 >
                   <Image
                     src={item.imageUrl}
-                    alt={item.name}
+                    alt={item.title}
                     width={500}
                     height={500}
                     className="w-[70%] max-md:w-[65%] object-cover shadow-4xl absolute rounded-full aspect-square -top-24 max-md:-top-20 left-1/2 -translate-x-1/2"
@@ -112,7 +112,7 @@ export function RecipeSection({ recipes }) {
                         lineHeight: '1.3',
                       }}
                     >
-                      {item.name}
+                      {item.title}
                     </h3>
                     <p
                       className="text-white mb-4 max-md:mb-3 flex-grow leading-relaxed"

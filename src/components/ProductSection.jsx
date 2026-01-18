@@ -76,29 +76,29 @@ export function ProductSection({ products = [] }) {
   const router = useRouter();
   const [showAll, setShowAll] = useState(false);
   const allProducts = products?.reduce((acc, val) => {
-    if (!acc[val?.category]) {
-      acc[val?.category] = [];
+    if (!acc[val?.category.toLowerCase()]) {
+      acc[val?.category.toLowerCase()] = [];
     }
-    acc[val?.category].push(val);
+    acc[val?.category.toLowerCase()].push(val);
     return acc;
   }, {});
 
+  const categories = ['White Bread', 'Health & Wellness', 'Bun & Pav', 'Flat Bread', 'Rusk', 'Sweet Bakery'];
   const [selectedCategory, setSelectedCategory] = useState(Object.keys(allProducts)?.[0]);
-
   return (
     <section id="product" className="my-10 container mx-auto">
       <h2 className="heading mb-8 max-md:mb-4 text-primary">PERFECT PRODUCTS</h2>
       <div className="flex flex-col items-center ">
-        <div className="flex w-fit px-2 bg-amber-400 py-1.5 max-md:mx-4 my-6 max-md:my-4 justify-between text-lg rounded-lg items-center max-md:text-sm">
-          {Object.keys(allProducts).map((item, index, arr) => (
+        <div className="flex w-fit px-2 bg-amber-400 py-1.5 max-md:mx-2 my-6 max-md:my-2 max-sm:px-1 justify-between text-lg rounded-lg items-center max-md:text-sm">
+          {categories.map((item, index) => (
             <span key={item} className="flex items-center">
               <span
-                onClick={() => setSelectedCategory(item)}
-                className={`${selectedCategory === item ? 'bg-white shadow-sm shadow-black' : ''} px-3 py-1 text-center rounded-md cursor-pointer`}
+                onClick={() => setSelectedCategory(item.toLowerCase())}
+                className={`${selectedCategory === item.toLowerCase() ? 'bg-white shadow-sm shadow-black' : ''} px-3 max-md:px-1.5 max-sm:px-1 py-1 text-center rounded-md cursor-pointer`}
               >
-                {selectedCategory === item ? item : item}
+                {item}
               </span>
-              {index !== arr.length - 1 && <span className="h-[30px] w-[1px] bg-black mx-2"></span>}
+              {index !== categories.length - 1 && <span className="h-[30px] w-[1px] bg-black mx-2 max-sm:mx-1"></span>}
             </span>
           ))}
         </div>
@@ -132,8 +132,8 @@ export function ProductSection({ products = [] }) {
         ) : (
           <div className="slider-container w-full mb-10 px-8 max-md:px-2">
             <Slider {...settings} className="[&_.slick-slide]:px-2">
-              {Array.isArray(allProducts[selectedCategory]) &&
-                allProducts[selectedCategory].map((item, index) => (
+              {Array.isArray(allProducts[selectedCategory.toLowerCase()]) &&
+                allProducts[selectedCategory.toLowerCase()].map((item, index) => (
                   <div
                     key={item.name + '-' + index}
                     className="flex flex-col items-center w-full justify-center border border-gray-400 ring-0 focus:outline-none focus:ring-0 hover:shadow hover:shadow-black my-2 hover:scale-[1.01] transition-all duration-300 cursor-pointer"
