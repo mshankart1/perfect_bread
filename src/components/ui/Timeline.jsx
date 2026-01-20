@@ -5,7 +5,7 @@ import Image from 'next/image';
 import { FaArrowLeft, FaArrowRight } from 'react-icons/fa';
 
 export const ArrowLeft = (props) => {
-  const { classes, ...rest } = props;
+  const { classes, currentSlide, slideCount, ...rest } = props;
   return (
     <button
       {...rest}
@@ -19,7 +19,7 @@ export const ArrowLeft = (props) => {
 };
 
 export const ArrowRight = (props) => {
-  const { classes, ...rest } = props;
+  const { classes, currentSlide, slideCount, ...rest } = props;
   return (
     <button
       {...rest}
@@ -79,7 +79,7 @@ export function Timeline({ timeline }) {
         {timeline?.map((item, i) => (
           <div className="flex-col items-center justify-center" key={item.year}>
             <div className="flex items-center justify-center">
-              <div className={`w-fit p-5 ${i % 2 === 0 ? 'bg-amber-400' : 'bg-red-400'} mb-12 relative rounded-full`}>
+              <div className={`w-fit p-5 ${i % 2 === 0 ? 'bg-amber-300' : 'bg-red-400'} mb-12 relative rounded-full`}>
                 <Image
                   src={item.imageUrl}
                   alt={item.title}
@@ -89,7 +89,7 @@ export function Timeline({ timeline }) {
                   style={{ boxShadow: '1px 2px 9px 2px black' }}
                 />
                 <div
-                  className={`absolute -bottom-8 left-1/2 -translate-x-1/2 w-10 aspect-square ${i % 2 === 0 ? 'bg-amber-400' : 'bg-red-400'}`}
+                  className={`absolute -bottom-8 left-1/2 -translate-x-1/2 w-10 aspect-square ${i % 2 === 0 ? 'bg-amber-300' : 'bg-red-400'}`}
                   style={{ clipPath: 'polygon(0 0, 100% 0, 50% 100%)' }}
                 ></div>
               </div>

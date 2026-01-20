@@ -31,13 +31,13 @@ export function Header({ products }) {
             <Link href={'/#about'}>About Us</Link>
           </div>
           <div className="capitalize text-center">
-            <Link href="#product">Product</Link>
+            <Link href="/#product">Product</Link>
           </div>
           <div className="capitalize text-center">
-            <Link href={'#journey'}>World beyond Bread</Link>
+            <Link href={'/#journey'}>World beyond Bread</Link>
           </div>
           <div className="capitalize text-center">
-            <Link href={'#distribution'}>Distribution</Link>
+            <Link href={'/#distribution'}>Distribution</Link>
           </div>
         </div>
         <div className="h-full relative w-[150px]">
@@ -52,16 +52,16 @@ export function Header({ products }) {
         </div>
         <div className="flex justify-between gap-2 text-nowrap items-center ">
           <div className="capitalize text-center">
-            <Link href={'#recipe'}>Recipes</Link>
+            <Link href={'/#recipe'}>Recipes</Link>
           </div>
           <div className="capitalize text-center">
-            <Link href={'/'}>Blog</Link>
+            <Link href={'/#blog'}>Blog</Link>
           </div>
           <div className="capitalize text-center">
-            <Link href={'#client'}>Our Client</Link>
+            <Link href={'/#client'}>Our Client</Link>
           </div>
           <div className="capitalize text-center">
-            <Link href="#contact">Contact Us</Link>
+            <Link href={'/#contact'}>Contact Us</Link>
           </div>
           <div className="relative">
             <input
@@ -120,25 +120,25 @@ export function Header({ products }) {
             <Link href={'/#about'} className="capitalize text-left w-full block">
               About Us
             </Link>
-            <Link href={'#product'} className="capitalize text-left w-full block">
+            <Link href={'/#product'} className="capitalize text-left w-full block">
               Product
             </Link>
-            <Link href={'#world_beyond_bread'} className="capitalize text-left w-full block">
+            <Link href={'/#world_beyond_bread'} className="capitalize text-left w-full block">
               World beyond Bread
             </Link>
-            <Link href={'#distribution'} className="capitalize text-left w-full block">
+            <Link href={'/#distribution'} className="capitalize text-left w-full block">
               Distribution
             </Link>
-            <Link href={'#recipe'} className="capitalize text-left w-full block">
+            <Link href={'/#recipe'} className="capitalize text-left w-full block">
               Recipes
             </Link>
-            <Link href={'#blog'} className="capitalize text-left w-full block">
+            <Link href={'/#blog'} className="capitalize text-left w-full block">
               Blog
             </Link>
-            <Link href={'#client'} className="capitalize text-left w-full block">
+            <Link href={'/#client'} className="capitalize text-left w-full block">
               Our Client
             </Link>
-            <Link href={'#contact'} className="capitalize text-left w-full block">
+            <Link href={'/#contact'} className="capitalize text-left w-full block">
               Contact Us
             </Link>
             {/* <input type="text" placeholder="Search....." className="border rounded-3xl px-2 py-1 w-full" /> */}

@@ -5,27 +5,33 @@ import { FaArrowLeft, FaArrowRight } from 'react-icons/fa';
 import Slider from 'react-slick';
 import { useRouter } from 'next/navigation';
 
-const ArrowLeft = (props) => (
-  <button
-    {...props}
-    type="button"
-    className={`absolute z-10 left-2 top-1/2 -translate-y-1/2 bg-white rounded-full shadow-lg p-3 hover:bg-gray-100 focus:outline-none transition-colors ${props.className || ''}`}
-    aria-label="Previous"
-  >
-    <FaArrowLeft size={20} className="text-gray-800" />
-  </button>
-);
+const ArrowLeft = (props) => {
+  const { currentSlide, slideCount, className, ...rest } = props;
+  return (
+    <button
+      {...rest}
+      type="button"
+      className={`absolute z-10 left-2 top-1/2 -translate-y-1/2 bg-white rounded-full shadow-lg p-3 hover:bg-gray-100 focus:outline-none transition-colors ${className || ''}`}
+      aria-label="Previous"
+    >
+      <FaArrowLeft size={20} className="text-gray-800" />
+    </button>
+  );
+};
 
-const ArrowRight = (props) => (
-  <button
-    {...props}
-    type="button"
-    className={`absolute z-10 right-2 top-1/2 -translate-y-1/2 bg-white rounded-full shadow-lg p-3 hover:bg-gray-100 focus:outline-none transition-colors ${props.className || ''}`}
-    aria-label="Next"
-  >
-    <FaArrowRight size={20} className="text-gray-800" />
-  </button>
-);
+const ArrowRight = (props) => {
+  const { currentSlide, slideCount, className, ...rest } = props;
+  return (
+    <button
+      {...rest}
+      type="button"
+      className={`absolute z-10 right-2 top-1/2 -translate-y-1/2 bg-white rounded-full shadow-lg p-3 hover:bg-gray-100 focus:outline-none transition-colors ${className || ''}`}
+      aria-label="Next"
+    >
+      <FaArrowRight size={20} className="text-gray-800" />
+    </button>
+  );
+};
 
 var settings = {
   dots: true,
@@ -93,7 +99,10 @@ export function ProductSection({ products = [] }) {
           {categories.map((item, index) => (
             <span key={item} className="flex items-center">
               <span
-                onClick={() => setSelectedCategory(item.toLowerCase())}
+                onClick={() => {
+                  setSelectedCategory(item.toLowerCase());
+                  setShowAll(false);
+                }}
                 className={`${selectedCategory === item.toLowerCase() ? 'bg-white shadow-sm shadow-black' : ''} px-3 max-md:px-1.5 max-sm:px-1 py-1 text-center rounded-md cursor-pointer`}
               >
                 {item}
@@ -132,7 +141,8 @@ export function ProductSection({ products = [] }) {
         ) : (
           <div className="slider-container w-full mb-10 px-8 max-md:px-2">
             <Slider {...settings} className="[&_.slick-slide]:px-2">
-              {Array.isArray(allProducts[selectedCategory.toLowerCase()]) &&
+            {!allProducts[selectedCategory.toLowerCase()]?.length ? <div className='flex text-4xl font-semibold py-10 text-center'>COMING <br/>SOON</div> :
+              Array.isArray(allProducts[selectedCategory.toLowerCase()]) &&
                 allProducts[selectedCategory.toLowerCase()].map((item, index) => (
                   <div
                     key={item.name + '-' + index}
@@ -159,7 +169,8 @@ export function ProductSection({ products = [] }) {
                       </span>
                     </div>
                   </div>
-                ))}
+                ))
+              }
             </Slider>
           </div>
         )}

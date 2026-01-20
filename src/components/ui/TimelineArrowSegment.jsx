@@ -1,7 +1,7 @@
 'use client';
 
 export function TimelineArrowSegment({ year, title, description, color = 'yellow', showConnector = true }) {
-  const bgColor = color === 'yellow' ? 'bg-amber-500' : 'bg-red-600 text-white';
+  const bgColor = color === 'yellow' ? 'bg-[#ffc629]' : 'bg-red-600 text-white';
 
   return (
     <div className="relative flex flex-col items-center w-full">

@@ -28,10 +28,11 @@ export default async function Home() {
   } catch (error) {
     console.error('Error fetching products:', error);
   }
+  const secondBanner = banners.filter((banner) => banner.type === 'second_banner')?.[0]?.images?.[0];
   return (
     <div className="overflow-y-hidden w-full">
       <Banner banners={banners.filter((banner) => banner.type === 'first_banner')[0].images} />
-      <Image src="/perfect-banner.jpg" width={2000} height={2000} priority alt="hero image" className="w-full object-cover" />
+      {secondBanner && <Image src={secondBanner.asset.url} width={2000} height={2000} priority alt="hero image" className="w-full object-cover" />}
       <AboutSection />
       <hr className="border-t-[30px] lg:border-t-[50px] border-amber-500" />
       <JourneySection timeline={timeline} />

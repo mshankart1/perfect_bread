@@ -19,11 +19,10 @@ export function PartnersSections() {
         <h2 className="heading mb-8">PERFECT PARTNERS</h2>
         <div className="grid grid-cols-5 max-lg:grid-cols-4 max-md:grid-cols-3 my-10 gap-10 max-lg:gap-6">
           {partners.map((image, index) => (
-            <div className="w-full bg-white aspect-[1.1/1] border border-black/50 shadow-lg p-4 rounded-xl object-contain">
+            <div key={image.split('/').pop()} className="w-full bg-white aspect-[1.1/1] border border-black/50 shadow-lg p-4 rounded-xl object-contain">
             <Image
-              key={image.split('/').pop()}
               src={image}
-              alt={image}
+              alt={image.split('/').pop()}
               width={500}
               height={500}
               className="w-full bg-white aspect-[1.1] rounded-xl object-contain cursor-default hover:scale-110 transition-all duration-300"

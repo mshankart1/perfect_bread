@@ -2,6 +2,7 @@
 import { FaArrowLeft, FaArrowRight } from 'react-icons/fa';
 import Slider from 'react-slick/lib/slider';
 import Image from 'next/image';
+import { urlFor } from '@/sanity/lib/image';
 
 export function RecipeSection({ recipes }) {
   const ArrowLeft = (props) => {
@@ -16,7 +17,7 @@ export function RecipeSection({ recipes }) {
         <FaArrowLeft size={20} className="text-red-600" />
       </button>
     );
-  };
+};
 
   const ArrowRight = (props) => {
     const { className, onClick } = props;
@@ -32,7 +33,7 @@ export function RecipeSection({ recipes }) {
     );
   };
 
-  var settings = {
+var settings = {
     dots: false,
     infinite: true,
     speed: 500,
@@ -42,6 +43,7 @@ export function RecipeSection({ recipes }) {
     nextArrow: <ArrowRight />,
     prevArrow: <ArrowLeft />,
     arrows: true,
+    mobileFirst: true,
     responsive: [
       {
         breakpoint: 1024,
@@ -64,11 +66,22 @@ export function RecipeSection({ recipes }) {
         },
       },
       {
+        breakpoint: 768,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+          infinite: true,
+          dots: false,
+          arrows: true,
+        },
+      },
+      {
         breakpoint: 600,
         settings: {
           slidesToShow: 1,
           slidesToScroll: 1,
-          initialSlide: 1,
+          infinite: true,
+          dots: false,
           arrows: true,
         },
       },
@@ -77,10 +90,14 @@ export function RecipeSection({ recipes }) {
         settings: {
           slidesToShow: 1,
           slidesToScroll: 1,
+          infinite: true,
+          dots: false,
+          arrows: true,
         },
       },
     ],
   };
+
   return (
     <div id="recipe" className="bg-[url('/recipes-bg.jpg')] py-16 bg-cover bg-center w-full relative">
       <section className="container mx-auto px-4">
@@ -95,11 +112,11 @@ export function RecipeSection({ recipes }) {
                   style={{ background: item.card_color }}
                 >
                   <Image
-                    src={item.imageUrl}
-                    alt={item.title}
-                    width={500}
-                    height={500}
-                    className="w-[70%] max-md:w-[65%] object-cover shadow-4xl absolute rounded-full aspect-square -top-24 max-md:-top-20 left-1/2 -translate-x-1/2"
+                    src={urlFor(item.image)?.url() || ''}
+                    alt={item.image?.alt || item?.title}
+                    width={1000}
+                    height={1000}
+                    className="w-[70%] max-md:w-[65%] shadow-[3px_3px_10px_0px_rgba(0,0,0,0.5)] object-cover absolute rounded-full -top-24 max-md:-top-20 left-1/2 -translate-x-1/2"
                   />
                   <div className="flex flex-col flex-grow px-6 pt-8 max-md:px-4 max-sm:pt-4 max-md:py-0 min-h-0">
                     <h3

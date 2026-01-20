@@ -33,7 +33,7 @@ export function Banner({ banners }) {
         }
       `}</style>
       <Slider {...settings}>
-        {banners.map((item, idx) => (
+        {banners && banners.map((item, idx) => (
           <div key={idx} className="w-full m-0 p-0">
             <Image
               src={item.asset.url}

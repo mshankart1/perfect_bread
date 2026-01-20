@@ -7,9 +7,9 @@ export function ContactSection() {
   return (
     <section id="contact" className="">
       <h2 className="heading pt-10 text-primary">CONTACT US</h2>
-      <div className="mx-auto relative min-h-[380px] bg-center bg-no-repeat overflow-hidden bg-cover">
-        <div className='absolute bg-[url("/contact-bg.png")] bg-cover bg-center w-full h-full -bottom-1/4' />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
+      <div className="mx-auto relative min-h-[300px] bg-center bg-no-repeat overflow-hidden bg-cover">
+        <div className='absolute bg-[url("/contact-bg.png")] bg-fit bg-no-repeat bg-bottom w-full h-full bottom-0' />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
       </div>
       <div className="container mx-auto grid grid-cols-2 max-md:grid-cols-1 max-md:gap-10 gap-16 my-10 px-4">
         <div className="grid grid-cols-2 gap-4">

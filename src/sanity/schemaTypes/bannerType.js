@@ -33,7 +33,7 @@ export const bannerType = defineType({
         },
       ],
       description:
-        'You can add multiple images at once by clicking "Upload" and selecting several files in the file picker dialog.',
+        'for second banner, add only one image',
     }),
     defineField({
       name: 'type',

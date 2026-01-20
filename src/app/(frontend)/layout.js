@@ -1,8 +1,5 @@
 import { FooterSection, Header } from '@/components';
 import { SanityLive } from '@/sanity/lib/live';
-import Head from 'next/head';
-import 'slick-carousel/slick/slick.css';
-import 'slick-carousel/slick/slick-theme.css';
 import { client } from '@/sanity/lib/client';
 import { PRODUCT_QUERY } from '@/sanity/lib/queries';
 

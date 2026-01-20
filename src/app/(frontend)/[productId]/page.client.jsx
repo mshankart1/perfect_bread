@@ -17,8 +17,8 @@ const settings = {
   slidesToShow: 3,
   slidesToScroll: 1,
   initialSlide: 0,
-  nextArrow: <ArrowRight classes="md:translate-x-1/5 z-40" />,
-  prevArrow: <ArrowLeft classes="md:-translate-x-11/10 z-40" />,
+  nextArrow: <ArrowRight classes="md:translate-x-1/5 z-20" />,
+  prevArrow: <ArrowLeft classes="md:-translate-x-11/10 z-20" />,
   responsive: [
     {
       breakpoint: 1024, // lg
@@ -59,10 +59,13 @@ export function ProductClient({ product }) {
     components: {
       block: {
         h1: ({ children }) => `<h1>${children}</h1>`,
-        h2: ({ children }) => `<h2 className="text-xl">${children}</h2>`,
+        h2: ({ children }) => `<h2>${children}</h2>`,
         h3: ({ children }) =>
           `<h3 style="background-color: ${color}; color: white; padding: 10px 15px; font-size: 1.2rem; line-height: 1.2; border-radius: 5px;">${children}</h3>`,
         normal: ({ children }) => `<p style="font-size: 1.1rem;">${children}</p>`,
+      },
+      marks: {
+        strong: ({ children }) => `<strong style="font-weight: 600;">${children}</strong>`,
       },
     },
   });
@@ -102,15 +105,15 @@ export function ProductClient({ product }) {
             <h1 className="text-5xl max-lg:text-4xl font-bold whitespace-pre-line" style={{ color: color }}>
               {product?.heading}
             </h1>
-            <h3 className="text-2xl font-bold" style={{ color: color }}>
-              {product?.weight ? product?.weight + ' gms' : ''}
+            <h3 className="text-3xl font-bold" style={{ color: color }}>
+              ({product?.weight ? product?.weight + ' gms' : ''})
             </h3>
             <p className="text-lg mt-2 whitespace-pre-line" style={{ color: color }}>
               {product?.subtitle}
             </p>
             {/* Health Benefits */}
             {product.category.toLowerCase() !== 'rusk' && (
-              <div className="grid grid-cols-3 max-lg:grid-cols-2 [&>div]:pt-5 mt-3">
+              <div className="grid grid-cols-3 max-lg:grid-cols-2 [&>div]:pt-5 mt-1">
                 <div
                   className="flex flex-col border-primary items-center px-4 justify-center gap-5 border-2 border-l-0 max-xs:border-r-0 max-xs:col-span-1"
                   // style={{ borderColor: color }}
@@ -189,22 +192,28 @@ export function ProductClient({ product }) {
               </Collapse>
               {product?.nutritionalInformation?.length > 0 && (
                 <Collapse heading={'NUTRITIONAL - INFORMATION'}>
-                  <div className="flex flex-col mb-3">
-                    <div
-                      className="flex justify-between items-center border-b px-2 border-gray-400 bg-gray-200 py-2 font-semibold"
-                    >
-                      <span className="text-lg text-wrap">Parameters</span>
-                      <p className="text-base">Typical Value Per 100 g</p>
-                    </div>
-                    {product?.nutritionalInformation?.map((info) => (
-                      <div
-                        key={info._key}
-                        className="flex justify-between items-center border-b px-2 border-gray-400 py-1"
-                      >
-                        <span className="text-lg text-wrap">{info.name}</span>
-                        <p className="text-base text-gray-500">{info.quantity}</p>
-                      </div>
-                    ))}
+                  <div className="overflow-x-auto mb-3">
+                    <table className="min-w-full overflow-hidden">
+                      <thead>
+                        <tr className="bg-gray-200 font-semibold text-gray-900">
+                          <th className="px-4 py-2 border-b text-lg text-left">Parameters</th>
+                          <th className="px-4 py-2 border-b text-base text-right">Typical Value Per 100 g</th>
+                          <th className="px-4 py-2 border-b text-base text-right">Per Serve % Contribution to RDA#</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {product?.nutritionalInformation?.map((info) => (
+                          <tr key={info._key} className="even:bg-gray-50 odd:bg-white">
+                            <td className="px-4 py-2 border-b border-gray-400 text-lg text-wrap text-left">{info.name}</td>
+                            <td className="px-4 py-2 border-b text-base border-gray-400 text-gray-500 text-right">{info.quantity}</td>
+                            <td className="px-4 py-2 border-b text-base border-gray-400 text-gray-500 text-right">{info.rta || '-'}</td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  </div>
+                  <div className="mt-4 px-2 font-semibold whitespace-pre-line mb-4">
+                    {product?.nutriInfo}
                   </div>
                 </Collapse>
               )}

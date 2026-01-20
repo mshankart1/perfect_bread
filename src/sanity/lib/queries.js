@@ -23,7 +23,7 @@ export const RECIPE_QUERY = defineQuery(`*[_type == "recipe" && !(_id in path("d
   title,
   card_color,
   description,
-  "imageUrl": image.asset->url,
+  image,
   "slug": slug.current
 }`);
 
@@ -35,6 +35,7 @@ export const SINGLE_PRODUCT_QUERY = defineQuery(`
     subtitle,
     color,
     nutritionalInformation,
+    nutriInfo,
     ingredients,
     category,
     "slug": slug.current,
@@ -87,6 +88,7 @@ export const PRODUCT_BY_SLUG_QUERY = defineQuery(`
     color,
     ingredients,
     nutritionalInformation,
+    nutriInfo,
     category,
     "slug": slug.current,
     weight,

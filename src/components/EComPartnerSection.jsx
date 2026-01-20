@@ -12,7 +12,7 @@ export function EComPartnerSection() {
       <h2 className="heading text-primary mb-8">E-COMMERCE PARTNER</h2>
       <div className="grid grid-cols-4 max-sm:grid-cols-2 gap-4 my-10 px-4">
         {partners.map((partner) => (
-          <div className="w-full bg-white aspect-[1.3/1] border border-black/50 p-4 object-contain">
+          <div key={partner.split('/').pop()} className="w-full bg-white aspect-[1.3/1] border border-black/50 p-4 object-contain">
           <Image
             key={partner.split('/').pop()}
             src={partner}
