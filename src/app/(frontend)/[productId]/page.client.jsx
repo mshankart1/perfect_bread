@@ -212,7 +212,7 @@ export function ProductClient({ product }) {
                       </tbody>
                     </table>
                   </div>
-                  <div className="mt-4 px-2 font-semibold whitespace-pre-line mb-4">
+                  <div className="mt-4 text-center md:px-6 px-2 font-semibold whitespace-pre-line mb-4">
                     {product?.nutriInfo}
                   </div>
                 </Collapse>

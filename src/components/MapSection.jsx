@@ -68,8 +68,8 @@ export function MapSection() {
         <div className="w-full h-full columns-2 gap-2 mx-4">
           {stores.map((store) => (
             <div key={store.location} className="break-inside-avoid mb-6">
-              <div className="flex gap-4 items-center mb-2 hover:scale-[1.05] transition-all duration-300 cursor-default">
-                <SiHomeassistantcommunitystore className="w-8 h-8" style={{ color: store.color }} />
+              <div className="flex flex-row gap-4 items-center mb-2 hover:scale-[1.05] transition-all duration-300 cursor-default">
+                <SiHomeassistantcommunitystore className='w-6 h-6' style={{ color: store.color }} />
                 <h3 className="text-2xl font-bold cursor-default">{store.location}</h3>
               </div>
               <ul className="list-none ml-12 text-lg cursor-default text-gray-800">

@@ -46,6 +46,16 @@ var settings = {
     mobileFirst: true,
     responsive: [
       {
+        breakpoint: 1280,
+        settings: {
+          slidesToShow: 4,
+          slidesToScroll: 1,
+          infinite: true,
+          dots: false,
+          arrows: true,
+        },
+      },
+      {
         breakpoint: 1024,
         settings: {
           slidesToShow: 3,
@@ -56,7 +66,7 @@ var settings = {
         },
       },
       {
-        breakpoint: 900,
+        breakpoint: 768,
         settings: {
           slidesToShow: 2,
           slidesToScroll: 1,
@@ -66,27 +76,7 @@ var settings = {
         },
       },
       {
-        breakpoint: 768,
-        settings: {
-          slidesToShow: 1,
-          slidesToScroll: 1,
-          infinite: true,
-          dots: false,
-          arrows: true,
-        },
-      },
-      {
-        breakpoint: 600,
-        settings: {
-          slidesToShow: 1,
-          slidesToScroll: 1,
-          infinite: true,
-          dots: false,
-          arrows: true,
-        },
-      },
-      {
-        breakpoint: 480,
+        breakpoint: 640,
         settings: {
           slidesToShow: 1,
           slidesToScroll: 1,
@@ -108,8 +98,8 @@ var settings = {
               <div key={i} className="h-full slider-item">
                 <div
                   key={i}
-                  className="relative rounded-4xl max-sm:min-h-80 max-md:min-h-96 min-h-96 mt-26 max-md:mt-20 h-full slider-item"
-                  style={{ background: item.card_color }}
+                  className="relative rounded-4xl max-sm:min-h-80 max-md:min-h-96 min-h-96 mt-[35%] h-full slider-item"
+                  style={{ background: item?.card_color }}
                 >
                   <Image
                     src={urlFor(item.image)?.url() || ''}
@@ -118,9 +108,9 @@ var settings = {
                     height={1000}
                     className="w-[70%] max-md:w-[65%] shadow-[3px_3px_10px_0px_rgba(0,0,0,0.5)] object-cover absolute rounded-full -top-24 max-md:-top-20 left-1/2 -translate-x-1/2"
                   />
-                  <div className="flex flex-col flex-grow px-6 pt-8 max-md:px-4 max-sm:pt-4 max-md:py-0 min-h-0">
+                  <div className="flex flex-col flex-grow px-6 max-md:px-4 max-md:py-0 min-h-0">
                     <h3
-                      className="text-white pt-24 max-md:pt-20 max-sm:pt-10 font-bold mb-4 leading-tight uppercase"
+                      className="text-white  font-bold mb-4 leading-tight pt-[50%] uppercase"
                       style={{
                         fontSize: '19px',
                         letterSpacing: '1.5px',

@@ -47,7 +47,7 @@ var settings = {
     {
       breakpoint: 1024,
       settings: {
-        slidesToShow: 3,
+        slidesToShow: 4,
         slidesToScroll: 1,
         infinite: true,
         arrows: false,
@@ -55,9 +55,9 @@ var settings = {
       },
     },
     {
-      breakpoint: 600,
+      breakpoint: 768,
       settings: {
-        slidesToShow: 2,
+        slidesToShow: 3,
         slidesToScroll: 1,
         initialSlide: 1,
         infinite: true,
@@ -66,9 +66,9 @@ var settings = {
       },
     },
     {
-      breakpoint: 480,
+      breakpoint: 640,
       settings: {
-        slidesToShow: 1,
+        slidesToShow: 2,
         slidesToScroll: 1,
         infinite: true,
         arrows: false,

@@ -13,7 +13,7 @@ export function FooterSection() {
           src="/footer_image.png"
           alt="footer"
         />
-        <div className="flex flex-col gap-3 col-span-2">
+        <div className="flex flex-col gap-3 col-span-2 max-md:col-span-3">
           <h4 className="text-3xl font-semibold">Corporate Office</h4>
           <div className="flex gap-2 items-center">
             <MdPhone className="size-6" />
@@ -33,8 +33,8 @@ export function FooterSection() {
           <hr />
           <span>&copy;Copyright 2020 Perfect Bread All Rights Reserved</span>
         </div>
-        <div className="flex flex-col">
-          <h3 className="text-xl fw-bold mb-2">Quick Links</h3>
+        <div className="flex flex-col max-md:col-span-2">
+          <h3 className="text-xl font-semibold mb-2">Quick Links</h3>
           <Link href="">About Us</Link>
           <Link href="">Product</Link>
           <Link href="">World Beyond Breads</Link>
@@ -46,7 +46,7 @@ export function FooterSection() {
           <Link href="">Contact Us</Link>
         </div>
         <div className="flex flex-col">
-          <h3 className="text-xl fw-bold mb-2">Categories</h3>
+          <h3 className="text-xl fw-bold font-semibold mb-2">Categories</h3>
           <Link href="">Bread</Link>
           <Link href="">Health and Wellness</Link>
           <Link href="">Sweet Bakery</Link>
