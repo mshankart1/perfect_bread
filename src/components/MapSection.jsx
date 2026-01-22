@@ -58,21 +58,21 @@ export function MapSection() {
       className="flex flex-col items-center justify-center gap-8 max-md:gap-3 my-10 container mx-auto"
     >
       <h2 className="heading mb-8 max-md:mb-3 text-primary">PERFECT REACH</h2>
-      <div className="grid grid-cols-2 max-md:grid-cols-1 px-4 gap-8 w-full">
+      <div className="grid grid-cols-2 max-lg:grid-cols-1 px-4 gap-8 w-full">
         {/* Map */}
         <div className="w-full h-full">
           <Image src="/map.png" alt="map" width={1000} height={1000} />
         </div>
 
         {/* Stores */}
-        <div className="w-full h-full columns-2 gap-2 mx-4">
+        <div className="w-full h-full columns-2 gap-2 px-4 max-md:px-0">
           {stores.map((store) => (
             <div key={store.location} className="break-inside-avoid mb-6">
-              <div className="flex flex-row gap-4 items-center mb-2 hover:scale-[1.05] transition-all duration-300 cursor-default">
-                <SiHomeassistantcommunitystore className='w-6 h-6' style={{ color: store.color }} />
-                <h3 className="text-2xl font-bold cursor-default">{store.location}</h3>
+              <div className="flex flex-row gap-4 max-md:gap-3 items-center mb-2 hover:scale-[1.05] transition-all duration-300 cursor-default">
+                <SiHomeassistantcommunitystore className='w-6 max-md:w-5 h-6 max-md:h-5' style={{ color: store.color }} />
+                <h3 className="text-2xl max-md:text-xl max-sm:text font-bold cursor-default break-word">{store.location}</h3>
               </div>
-              <ul className="list-none ml-12 text-lg cursor-default text-gray-800">
+              <ul className="list-none ml-12 max-md:ml-8 text-lg cursor-default text-gray-800">
                 {store.sites.map((site) => (
                   <li key={site} className="hover:scale-[1.03] transition-all duration-300 cursor-default">{site}</li>
                 ))}

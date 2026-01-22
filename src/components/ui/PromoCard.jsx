@@ -3,7 +3,7 @@ import Image from "next/image";
 import { urlFor } from "@/helpers";
 import { useRouter } from "next/navigation";
 
-export function PromoCard({ 
+export function PromoCard({
   title,
   image,
   readMoreLink,
@@ -13,7 +13,7 @@ export function PromoCard({
   return (
     <div
       className={`
-        overflow-hidden ${className} group border-r-gray-400 border-r pr-4
+        overflow-hidden ${className} group border-r-neutral-400 border-r pr-4
         md:[&:nth-child(3n)]:border-r
         md:[&:nth-child(2n)]:border-r-0
         lg:[&:nth-child(2n)]:border-r
@@ -31,13 +31,13 @@ export function PromoCard({
       </div>
       {/* Bottom Text Section */}
       <div className="px-4 py-5">
-        <h2 className="text-xl md:text-2xl font-archivo font-bold tracking-tight text-amber-900 text-center mb-4 line-clamp-2 text-ellipsis overflow-hidden cursor-pointer" onClick={() => router.push(readMoreLink)}>
+        <h2 className="text-xl md:text-2xl font-archivo font-bold tracking-tight text-neutral-800 text-center mb-4 line-clamp-2 text-ellipsis overflow-hidden cursor-pointer" onClick={() => router.push(readMoreLink)}>
           {title}
         </h2>
         <div className="text-center">
           <div
             onClick={() => router.push(readMoreLink)}
-            className="text-amber-900 font-medium text-lg underline hover:text-amber-700 transition-colors cursor-pointer"
+            className="text-neutral-800 font-medium text-lg underline group-hover:text-neutral-600 transition-colors cursor-pointer"
           >
             READ MORE
           </div>

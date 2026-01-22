@@ -23,7 +23,7 @@ export function Header({ products }) {
   };
   const router = useRouter();
   return (
-    <div className="h-16 z-40 flex w-full text-primary bg-white sticky shadow-xl top-0">
+    <div className="h-16 z-40 flex w-full text-primary backdrop-blur-3xl bg-white/90 sticky shadow-xl top-0">
       <ul className="grid grid-cols-[1fr_auto_1fr] justify-center container overflow font-semibold h-16 z-50 items-center max-lg:hidden">
         <div className="flex text-nowrap justify-between gap-2 grow">
           <FaHome size={25} className="cursor-pointer" onClick={() => router.push('/')} />

@@ -30,7 +30,7 @@ export default async function Home() {
   }
   const secondBanner = banners.filter((banner) => banner.type === 'second_banner')?.[0]?.images?.[0];
   return (
-    <div className="overflow-y-hidden w-full">
+    <div className="overflow-y-hidden w-full bg-[#fff9ef]">
       <Banner banners={banners.filter((banner) => banner.type === 'first_banner')[0].images} />
       {secondBanner && <Image src={secondBanner.asset.url} width={2000} height={2000} priority alt="hero image" className="w-full object-cover" />}
       <AboutSection />

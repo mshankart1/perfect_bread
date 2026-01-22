@@ -2,7 +2,7 @@ import { getBlockContentHtml, urlFor } from "@/helpers";
 import Image from "next/image";
 
 export function BlogClient({ blog }) {
-    return <div className="container max-md:mx-5 my-16"  style={{color: blog.color}}>
+    return <div className="container max-lg:px-4 py-16"  style={{color: blog.color}}>
         <div>
             <h1 className="text-5xl max-md:text-4xl font-bold whitespace-pre-line text-center mb-8">{blog.title}</h1>
             <div className="text-right">{new Date(blog.date).toLocaleDateString('en-IN', { day: '2-digit', month: 'long', year: 'numeric' })}</div>

@@ -9,7 +9,7 @@ export function FooterSection() {
         <Image
           width={500}
           height={500}
-          className="absolute w-[10vw] min-w-lg max-lg:min-w-md max-md:min-w-sm opacity-90 max-lg:-right-16 -right-20 max-md:right-10 max-sm:right-0 -z-1 object-cover bottom-6"
+          className="absolute w-[10vw] min-w-lg max-lg:min-w-md max-md:min-w-sm opacity-90 max-lg:-right-16 -right-20 max-md:right-10 max-sm:-right-12 -z-1 object-cover bottom-6"
           src="/footer_image.png"
           alt="footer"
         />
@@ -45,7 +45,7 @@ export function FooterSection() {
           <Link href="/#plant">Plant</Link>
           <Link href="/#contact-us">Contact Us</Link>
         </div>
-        <div className="flex flex-col">
+        <div className="flex flex-col max-md:col-span-3">
           <h3 className="text-xl fw-bold font-semibold mb-2">Categories</h3>
           <Link href="/#product">White Bread</Link>
           <Link href="/#product">Health & Wellness</Link>
@@ -54,7 +54,7 @@ export function FooterSection() {
           <Link href="/#product">Flat Bread</Link>
           <Link href="/#product">Rusk</Link>
         </div>
-        <div className="col-span-1"></div>
+        <div className="col-span-1 max-md:col-span-2"></div>
       </div>
     </div>
   );

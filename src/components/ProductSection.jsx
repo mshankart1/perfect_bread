@@ -24,7 +24,7 @@ export function ProductSection({ products = [] }) {
 
   return (
     <section id="product" className="my-10 container mx-auto">
-      <h2 className="heading mb-8 max-md:mb-4 text-primary">PERFECT PRODUCTS</h2>
+      <h2 className="heading mb-8 max-md:mb-6 max-sm:mb-4 text-primary">PERFECT PRODUCTS</h2>
       <div className="flex flex-col items-center ">
         <div className="flex w-fit px-2 bg-secondary py-1.5 max-md:mx-2 my-6 max-md:my-2 max-sm:px-1 justify-between text-lg rounded-lg items-center max-md:text-sm">
           {categories.map((item, index) => (
@@ -71,76 +71,76 @@ export function ProductSection({ products = [] }) {
           </div>
         ) : (
           <div className="slider-container w-full m-0 p-0 overflow-hidden mb-10 px-14 max-md:px-4 relative">
-              <div className='w-full'>
-                <Swiper
-                  modules={[Navigation, Pagination]}
-                  spaceBetween={16}
-                  slidesPerView={2}
-                  navigation={{
-                    prevEl: '.swiper-button-prev-custom',
-                    nextEl: '.swiper-button-next-custom',
-                  }}
-                  loop={true}
-                  centerInsufficientSlides={true}
-                  speed={500}
-                  breakpoints={{
-                    1280: {
-                      slidesPerView: 4,
-                      spaceBetween: 16,
-                    },
-                    1024: {
-                      slidesPerView: 3,
-                      spaceBetween: 16,
-                    },
-                    768: {
-                      slidesPerView: 3,
-                      spaceBetween: 16,
-                    },
-                    640: {
-                      slidesPerView: 3,
-                      spaceBetween: 16,
-                    },
-                  }}
-                  className="w-full"
-                >
-                  {Array.isArray(allProducts[selectedCategory.toLowerCase()]) && allProducts[selectedCategory.toLowerCase()].length > 0 ?
-                    allProducts[selectedCategory.toLowerCase()]?.map((item, index) => (
-                      <SwiperSlide key={item.name + '-' + index} className="">
-                        <div
-                          className="flex flex-col items-center w-full justify-center border border-gray-400 ring-0 focus:outline-none focus:ring-0 hover:shadow hover:shadow-black my-2 hover:scale-[1.01] transition-all duration-300 cursor-pointer"
-                          onClick={(e) => {
-                            e.preventDefault();
-                            router.push(`product/${item.slug || item._id}`);
-                          }}
-                        >
-                          <Image
-                            src={item.imageUrl || null}
-                            alt={item.title}
-                            width={500}
-                            height={500}
-                            priority
-                            className="w-full h-full object-cover aspect-[0.9] max-md:aspect-[0.95]"
-                          />
-                          <div className="flex flex-col px-2 pb-4 items-center max-md:min-h-26 min-h-20 justify-center">
-                            <span className="font-bold text-base mask-clip-fill text-center">
-                              {item.title.split(' - ')[0]}
-                            </span>
-                            <span className="text-xs text-gray-700 min-h-5 text-center">
-                              {item.weight ? item.weight + ' gms' : ''}
-                            </span>
-                          </div>
+            <div className='w-full'>
+              <Swiper
+                modules={[Navigation, Pagination]}
+                spaceBetween={16}
+                slidesPerView={2}
+                navigation={{
+                  prevEl: '.swiper-button-prev-custom',
+                  nextEl: '.swiper-button-next-custom',
+                }}
+                loop={true}
+                centerInsufficientSlides={true}
+                speed={500}
+                breakpoints={{
+                  1280: {
+                    slidesPerView: 4,
+                    spaceBetween: 16,
+                  },
+                  1024: {
+                    slidesPerView: 3,
+                    spaceBetween: 16,
+                  },
+                  768: {
+                    slidesPerView: 3,
+                    spaceBetween: 16,
+                  },
+                  640: {
+                    slidesPerView: 3,
+                    spaceBetween: 16,
+                  },
+                }}
+                className="w-full"
+              >
+                {Array.isArray(allProducts[selectedCategory.toLowerCase()]) && allProducts[selectedCategory.toLowerCase()].length > 0 ?
+                  allProducts[selectedCategory.toLowerCase()]?.map((item, index) => (
+                    <SwiperSlide key={item.name + '-' + index} className="">
+                      <div
+                        className="flex flex-col items-center w-full justify-center border border-gray-400 ring-0 focus:outline-none focus:ring-0 hover:shadow hover:shadow-black my-2 hover:scale-[1.01] transition-all duration-300 cursor-pointer"
+                        onClick={(e) => {
+                          e.preventDefault();
+                          router.push(`product/${item.slug || item._id}`);
+                        }}
+                      >
+                        <Image
+                          src={item.imageUrl || null}
+                          alt={item.title}
+                          width={500}
+                          height={500}
+                          priority
+                          className="w-full h-full object-cover aspect-[0.9] max-md:aspect-[0.95]"
+                        />
+                        <div className="flex flex-col px-2 pb-4 items-center max-md:min-h-26 min-h-20 justify-center">
+                          <span className="font-bold text-base mask-clip-fill text-center leading-tight">
+                            {item.title.split(' - ')[0]}
+                          </span>
+                          <span className="text-xs text-gray-700 min-h-5 text-center">
+                            {item.weight ? item.weight + ' gms' : ''}
+                          </span>
                         </div>
-                      </SwiperSlide>
-                    )
+                      </div>
+                    </SwiperSlide>
+                  )
                   ) : (
                     <SwiperSlide>
-                      <div className='text-4xl font-semibold w-full py-10 text-center'>COMING<br/>SOON</div>
+                      <div className='text-4xl font-semibold w-full py-10 text-center'>COMING<br />SOON</div>
                     </SwiperSlide>
                   )}
-                </Swiper>
-                <SwiperNavButton direction="prev" swiperClass="swiper-button-prev-custom" />
-                <SwiperNavButton direction="next" swiperClass="swiper-button-next-custom" />
-              </div>
+              </Swiper>
+              <SwiperNavButton direction="prev" swiperClass="swiper-button-prev-custom" />
+              <SwiperNavButton direction="next" swiperClass="swiper-button-next-custom" />
+            </div>
           </div>
         )}
         {!showAll ? (

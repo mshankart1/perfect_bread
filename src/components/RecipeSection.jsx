@@ -13,12 +13,12 @@ export function RecipeSection({ recipes }) {
   return (
     <div id="recipe" className="bg-[url('/recipes-bg.jpg')] py-16 bg-cover bg-center w-full relative">
       <section className="container mx-auto px-4">
-        <h2 className="heading text-primary mb-8 text-center">PERFECT RECIPES</h2>
+        <h2 className="heading text-primary mb-8 max-md:mb-6 max-sm:mb-4 text-center">PERFECT RECIPES</h2>
         <div className="slider-container max-md:px-6 px-14 relative">
           <Swiper
             modules={[Navigation]}
             spaceBetween={16}
-            slidesPerView={2}
+            slidesPerView={1}
             navigation={{
               prevEl: '.swiper-button-prev-recipe',
               nextEl: '.swiper-button-next-recipe',
@@ -38,17 +38,17 @@ export function RecipeSection({ recipes }) {
                 slidesPerView: 3,
                 spaceBetween: 16,
               },
-              640: {
+              430: {
                 slidesPerView: 2,
                 spaceBetween: 16,
               },
             }}
-            className="px-6 mx-4 rounded-4xl py-10 backdrop-blur-xs"
+            className="px-6 mx-4 rounded-4xl"
           >
             {recipes.map((item, i) => (
               <SwiperSlide key={i} className="h-full slider-item">
                 <div
-                  className="relative rounded-4xl max-sm:min-h-80 max-md:min-h-96 min-h-96 mt-[40%] max-lg:mt-[55%] h-full slider-item"
+                  className="relative rounded-4xl max-sm:min-h-80 max-md:min-h-96 min-h-96 mt-[40%] max-lg:mt-[55%] max-md:mt-[40%] max-sm:mt-[35%] h-full slider-item"
                   style={{ background: item?.card_color }}
                 >
                   <Image
@@ -56,12 +56,12 @@ export function RecipeSection({ recipes }) {
                     alt={item.image?.alt || item?.title}
                     width={1000}
                     height={1000}
-                    className="w-[70%] max-md:w-[65%] shadow-[3px_3px_10px_0px_rgba(0,0,0,0.5)] object-cover absolute rounded-full left-1/2 -translate-x-1/2 -translate-y-1/2"
+                    className="w-[70%] max-md:w-[65%] shadow-[3px_3px_10px_0px_rgba(0,0,0,0.5)] z-40 object-cover absolute rounded-full left-1/2 -translate-x-1/2 -translate-y-1/2"
                   />
-                  <div className="flex flex-col flex-grow px-6 max-md:px-4 max-md:py-0 min-h-0  pt-[50%] max-md:pt-[40%] max-lg:pt-[37%]">
+                  <div className="flex flex-col flex-grow px-6 max-md:px-4 max-md:py-0 pt-[50%] max-md:pt-[40%] max-lg:pt-[37%]">
                     <h3
                       className="text-white font-bold mb-4 leading-tight uppercase cursor-pointer hover:underline overflow-hidden text-ellipsis line-clamp-2 underline-offset-2"
-                      onClick={(e)=> {
+                      onClick={(e) => {
                         e.preventDefault();
                         item?.url && window.open(item.url, '_blank');
                       }}

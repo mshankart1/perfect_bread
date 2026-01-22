@@ -24,8 +24,8 @@ export const SwiperNavButton = ({
   bgColor = 'bg-primary',
   hoverColor = 'hover:bg-primary/80',
   position = 'absolute z-10 top-1/2 -translate-y-1/2',
-  leftPosition = 'left-0',
-  rightPosition = 'right-0',
+  leftPosition = 'left-2',
+  rightPosition = 'right-2',
   style = {},
   swiperClass = '',
   ...rest
