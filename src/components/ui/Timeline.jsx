@@ -1,83 +1,48 @@
 'use client';
 import { TimelineArrowSegment } from './TimelineArrowSegment';
-import Slider from 'react-slick/lib/slider';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Navigation, Pagination } from 'swiper/modules';
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
 import Image from 'next/image';
-import { FaArrowLeft, FaArrowRight } from 'react-icons/fa';
-
-export const ArrowLeft = (props) => {
-  const { classes, currentSlide, slideCount, ...rest } = props;
-  return (
-    <button
-      {...rest}
-      type="button"
-      className={`absolute z-10 left-0 md:left-0 top-1/2 -translate-y-1/2 -translate-x-1/2 md:-translate-x-4/3 bg-primary rounded-full shadow-lg p-2 md:p-3 hover:bg-primary/80 focus:outline-none transition-colors ${classes || ''}`}
-      aria-label="Previous"
-    >
-      <FaArrowLeft size={20} className="text-white" />
-    </button>
-  );
-};
-
-export const ArrowRight = (props) => {
-  const { classes, currentSlide, slideCount, ...rest } = props;
-  return (
-    <button
-      {...rest}
-      type="button"
-      className={`absolute z-10 -right-0 md:-right-10 top-1/2 -translate-y-1/2 translate-x-1/2 md:translate-x-1/3 bg-primary rounded-full shadow-lg p-2 md:p-3 hover:bg-primary/80 focus:outline-none transition-colors ${classes || ''}`}
-      aria-label="Next"
-    >
-      <FaArrowRight size={20} className="text-white" />
-    </button>
-  );
-};
+import { SwiperNavButton } from './SwiperNavButton';
 
 export function Timeline({ timeline }) {
-  var settings = {
-    dots: true,
-    infinite: false,
-    speed: 500,
-    slidesToShow: 4,
-    slidesToScroll: 1,
-    initialSlide: 0,
-    nextArrow: <ArrowRight />,
-    prevArrow: <ArrowLeft />,
-    responsive: [
-      {
-        breakpoint: 1024, // lg
-        settings: {
-          slidesToShow: 3,
-          slidesToScroll: 1,
-          infinite: true,
-          dots: true,
-          arrows: false,
-        },
-      },
-      {
-        breakpoint: 768, // md
-        settings: {
-          slidesToShow: 2,
-          slidesToScroll: 1,
-          initialSlide: 1,
-          arrows: false,
-        },
-      },
-      {
-        breakpoint: 640, // sm
-        settings: {
-          slidesToShow: 1,
-          slidesToScroll: 1,
-          infinite: true,
-          arrows: false,
-        },
-      },
-    ],
-  };
   return (
-    <div className="w-full h-full my-5 container slider-container relative px-4 md:px-8 lg:px-16 [&>*]:p-0">
-      <Slider {...settings} className="[&_.slick-slide]:px-1 md:[&_.slick-slide]:px-2">
+    <div className="w-full h-full my-5 container slider-container relative px-4 md:px-16 [&>*]:p-0 m-0 overflow-hidden">
+      <Swiper
+        modules={[Navigation]}
+        spaceBetween={16}
+        slidesPerView={2}
+        navigation={{
+          prevEl: '.swiper-button-prev-timeline',
+          nextEl: '.swiper-button-next-timeline',
+        }}
+        loop={true}
+        speed={500}
+        breakpoints={{
+          1280: {
+            slidesPerView: 4,
+            spaceBetween: 16,
+          },
+          1024: {
+            slidesPerView: 3,
+            spaceBetween: 16,
+          },
+          768: {
+            slidesPerView: 3,
+            spaceBetween: 16,
+          },
+          640: {
+            slidesPerView: 2,
+            spaceBetween: 16,
+          },
+        }}
+        className="w-full"
+      >
         {timeline?.map((item, i) => (
-          <div className="flex-col items-center justify-center" key={item.year}>
+          <SwiperSlide key={item.year} className="flex-col items-center justify-center">
             <div className="flex items-center justify-center">
               <div className={`w-fit p-5 ${i % 2 === 0 ? 'bg-amber-300' : 'bg-red-400'} mb-12 relative rounded-full`}>
                 <Image
@@ -100,9 +65,19 @@ export function Timeline({ timeline }) {
               description={item.description}
               color={i % 2 === 0 ? 'yellow' : 'red'}
             />
-          </div>
+          </SwiperSlide>
         ))}
-      </Slider>
+      </Swiper>
+      <SwiperNavButton
+        direction="prev"
+        swiperClass="swiper-button-prev-timeline"
+        leftPosition='left-3'
+      />
+      <SwiperNavButton
+        direction="next"
+        swiperClass="swiper-button-next-timeline"
+        rightPosition='right-3'
+      />
     </div>
   );
 }

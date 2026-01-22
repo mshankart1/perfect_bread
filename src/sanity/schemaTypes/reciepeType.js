@@ -24,8 +24,14 @@ export const recipeType = defineType({
       name: 'description',
       title: 'Description',
       type: 'text',
-      validation: (Rule) => Rule.required().max(200).error('Description must be less than 200 characters'),
-      description: 'Max 200 characters.',
+      validation: (Rule) => Rule.required().max(250).error('Description must be less than 200 characters'),
+      description: 'Max 250 characters.',
+    }),
+    defineField({
+      name: 'url',
+      type: 'url',
+      title: 'URL',
+      description: 'The URL of the recipe',
     }),
     defineField({
       name: 'image',
@@ -40,6 +46,11 @@ export const recipeType = defineType({
           title: 'Alternative text',
         }),
       ],
+    }),
+    defineField({
+      name: 'sort',
+      type: 'number',
+      validation: (Rule) => Rule.required().min(0),
     }),
     defineField({
       name: 'publishedAt',

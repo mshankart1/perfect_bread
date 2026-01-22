@@ -34,21 +34,21 @@ export default async function Home() {
       <Banner banners={banners.filter((banner) => banner.type === 'first_banner')[0].images} />
       {secondBanner && <Image src={secondBanner.asset.url} width={2000} height={2000} priority alt="hero image" className="w-full object-cover" />}
       <AboutSection />
-      <hr className="border-t-[30px] lg:border-t-[50px] border-amber-500" />
+      <hr className="border-t-[30px] lg:border-t-[50px] border-secondary" />
       <JourneySection timeline={timeline} />
-      <hr className="border-t-[30px] lg:border-t-[50px] border-amber-500" />
+      <hr className="border-t-[30px] lg:border-t-[50px] border-secondary" />
       <TeamSection images={banners.filter((banner) => banner.type === 'team_section')[0].images} />
       <hr className="border-t-[30px] lg:border-t-[50px] border-primary" />
       <ProductSection products={result} />
-      <hr className="border-t-[30px] lg:border-t-[50px] border-amber-500" />
+      <hr className="border-t-[30px] lg:border-t-[50px] border-secondary" />
       <MapSection />
       <hr className="border-t-[30px] lg:border-t-[50px] border-primary" />
       <PartnersSections />
       <hr className="border-t-[30px] lg:border-t-[50px] border-primary" />
       <EComPartnerSection />
-      <hr className="border-t-[30px] lg:border-t-[50px] border-amber-500" />
+      <hr className="border-t-[30px] lg:border-t-[50px] border-secondary" />
       <RecipeSection recipes={recipes} />
-      <hr className="border-t-[30px] lg:border-t-[50px] border-amber-500" />
+      <hr className="border-t-[30px] lg:border-t-[50px] border-secondary" />
       <ContactSection />
     </div>
   );

@@ -1,74 +1,27 @@
 'use client';
 
-import { Collapse } from '@/components';
+import { Collapse, SwiperNavButton } from '@/components';
 import Image from 'next/image';
 import { useState } from 'react';
 import { FaDroplet } from 'react-icons/fa6';
 import { FaFlask } from 'react-icons/fa';
 import { GiPalmTree } from 'react-icons/gi';
 import { useRouter } from 'next/navigation';
-import Slider from 'react-slick/lib/slider';
-import { ArrowLeft, ArrowRight } from '@/components/ui/Timeline';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Navigation } from 'swiper/modules';
+import 'swiper/css';
+import 'swiper/css/navigation';
 import { toHTML } from '@portabletext/to-html';
-
-const settings = {
-  infinite: true,
-  speed: 500,
-  slidesToShow: 3,
-  slidesToScroll: 1,
-  initialSlide: 0,
-  nextArrow: <ArrowRight classes="md:translate-x-1/5 z-20" />,
-  prevArrow: <ArrowLeft classes="md:-translate-x-11/10 z-20" />,
-  responsive: [
-    {
-      breakpoint: 1024, // lg
-      settings: {
-        slidesToShow: 3,
-        slidesToScroll: 1,
-        infinite: true,
-        arrows: false,
-      },
-    },
-    {
-      breakpoint: 768, // md
-      settings: {
-        slidesToShow: 2,
-        slidesToScroll: 1,
-        initialSlide: 1,
-        arrows: false,
-      },
-    },
-    {
-      breakpoint: 640, // sm
-      settings: {
-        slidesToShow: 2,
-        slidesToScroll: 1,
-        infinite: true,
-        arrows: false,
-      },
-    },
-  ],
-};
+import { getBlockContentHtml } from '@/helpers';
 
 export function ProductClient({ product }) {
   const router = useRouter();
   const [currentImage, setCurrentImage] = useState(product?.images?.[0]);
   const color = product?.color || '#cb1f2b';
 
-  const html = toHTML(product.ingredients, {
-    components: {
-      block: {
-        h1: ({ children }) => `<h1>${children}</h1>`,
-        h2: ({ children }) => `<h2>${children}</h2>`,
-        h3: ({ children }) =>
-          `<h3 style="background-color: ${color}; color: white; padding: 10px 15px; font-size: 1.2rem; line-height: 1.2; border-radius: 5px;">${children}</h3>`,
-        normal: ({ children }) => `<p style="font-size: 1.1rem;">${children}</p>`,
-      },
-      marks: {
-        strong: ({ children }) => `<strong style="font-weight: 600;">${children}</strong>`,
-      },
-    },
-  });
+
+
+  const html = getBlockContentHtml(product.ingredients, color);
 
   return (
     <>
@@ -116,7 +69,7 @@ export function ProductClient({ product }) {
               <div className="grid grid-cols-3 max-lg:grid-cols-2 [&>div]:pt-5 mt-1">
                 <div
                   className="flex flex-col border-primary items-center px-4 justify-center gap-5 border-2 border-l-0 max-xs:border-r-0 max-xs:col-span-1"
-                  // style={{ borderColor: color }}
+                // style={{ borderColor: color }}
                 >
                   <div className="relative bg-primary text-white rounded-full w-fit p-3">
                     <FaFlask size={20} />
@@ -126,7 +79,7 @@ export function ProductClient({ product }) {
                 </div>
                 <div
                   className="flex flex-col items-center px-4 border-primary justify-center gap-5 border-2 border-l-0 max-lg:border-r-0 max-xs:border-t-0 max-xs:col-span-1"
-                  // style={{ borderColor: color }}
+                // style={{ borderColor: color }}
                 >
                   <div className="relative bg-primary text-white rounded-full w-fit p-3">
                     <FaDroplet size={20} />
@@ -136,7 +89,7 @@ export function ProductClient({ product }) {
                 </div>
                 <div
                   className="flex flex-col items-center px-4 justify-center gap-5 border-2 border-primary border-x-0 max-lg:border-t-0 max-lg:col-span-2 max-xs:col-span-1"
-                  // style={{ borderColor: color }}
+                // style={{ borderColor: color }}
                 >
                   <div className="relative bg-primary text-white rounded-full w-fit p-3">
                     <GiPalmTree size={20} />
@@ -226,33 +179,65 @@ export function ProductClient({ product }) {
           <h2 className="text-4xl col-span-3 mt-6 font-bold text-center" style={{ color: color }}>
             SIMILAR PRODUCTS
           </h2>
-          <div className="col-span-3">
-            <Slider {...settings}>
+          <div className="col-span-3 slider-container w-full m-0 p-0 overflow-hidden relative">
+            <Swiper
+              modules={[Navigation]}
+              spaceBetween={16}
+              slidesPerView={2}
+              navigation={{
+                prevEl: '.swiper-button-prev-product',
+                nextEl: '.swiper-button-next-product',
+              }}
+              loop={true}
+              speed={500}
+              breakpoints={{
+                1280: {
+                  slidesPerView: 3,
+                  spaceBetween: 16,
+                },
+                1024: {
+                  slidesPerView: 3,
+                  spaceBetween: 16,
+                },
+                768: {
+                  slidesPerView: 2,
+                  spaceBetween: 16,
+                },
+                640: {
+                  slidesPerView: 2,
+                  spaceBetween: 16,
+                },
+              }}
+              className="w-full"
+            >
               {product?.related?.map((related, index) => (
-                <div
-                  key={related.name + '-' + index}
-                  className="hover:scale-[1.02] cursor-pointer transition-all duration-300 border border-gray-400 mb-4"
-                  onClick={() => router.push(`/${related?.slug || related?._id}`)}
-                >
-                  <Image
-                    src={related.imageUrl || null}
-                    alt={related?._id}
-                    width={500}
-                    height={500}
-                    priority
-                    className="w-full object-cover aspect-[1]"
-                  />
-                  <div className="flex flex-col pt-2 px-2 pb-4 max-md:min-h-28 min-h-26 justify-center">
-                    <span className="font-bold text-lg mask-clip-fill  text-center">
-                      {related.title.split(' - ')[0]}
-                    </span>
-                    <span className="text-lg text-gray-700 min-h-5 text-center">
-                      {`(${related.weight ? related.weight + ' gms' : ''})`}
-                    </span>
+                <SwiperSlide key={related.name + '-' + index}>
+                  <div
+                    className="hover:scale-[1.02] cursor-pointer transition-all duration-300 border border-gray-400 mb-4"
+                    onClick={() => router.push(`/${related?.slug || related?._id}`)}
+                  >
+                    <Image
+                      src={related.imageUrl || null}
+                      alt={related?._id}
+                      width={500}
+                      height={500}
+                      priority
+                      className="w-full object-cover aspect-[1]"
+                    />
+                    <div className="flex flex-col pt-2 px-2 pb-4 max-md:min-h-28 min-h-26 justify-center">
+                      <span className="font-bold text-lg mask-clip-fill  text-center">
+                        {related.title.split(' - ')[0]}
+                      </span>
+                      <span className="text-lg text-gray-700 min-h-5 text-center">
+                        {`(${related.weight ? related.weight + ' gms' : ''})`}
+                      </span>
+                    </div>
                   </div>
-                </div>
+                </SwiperSlide>
               ))}
-            </Slider>
+            </Swiper>
+            <SwiperNavButton direction="prev" swiperClass="swiper-button-prev-product" />
+            <SwiperNavButton direction="next" swiperClass="swiper-button-next-product" />
           </div>
         </div>
       </div>

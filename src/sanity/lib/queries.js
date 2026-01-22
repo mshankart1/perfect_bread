@@ -18,12 +18,13 @@ export const PRODUCT_QUERY = defineQuery(`*[_type == "product" && !(_id in path(
   "imageUrl": images[0].asset->url
 }`);
 
-export const RECIPE_QUERY = defineQuery(`*[_type == "recipe" && !(_id in path("drafts.**"))] | order(_createdAt asc){
+export const RECIPE_QUERY = defineQuery(`*[_type == "recipe" && !(_id in path("drafts.**"))] | order(sort asc, _createdAt asc){
   _id,
   title,
   card_color,
   description,
   image,
+  url,
   "slug": slug.current
 }`);
 
@@ -142,3 +143,25 @@ export const BANNER_QUERY = defineQuery(`*[_type == "banner" && !(_id in path("d
     }
   }
 }`);
+
+export const BLOG_QUERY = defineQuery(`*[_type == "blog" && !(_id in path("drafts.**"))] | order(_createdAt asc){
+  _id,
+  title,
+  "slug": slug.current,
+  image,
+  color,
+  description,
+  date
+}`);
+
+export const BLOG_BY_SLUG_QUERY = defineQuery(`
+  *[_type == "blog" && !(_id in path("drafts.**")) && slug.current == $slug][0]{
+    _id,
+    title,
+    "slug": slug.current,
+    image,
+    color,
+    description,
+    date
+  }
+`);

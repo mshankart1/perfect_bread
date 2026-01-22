@@ -55,7 +55,7 @@ export function Header({ products }) {
             <Link href={'/#recipe'}>Recipes</Link>
           </div>
           <div className="capitalize text-center">
-            <Link href={'/#blog'}>Blog</Link>
+            <Link href={'/blog'}>Blog</Link>
           </div>
           <div className="capitalize text-center">
             <Link href={'/#client'}>Our Client</Link>
@@ -72,7 +72,7 @@ export function Header({ products }) {
               onBlur={() => setFocus(false)}
               className="border rounded-lg px-2 py-1.5 w-40 placeholder:font-medium focus:outline-none"
             />
-            <div className="absolute right-0 rounded-lg gap-4 max-h-100 overflow-y-auto scroll-smooth top-[100%] w-full min-w-sm [&>*]:border-b [&>*]:last:border-b-0 flex-column bg-white font-medium shadow-[0px_4px_10px_0_rgba(0,0,0,0.4)]">
+            <div className="absolute right-0 rounded-lg gap-4 max-h-100 overflow-y-auto scroll-smooth top-[100%] w-full min-w-sm [&>*]:border-b [&>*]:border-gray-600 [&>*]:last:border-b-0 flex-column bg-white font-medium shadow-[0px_4px_10px_0_rgba(0,0,0,0.4)]">
               {focus &&
                 (searchResults.length ? (
                   searchResults.map((product) => (
@@ -90,7 +90,7 @@ export function Header({ products }) {
                         height={500}
                         className="w-10 h-10 object-cover rounded-full"
                       />
-                      <div>{product.title}</div>
+                      <div className='text-gray-600'>{product.title}</div>
                     </div>
                   ))
                 ) : (
@@ -116,7 +116,7 @@ export function Header({ products }) {
         </span>
         {/* Dropdown Navbar for mobile view */}
         {isOpen && (
-          <div className="absolute right-0 *:hover:bg-primary/40 *:py-2 *:px-4 top-full transition-all duration-300 ease-in-out mt-0 w-full pt-10 text-black bg-white shadow-lg rounded-b-lg z-0 p-4 px-0 flex flex-col gap-0">
+          <div onBlurCapture={() => setIsOpen(false)} className="absolute right-0 *:hover:bg-primary/40 *:py-2 *:px-4 top-full transition-all duration-300 ease-in-out mt-0 w-full pt-10 text-black bg-white shadow-lg rounded-b-lg z-0 p-4 px-0 flex flex-col gap-0">
             <Link href={'/#about'} className="capitalize text-left w-full block">
               About Us
             </Link>
@@ -132,7 +132,7 @@ export function Header({ products }) {
             <Link href={'/#recipe'} className="capitalize text-left w-full block">
               Recipes
             </Link>
-            <Link href={'/#blog'} className="capitalize text-left w-full block">
+            <Link href={'/blog'} className="capitalize text-left w-full block">
               Blog
             </Link>
             <Link href={'/#client'} className="capitalize text-left w-full block">

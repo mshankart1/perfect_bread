@@ -1,40 +1,27 @@
 'use client';
 import Image from 'next/image';
-import Slider from 'react-slick/lib/slider';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Autoplay } from 'swiper/modules';
+import 'swiper/css';
 
 export function Banner({ banners }) {
-  const settings = {
-    dots: false,
-    infinite: true,
-    arrows: false,
-    speed: 700,
-    slidesToShow: 1,
-    slidesToScroll: 1,
-    initialSlide: 0,
-    autoplay: true,
-    autoplaySpeed: 5000,
-    adaptiveHeight: false,
-    pauseOnHover: false,
-    cssEase: 'linear',
-    className: 'react-slick-no-padding',
-  };
-
   return (
     <div className="slider-container w-full m-0 p-0 overflow-hidden">
-      <style jsx global>{`
-        /* Remove padding and margin from slick-slide and slick-track */
-        .react-slick-no-padding .slick-slide {
-          padding: 0 !important;
-          margin: 0 !important;
-        }
-        .react-slick-no-padding .slick-track {
-          padding: 0 !important;
-          margin: 0 !important;
-        }
-      `}</style>
-      <Slider {...settings}>
+      <Swiper
+        modules={[Autoplay]}
+        spaceBetween={0}
+        slidesPerView={1}
+        autoplay={{
+          delay: 5000,
+          disableOnInteraction: false,
+          pauseOnMouseEnter: false,
+        }}
+        speed={700}
+        loop={true}
+        className="w-full"
+      >
         {banners && banners.map((item, idx) => (
-          <div key={idx} className="w-full m-0 p-0">
+          <SwiperSlide key={idx} className="w-full m-0 p-0">
             <Image
               src={item.asset.url}
               width={2000}
@@ -43,9 +30,9 @@ export function Banner({ banners }) {
               alt={item._key}
               className="w-full max-w-full object-cover aspect-[5/2.3] max-lg:aspect-[1.5] h-auto lg:h-[calc(100vh-64px)]"
             />
-          </div>
+          </SwiperSlide>
         ))}
-      </Slider>
+      </Swiper>
     </div>
   );
 }

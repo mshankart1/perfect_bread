@@ -35,23 +35,24 @@ export function FooterSection() {
         </div>
         <div className="flex flex-col max-md:col-span-2">
           <h3 className="text-xl font-semibold mb-2">Quick Links</h3>
-          <Link href="">About Us</Link>
-          <Link href="">Product</Link>
-          <Link href="">World Beyond Breads</Link>
-          <Link href="">Distribution</Link>
-          <Link href="">Recipes</Link>
-          <Link href="">Blog</Link>
-          <Link href="">Our Clients</Link>
-          <Link href="">Plant</Link>
-          <Link href="">Contact Us</Link>
+          <Link href="/#about">About Us</Link>
+          <Link href="/#product">Product</Link>
+          <Link href="/#world-beyond-breads">World Beyond Breads</Link>
+          <Link href="/#distribution">Distribution</Link>
+          <Link href="/#recipes">Recipes</Link>
+          <Link href="/blog">Blog</Link>
+          <Link href="/#our-clients">Our Clients</Link>
+          <Link href="/#plant">Plant</Link>
+          <Link href="/#contact-us">Contact Us</Link>
         </div>
         <div className="flex flex-col">
           <h3 className="text-xl fw-bold font-semibold mb-2">Categories</h3>
-          <Link href="">Bread</Link>
-          <Link href="">Health and Wellness</Link>
-          <Link href="">Sweet Bakery</Link>
-          <Link href="">Bun And Paw</Link>
-          <Link href="">Pizza</Link>
+          <Link href="/#product">White Bread</Link>
+          <Link href="/#product">Health & Wellness</Link>
+          <Link href="/#product">Sweet Bakery</Link>
+          <Link href="/#product">Bun & Pav</Link>
+          <Link href="/#product">Flat Bread</Link>
+          <Link href="/#product">Rusk</Link>
         </div>
         <div className="col-span-1"></div>
       </div>

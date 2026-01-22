@@ -88,50 +88,6 @@ export const productType = defineType({
       type: 'blockContent',
       group: 'content',
     }),
-    // defineField({
-    //   name: 'nutritionalInformation',
-    //   title: 'Nutritional Information',
-    //   type: 'array',
-    //   group: 'nutrition',
-    //   of: [
-    //     defineField({
-    //       name: 'nutritional_information',
-    //       title: 'Nutritional Information',
-    //       type: 'object',
-    
-    //       options: {
-    //         editModal: 'inline', // 👈 THIS removes popup
-    //       },
-    
-    //       fieldsets: [
-    //         {
-    //           name: 'row',
-    //           options: { columns: 3 }
-    //         }
-    //       ],
-    
-    //       fields: [
-    //         { name: 'name', type: 'string', title: 'Name', fieldset: 'row' },
-    //         { name: 'quantity', type: 'string', title: 'Quantity', fieldset: 'row' },
-    //         { name: 'rta', type: 'string', title: 'Contribution to RDA', fieldset: 'row' },
-    //       ],
-    
-    //       preview: {
-    //         select: {
-    //           name: 'name',
-    //           subtitle: 'quantity',
-    //         },
-    //         prepare({ name, subtitle }) {
-    //           return {
-    //             title: name,
-    //             subtitle: subtitle,
-    //           };
-    //         },
-    //       },
-    //     }),
-    //   ],
-    //   description: 'Add any nutritional info label and value. Click "Add item" for more rows.',
-    // }),
     defineField({
       name: 'nutritionalInformation',
       title: 'Nutritional Information Table',
