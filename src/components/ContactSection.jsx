@@ -20,10 +20,10 @@ export function ContactSection() {
               SCF 71/72 1st floor sector 15, <br /> main market faridabad Haryana-121007
             </p>
           </div>{' '}
-          <div className="bg-[#ffe8f2] px-20 rounded-2xl p-4 justify-center items-center flex flex-col">
+          <div className="bg-[#ffe8f2] rounded-2xl p-4 justify-center items-center flex flex-col">
             <MdEmail className="text-xl size-10" />
             <h3 className="text-xl font-bold">Email</h3>
-            <p className="text-lg text-center">info@perfectbread.com</p>
+            <p className="text-lg text-center break-all ">info@perfectbread.com</p>
           </div>
           <div className="bg-[#ffe8f2] rounded-2xl p-4 justify-center items-center flex flex-col">
             <MdPhone className="text-xl size-10" />
