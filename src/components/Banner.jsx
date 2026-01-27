@@ -28,7 +28,7 @@ export function Banner({ banners }) {
               height={2000}
               priority
               alt={item._key}
-              className="w-full max-w-full object-cover aspect-[5/2.3] max-lg:aspect-[1.5] h-auto lg:h-[calc(100vh-64px)]"
+              className="w-full max-w-full object-contain h-auto"
             />
           </SwiperSlide>
         ))}
