@@ -3,6 +3,38 @@ import { FaArrowRight } from 'react-icons/fa';
 import { GrOrganization } from 'react-icons/gr';
 import { MdEmail, MdPhone, MdFactory } from 'react-icons/md';
 
+const locations = [
+  {
+    name: "L.R. Foods Pvt. Ltd.",
+    address:
+      "Indira Complex, Industrial Area, Sector-87, Greater Faridabad, Haryana 121002",
+    phones: ["09250922857", "+91-9250922830"],
+    type: "factory",
+  },
+  {
+    name: "Seeta Foods Pvt. Ltd.",
+    address:
+      "Plot No. 11, 12 & 28, Industrial Area, Hatin, District Palwal, Haryana 121103",
+    phones: ["09728102335", "09250922858"],
+    type: "factory",
+  },
+  {
+    name: "Perfect Food Industries",
+    address:
+      "Plot No. 81, 93 & 94, Sector-5, IIE SIDCUL, Haridwar, Uttarakhand",
+    phones: ["9720001822"],
+    type: "factory",
+  },
+  {
+    name: "Perfect Bread Pvt. Ltd.",
+    address:
+      "Plot No. 106-111, HSIIDC Food Park, Saha, Ambala 133001",
+    phones: ["9050004305"],
+    type: "factory",
+  },
+];
+
+
 export function ContactSection() {
   return (
     <section id="contact" className="">
@@ -20,12 +52,12 @@ export function ContactSection() {
               SCF 71/72 1st floor sector 15, <br /> main market faridabad Haryana-121007
             </p>
           </div>{' '}
-          <div className="bg-[#ffe8f2] rounded-2xl p-4 justify-center items-center flex flex-col">
+          <div className="bg-[#ffe8f2] rounded-2xl p-4 max-md:col-span-2 justify-center items-center flex flex-col">
             <MdEmail className="text-xl size-10" />
             <h3 className="text-xl font-bold">Email</h3>
             <p className="text-lg text-center break-all ">info@perfectbread.com</p>
           </div>
-          <div className="bg-[#ffe8f2] rounded-2xl p-4 justify-center items-center flex flex-col">
+          <div className="bg-[#ffe8f2] rounded-2xl p-4 justify-center max-md:col-span-2 items-center flex flex-col">
             <MdPhone className="text-xl size-10" />
             <h3 className="text-xl font-bold">Phone</h3>
             <p className="text-lg text-center">0129-4871451</p>
@@ -75,10 +107,7 @@ export function ContactSection() {
         <div className="col-span-2 max-md:col-span-1">
           <h4 className="text-4xl mb-7 font-bold ml-4">Plant & Manufacturing</h4>
           <div className="grid grid-cols-2 max-sm:grid-cols-1 max-lg:px-12 max-md:px-8 max-sm:py-8 px-20 py-10 rounded-xl gap-8 bg-[#efefef]">
-            <PlantAndManufacturer />
-            <PlantAndManufacturer />
-            <PlantAndManufacturer />
-            <PlantAndManufacturer />
+            {locations.map(location => <PlantAndManufacturer key={location.name} {...location} />)}
           </div>
         </div>
       </div>
@@ -86,18 +115,20 @@ export function ContactSection() {
   );
 }
 
-const PlantAndManufacturer = () => {
+const PlantAndManufacturer = ({ name, address, phones }) => {
   return (
     <div className="flex gap-6">
       <MdFactory className="text-xl size-16" />
       <div className="flex flex-col gap-2">
-        <h5 className="text-xl font-bold">L.R. Food Pvt. Ltd.</h5>
+        <h5 className="text-xl font-bold">{name}</h5>
         <p className="text-lg">
-          Indira complex, industrial area, sector-87 <br /> greater faridabad, Haryana-121007
+          {address}
         </p>
         <div className="flex gap-2 items-center">
           <MdPhone className="text-xl size-6" />
-          <p className="text-lg">0129-4871451 | +91 92509 22830</p>
+          <div className='flex gap-2 flex-wrap [&>a]:border-r-2 [&>a]:last:border-r-0 [&>a]:pr-2'>
+            {phones.map(p => <a key={p} href={`tel:${p}`} className="text-lg">{p}</a>)}
+          </div>
         </div>
         <button className="bg-primary w-fit flex items-center text-white px-5 py-1 rounded-3xl gap-2 text-lg">
           Get Location

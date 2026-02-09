@@ -5,7 +5,7 @@ import { MdEmail, MdLocationOn, MdPhone } from 'react-icons/md';
 export function FooterSection() {
   return (
     <div className="bg-primary w-full overflow-hidden text-white">
-      <div className="container z-2 py-10 grid grid-cols-5 gap-10 px-5 relative">
+      <div className="container z-2 py-10 grid grid-cols-5 gap-10 max-md:gap-3 px-5 max-md:px-4 relative">
         <Image
           width={500}
           height={500}
@@ -13,21 +13,21 @@ export function FooterSection() {
           src="/footer_image.png"
           alt="footer"
         />
-        <div className="flex flex-col gap-3 col-span-2 max-md:col-span-3">
+        <div className="flex flex-col gap-3 col-span-2 max-md:col-span-5">
           <h4 className="text-3xl font-semibold">Corporate Office</h4>
           <div className="flex gap-2 items-center">
             <MdPhone className="size-6" />
-            <p className="text-lg">+91 92509 22830</p>
+            <a href="tel:01294871451" className="text-lg">0129-4871451</a>
+          </div>
+          <div className="flex gap-2  items-center">
+            <MdEmail className="size-6 flex-shrink-0" />
+            <a href="mailto:info@perfectbread.com" className="text-lg break-all">info@perfectbread.com</a>
           </div>
           <div className="flex gap-2 items-center">
-            <MdEmail className="size-6" />
-            <p className="text-lg">info@perfectbread.com</p>
-          </div>
-          <div className="flex gap-2 items-center">
-            <MdLocationOn className="size-10" />
-            <p className="text-lg">
+            <MdLocationOn className="size-6 flex-shrink-0" />
+            <a href="https://maps.app.goo.gl/Gmz9MZyZmT4JWREU8" className="text-lg">
               <strong>Head Office: </strong> SCF 71/72 1st floor sector 15 main market, faridabad Haryana-121007
-            </p>
+            </a>
           </div>
           <div className="flex flex-column"></div>
           <hr />
