@@ -10,28 +10,7 @@ const locations = [
       "Indira Complex, Industrial Area, Sector-87, Greater Faridabad, Haryana 121002",
     phones: ["09250922857", "+91-9250922830"],
     type: "factory",
-  },
-  {
-    name: "Seeta Foods Pvt. Ltd.",
-    address:
-      "Plot No. 11, 12 & 28, Industrial Area, Hatin, District Palwal, Haryana 121103",
-    phones: ["09728102335", "09250922858"],
-    type: "factory",
-  },
-  {
-    name: "Perfect Food Industries",
-    address:
-      "Plot No. 81, 93 & 94, Sector-5, IIE SIDCUL, Haridwar, Uttarakhand",
-    phones: ["9720001822"],
-    type: "factory",
-  },
-  {
-    name: "Perfect Bread Pvt. Ltd.",
-    address:
-      "Plot No. 106-111, HSIIDC Food Park, Saha, Ambala 133001",
-    phones: ["9050004305"],
-    type: "factory",
-  },
+  }
 ];
 
 
@@ -106,7 +85,7 @@ export function ContactSection() {
         </div>
         <div className="col-span-2 max-md:col-span-1">
           <h4 className="text-4xl mb-7 font-bold ml-4">Plant & Manufacturing</h4>
-          <div className="grid grid-cols-2 max-sm:grid-cols-1 max-lg:px-12 max-md:px-8 max-sm:py-8 px-20 py-10 rounded-xl gap-8 bg-[#efefef]">
+          <div className="grid grid-cols-3 max-sm:grid-cols-1 max-lg:px-12 max-md:px-8 max-sm:py-8 px-20 py-10 rounded-xl gap-8 bg-[#efefef]">
             {locations.map(location => <PlantAndManufacturer key={location.name} {...location} />)}
           </div>
         </div>
@@ -117,8 +96,8 @@ export function ContactSection() {
 
 const PlantAndManufacturer = ({ name, address, phones }) => {
   return (
-    <div className="flex gap-6">
-      <MdFactory className="text-xl size-16" />
+    <div className="flex gap-6 col-span-2">
+      <MdFactory className="text-xl size-24 max-lg:size-16" />
       <div className="flex flex-col gap-2">
         <h5 className="text-xl font-bold">{name}</h5>
         <p className="text-lg">
@@ -130,7 +109,7 @@ const PlantAndManufacturer = ({ name, address, phones }) => {
             {phones.map(p => <a key={p} href={`tel:${p}`} className="text-lg">{p}</a>)}
           </div>
         </div>
-        <button className="bg-primary w-fit flex items-center text-white px-5 py-1 rounded-3xl gap-2 text-lg">
+        <button className="bg-primary w-fit mt-4 flex items-center text-white px-5 py-1 rounded-3xl gap-2 text-lg">
           Get Location
           <FaArrowRight className="size-4 text-white" />
         </button>
