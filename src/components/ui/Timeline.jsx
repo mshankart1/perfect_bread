@@ -1,7 +1,7 @@
 'use client';
 import { TimelineArrowSegment } from './TimelineArrowSegment';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { Navigation, Pagination } from 'swiper/modules';
+import { Autoplay, Navigation, Pagination } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
@@ -12,12 +12,17 @@ export function Timeline({ timeline }) {
   return (
     <div className="w-full h-full my-5 container slider-container relative px-4 md:px-16 [&>*]:p-0 m-0 overflow-hidden">
       <Swiper
-        modules={[Navigation]}
+        modules={[Navigation, Autoplay]}
         spaceBetween={16}
         slidesPerView={2}
         navigation={{
           prevEl: '.swiper-button-prev-timeline',
           nextEl: '.swiper-button-next-timeline',
+        }}
+        autoplay={{
+          delay: 5000,
+          disableOnInteraction: false,
+          pauseOnMouseEnter: false,
         }}
         loop={true}
         speed={500}

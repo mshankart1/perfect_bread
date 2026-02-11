@@ -51,7 +51,7 @@ export function ContactSection() {
                 loading="lazy"
                 allowFullScreen
                 referrerPolicy="no-referrer-when-downgrade"
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d14041.2331883945!2d77.314064!3d28.3952889!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390cdc4e3ff33fdf%3A0x4409dbaf3e788db1!2sPerfect%20Bake!5e0!3m2!1sen!2sin!4v1700000000000"
+                src="https://www.google.com/maps?q=L.R%20FOODS%20PVT.%20LTD.&output=embed"
               />
             </div>
           </div>
