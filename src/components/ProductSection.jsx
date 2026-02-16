@@ -19,7 +19,7 @@ export function ProductSection({ products = [] }) {
     return acc;
   }, {});
 
-  const categories = ['White Bread', 'Health & Wellness', 'Bun & Pav', 'Flat Bread', 'Rusk', 'Sweet Bakery'];
+  const categories = ['White Bread', 'Health & Wellness', 'Bun & Pav', 'Flat Bread', 'Sweet Bakery', 'Rusk'];
   const [selectedCategory, setSelectedCategory] = useState(Object.keys(allProducts)?.[0]);
 
   return (
