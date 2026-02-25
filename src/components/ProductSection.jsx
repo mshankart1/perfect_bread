@@ -24,7 +24,7 @@ export function ProductSection({ products = [] }) {
 
   return (
     <section id="product" className="my-10 container mx-auto">
-      <h2 className="heading mb-8 max-md:mb-6 max-sm:mb-4 text-primary">PERFECT PRODUCTS</h2>
+      <h2 className="heading mb-8 max-md:mb-6 max-sm:mb-4 text-primary">PRODUCT RANGE</h2>
       <div className="flex flex-col items-center ">
         <div className="flex w-fit px-2 bg-secondary py-1.5 max-md:mx-2 my-6 max-md:my-2 max-sm:px-1 justify-between text-lg rounded-lg items-center max-md:text-sm">
           {categories.map((item, index) => (
