@@ -1,40 +1,45 @@
-import Image from "next/image";
-import { Heading } from "./ui";
+import Image from 'next/image';
 
 export async function AboutSection() {
   return (
-    <section id="#about" className="grid-cols-2 items-end grid bg-secondary py-8 px-10 text-white">
-      <div className="flex w-full flex-col gap-6">
-        <Heading>About Us</Heading>
-        <p className="text-xl/snug font-normal text-justify">
-          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Vel facere
-          corporis, labore quae quaerat repudiandae quia cumque, sit ratione
-          reprehenderit ut quo? Suscipit assumenda animi et aut, est tempora
-          dicta accusamus dolorum? Sequi amet facere saepe ea officia deserunt,
-          quam esse dolores iste, quos impedit aliquid id architecto sint,
-          laborum laboriosam. Similique ratione possimus sequi quis! Officia
-          tenetur corporis a sed odio debitis assumenda. Architecto, doloremque
-          sint, placeat earum vero sapiente debitis commodi sed tenetur aperiam
-          optio nesciunt. Repellendus sunt veniam, inventore magnam dignissimos
-          cupiditate molestiae sapiente facilis obcaecati maiores aperiam maxime
-          saepe nobis. Exercitationem, rerum dolorem! Tempora error culpa
-          itaque. Ducimus assumenda temporibus inventore excepturi ab. Ea labore
-          repudiandae cupiditate sunt, non tempora dicta. Illum culpa quis odio
-          eveniet, aut corrupti rem vel repellendus asperiores dolorum ea
-          praesentium molestias aliquam mollitia quibusdam! Doloremque quod
-          dolorum quaerat, nesciunt iure voluptate sed earum minima cumque
-          reiciendis culpa eligendi ab explicabo repudiandae
+    <div className='relative'>
+      <Image src='/bread.png' alt='bread' width={500} height={500} className='absolute -bottom-10 w-68 max-md:w-60 max-sm:w-44 z-10 right-0 object-cover' />
+      <Image src='/Wheat.png' alt='bread' width={500} height={500} className='absolute -top-10 w-60 max-md:w-40 max-sm:w-32 z-10 -left-5 object-cover rotate-90' />
+      <section id="about" className="grid-cols-5 grid py-16 max-md:py-10 max-sm:py-6 gap-20 max-md:gap-10 max-sm:gap-4 max-sm:px-6 px-8 container">
+        <div
+          className="border-6 border-primary col-span-2 max-lg:col-span-5 max-lg:w-4/7 max-md:w-2/3 overflow-hidden mx-auto aspect-[1/1.1] w-full"
+          style={{ borderRadius: '0 40% 0px 40%' }}
+        >
+          <Image
+            src="/ceo.png"
+            alt="bread"
+            width={1000}
+            height={1000}
+            className="w-full object-fit overflow -scale-x-100 pt-10 bg-amber-100"
+          />
+        </div>
+        <div className="col-span-3 max-lg:col-span-5">
+          <div className="heading text-primary text-left max-lg:text-center" style={{ lineHeight: '1.2' }}>
+            OUR HOT <br className="max-lg:hidden" /> BAKING STORY
+          </div>
+          <div className="text-accent mt-5 max-md:mt-1 text-5xl max-lg:mb-6 max-md:text-2xl max-lg:text-center">
+            <span className="font-semibold">CRAFTED </span>
+            <span className="text-4xl max-md:text-2xl">BY</span>
+            <div className="text-accent text-5xl max-md:text-3xl mt-2 max-md:mt-0 max-lg:inline max-lg:ml-2 font-semibold">
+              Dr. H.K Batra !
+            </div>
+          </div>
+          <p className="text-xl/tight mt-3 max-md:text-lg/tight relative text-accent font-normal text-justify max-md:text-center z-20">
+            In the continual process of creativity and innovation, <strong>PERFECT BREAD’S</strong> evolution and growth
+            as a nationally recognized bakery brand over the last 20 years has been encapsulated through four distinctive
+            Generations.
           </p>
-      </div>
-      <div className="w-full px-10">
-        <Image
-          src="/about_us.png"
-          alt="bread"
-          width={1000}
-          height={1000}
-          className="w-full object-fit"
-        />
-      </div>
-    </section>
+          <p className="text-xl/tight mt-3 max-md:text-lg/tight relative text-accent font-normal text-justify z-20 max-md:text-center">
+            Humble Beginnings: From the very beginning of our journey in 1993, we haven’t lost our passion for great food.
+            It’s who we are as people, as bakers, and as family.
+          </p>
+        </div>
+      </section>
+    </div>
   );
 }

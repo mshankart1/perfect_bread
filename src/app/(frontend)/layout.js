@@ -1,12 +1,16 @@
-import { Header } from "@/components";
-import { SanityLive } from "@/sanity/lib/live";
+import { FooterSection, Header } from '@/components';
+import { SanityLive } from '@/sanity/lib/live';
+import { client } from '@/sanity/lib/client';
+import { PRODUCT_QUERY } from '@/sanity/lib/queries';
 
-export default function RootLayout({ children }) {
+export default async function RootLayout({ children }) {
+  let products = await client.fetch(PRODUCT_QUERY, {}, { next: { revalidate: 120 } });
   return (
     <>
-      <Header />
+      <Header products={products} />
       {children}
       <SanityLive />
+      <FooterSection />
     </>
   );
 }

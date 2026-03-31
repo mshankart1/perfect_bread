@@ -1,11 +1,14 @@
 // https://www.sanity.io/docs/structure-builder-cheat-sheet
 export const structure = (S) =>
   S.list()
-    .title('Blog')
+    .title('Content')
     .items([
-      S.documentTypeListItem('post').title('Posts'),
+      S.documentTypeListItem('timeline').title('Timeline'),
+      S.documentTypeListItem('product').title('Products'),
+      S.documentTypeListItem('recipe').title('Recipes'),
+      S.documentTypeListItem('banner').title('Banners'),
       S.divider(),
       ...S.documentTypeListItems().filter(
-        (item) => item.getId() && !['post'].includes(item.getId()),
+        (item) => item.getId() && !['timeline', 'product', 'recipe', 'banner'].includes(item.getId()),
       ),
     ])

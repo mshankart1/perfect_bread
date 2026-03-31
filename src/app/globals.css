@@ -1,37 +1,94 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
-@import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Special+Gothic+Condensed+One:wght@400;700&family=Poppins:wght@400;500;600;700&family=Archivo+Narrow:wght@400;500;600;700&display=swap');
+@import 'tailwindcss';
 @plugin "@tailwindcss/typography";
 
 @theme {
   --color-primary: #cb1f2b;
-  --color-secondary: #e50021;
-  --color-accent: #25205c;
+  --color-secondary: #ffc629;
   --color-disabled: #808080;
 
-  --font-montserrat: "Montserrat", sans-serif;
-  --font-roboto: "Roboto", sans-serif;
-  --font-poppins: "Poppins", sans-serif;
+  --font-condensed: 'Special Gothic Condensed One', sans-serif;
+  --font-poppins: 'Poppins', sans-serif;
 }
 
-@layer base{
-  html{
-    @apply font-montserrat;
+@layer base {
+  html {
+    font-family: var(--font-poppins, Poppins, sans-serif);
   }
 }
+
 @layer components {
   .heading {
-    @apply text-5xl font-semibold;
+    @apply text-6xl max-md:text-4xl font-semibold mb-2 text-center underline underline-offset-[12px] max-md:underline-offset-4 py-3;
+  }
+  .form-group {
+    @apply [&>div>label]:text-lg [&>div>label]:font-medium [&>div>input]:border-1 [&>div>input]:border-gray-400 [&>div>input]:rounded-lg [&>div>input]:p-2 [&>div>textarea]:border-1 [&>div>textarea]:border-gray-400 [&>div>textarea]:rounded-lg [&>div>textarea]:p-2;
   }
 }
 
-/* 
-  flex-basis property specifies the initial length of a flexible item.
-  @container rule is used to define styles for other elements depending on the container's size or styles.
-  column-count property specifies the number of columns an element should be divided into. (column-rule-style, column-rule-color)
-  column-fill property specifies how to fill columns, balanced or not.
-*/
+@layer utilities {
+  .container {
+    @apply max-w-7xl mx-auto;
+  }
+
+  .shadow-2xl {
+    --tw-shadow-2: 0 20px 48px 0 rgb(0 0 0 / 0.5), 0 1.5px 18px 0 rgb(0 0 0 / 0.15);
+    box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow-2);
+  }
+
+  .shadow {
+    --tw-shadow: 0 0 10px 10px rgb(255 255 0), 0 1.5px 18px 0 rgb(0 0 0 / 0.15);
+    /* box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow); */
+    box-shadow: var(--tw-shadow);
+  }
+}
 
 * {
   scroll-behavior: smooth;
+  scroll-margin: 150px;
   box-sizing: border-box;
+}
+
+.slick-list {
+  margin: 0 -12px;
+  padding: 0;
+  height: 100%;
+}
+
+.slick-track {
+  height: 100%;
+}
+
+.slick-slide {
+  padding: 0 12px;
+  height: auto;
+}
+
+.slick-slide {
+  padding: 0 12px;
+  height: 100%;
+}
+
+.slick-slide > div {
+  height: 100%;
+  border-radius: 0;
+}
+
+.slick-arrow {
+  z-index: 10;
+  width: 48px;
+  height: 48px;
+}
+
+::-webkit-scrollbar {
+  width: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
 }
