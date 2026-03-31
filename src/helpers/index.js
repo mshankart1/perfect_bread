@@ -8,6 +8,13 @@ export function urlFor(source) {
   return builder.image(source)
 }
 
+function sanitizeHex(hex) {
+  if (typeof hex !== 'string') return ''
+  const t = hex.trim()
+  if (/^#[0-9A-Fa-f]{3}$/.test(t) || /^#[0-9A-Fa-f]{6}$/.test(t)) return t
+  return ''
+}
+
 /*
   Do you need to assign "break" in contentType?
   - If your Sanity blockContent schema includes line breaks (soft/hard break),
@@ -28,17 +35,26 @@ export function getBlockContentHtml(content, color) {
         h5: ({ children }) => `<h5 style="font-size: 1.125rem;">${children}</h5>`,
         h6: ({ children }) => `<h6 style="font-size: 1rem;">${children}</h6>`,
         normal: ({ children }) => `<p style="font-size: 1rem;">${children}</p>`,
-        // By default, soft breaks (from shift+enter in block text) are rendered as <br /> by @portabletext/to-html.
-        // However, the `block` mapping here does not let you override the rendering of soft breaks.
-        // If you want to force <br /> rendering or custom HTML for line breaks, you need to use a custom serializer,
-        // but @portabletext/to-html (as of v2) doesn't give direct control.
-        // If <br /> is not appearing, check your Portable Text content. Soft breaks are only inserted if users entered them (shift+enter) in Sanity Studio.
-        // There's NOT a 'break' block type by default; line breaks are just `\n` inside a block's children and should be auto-rendered.
+      },
+      list: {
+        bullet: ({ children }) =>
+          `<ul style="list-style-type: disc; padding-left: 1.5rem; margin: 0.75rem 0; text-align: left;">${children}</ul>`,
+        number: ({ children }) =>
+          `<ol style="list-style-type: decimal; padding-left: 1.5rem; margin: 0.75rem 0; text-align: left;">${children}</ol>`,
+      },
+      listItem: {
+        bullet: ({ children }) => `<li style="margin: 0.25rem 0;">${children}</li>`,
+        number: ({ children }) => `<li style="margin: 0.25rem 0;">${children}</li>`,
       },
       marks: {
         strong: ({ children }) => `<strong style="font-weight: 600;">${children}</strong>`,
         highlight: ({ children }) =>
           `<div style="background-color: ${color}; color: white; padding: 10px 15px; border-radius: 5px;">${children}</div>`,
+        textColor: ({ children, value }) => {
+          const hex = sanitizeHex(value?.hex)
+          if (!hex) return children
+          return `<span style="color: ${hex}">${children}</span>`
+        },
       },
       types: {
         image: ({ value }) => {

@@ -7,8 +7,8 @@
   --color-secondary: #ffc629;
   --color-disabled: #808080;
 
-  --font-condensed: "Special Gothic Condensed One", sans-serif;
-  --font-poppins: "Poppins", sans-serif;
+  --font-condensed: 'Special Gothic Condensed One', sans-serif;
+  --font-poppins: 'Poppins', sans-serif;
 }
 
 @layer base {

@@ -1,5 +1,13 @@
 import { defineType, defineArrayMember } from 'sanity';
-import { ImageIcon } from '@sanity/icons';
+import { ColorWheelIcon, ImageIcon } from '@sanity/icons';
+import { TextColorAnnotation } from '../components/TextColorAnnotation';
+import { TextColorSwatchInput } from '../components/TextColorSwatchInput';
+import { TEXT_COLOR_PALETTE } from '../constants/textColorPalette';
+
+const editorBlockReset = {
+  margin: 0,
+  padding: 0,
+};
 
 /**
  * This is the schema type for block content used in the post document type
@@ -20,7 +28,17 @@ export const blockContentType = defineType({
     defineArrayMember({
       type: 'block',
       styles: [
-        { title: 'Normal', value: 'normal' },
+        {
+          title: 'Normal',
+          value: 'normal',
+          blockEditor: {
+            render: (props) => (
+              <p style={{ ...editorBlockReset, fontSize: '1rem' }}>
+                {props.children}
+              </p>
+            ),
+          },
+        },
         { 
           title: 'H1', 
           value: 'h1', 
@@ -37,7 +55,7 @@ export const blockContentType = defineType({
           value: 'h2', 
           blockEditor: { 
             render: (props) => (
-              <h2 style={{ fontWeight: props.markDefs?.some(d => d._type === 'strong') ? 'bold' : 'normal', fontSize: '1.875rem' }}>
+              <h2 style={{...editorBlockReset, fontWeight: props.markDefs?.some(d => d._type === 'strong') ? 'bold' : 'normal', fontSize: '1.875rem' }}>
                 {props.children}
               </h2>
             ) 
@@ -59,7 +77,7 @@ export const blockContentType = defineType({
           value: 'h4', 
           blockEditor: { 
             render: (props) => (
-              <h4 style={{ fontWeight: props.markDefs?.some(d => d._type === 'strong') ? 'bold' : 'normal', fontSize: '1.25rem' }}>
+              <h4 style={{...editorBlockReset, fontWeight: props.markDefs?.some(d => d._type === 'strong') ? 'bold' : 'normal', fontSize: '1.25rem' }}>
                 {props.children}
               </h4>
             ) 
@@ -87,7 +105,17 @@ export const blockContentType = defineType({
             ) 
           } 
         },
-        { title: 'Quote', value: 'blockquote' },
+        {
+          title: 'Quote',
+          value: 'blockquote',
+          blockEditor: {
+            render: (props) => (
+              <blockquote style={{ ...editorBlockReset, fontSize: '1rem' }}>
+                {props.children}
+              </blockquote>
+            ),
+          },
+        },
       ],
       lists: [{ title: 'Bullet', value: 'bullet' }],
       // Marks let you mark up inline text in the Portable Text Editor
@@ -123,6 +151,36 @@ export const blockContentType = defineType({
                 title: 'URL',
                 name: 'href',
                 type: 'url',
+              },
+            ],
+          },
+          {
+            title: 'Text color',
+            name: 'textColor',
+            type: 'object',
+            icon: ColorWheelIcon,
+            components: {
+              annotation: TextColorAnnotation,
+            },
+            fields: [
+              {
+                title: 'Color',
+                name: 'hex',
+                type: 'string',
+                initialValue: '#e53935',
+                options: {
+                  list: TEXT_COLOR_PALETTE,
+                },
+                components: {
+                  input: TextColorSwatchInput,
+                },
+                validation: (Rule) =>
+                  Rule.required().custom((val) => {
+                    if (!val || /^#[0-9A-Fa-f]{3}$|^#[0-9A-Fa-f]{6}$/.test(val)) {
+                      return true;
+                    }
+                    return 'Use a valid hex color (e.g. #ff0000)';
+                  }),
               },
             ],
           },
