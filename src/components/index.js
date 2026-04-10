@@ -11,3 +11,4 @@ export { EComPartnerSection } from './EComPartnerSection';
 export { RecipeSection } from './RecipeSection';
 export { ContactSection } from './ContactSection';
 export { FooterSection } from './FooterSection';
+export { ComingSoon } from './ComingSoon';

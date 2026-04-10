@@ -66,8 +66,9 @@ export const productType = defineType({
     }),
     defineField({
       name: 'weight',
-      type: 'string',
+      type: 'number',
       group: 'basic',
+      validation: (Rule) => Rule.required().min(0),
     }),
     defineField({
       name: 'slug',

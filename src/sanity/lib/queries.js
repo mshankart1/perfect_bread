@@ -7,7 +7,7 @@ export const TIMELINE_QUERY = defineQuery(`*[_type == "timeline" && !(_id in pat
   "imageUrl": mainImage.asset->url
 }`);
 
-export const PRODUCT_QUERY = defineQuery(`*[_type == "product" && !(_id in path("drafts.**"))] | order(_createdAt asc){
+export const PRODUCT_QUERY = defineQuery(`*[_type == "product" && !(_id in path("drafts.**"))] | order(weight desc){
   _id,
   title,
   slug,

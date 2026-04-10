@@ -1,53 +1,50 @@
 import Image from 'next/image';
 import { SiHomeassistantcommunitystore } from 'react-icons/si';
+
 const stores = [
   {
     location: 'Delhi NCR',
-    sites: ['Ghaziabad', 'Vaishali', 'Noida', 'Kalkaji', 'Vasant Vihar', 'Tagore Garden'],
+    sites: ['Delhi', 'Faridabad', 'Ghaziabad', 'Gurugram', 'Indirapuram', 'Noida'],
     color: '#d1212e',
   },
   {
     location: 'Haryana',
-    sites: ['Panchkula', 'Ambala', 'Kurukshetra', 'Karnal', 'Panipat', 'Rohtak', 'Jhajjar', 'Faridabad', 'Gurugram'],
+    sites: [
+      'Ambala', 'Firozpur Jhirka', 'Hasanpur', 'Hathin', 'Hodal', 'Jagadhri',
+      'Karnal', 'Kurukshetra', 'Palwal', 'Panipat', 'Punhana', 'Rohtak',
+      'Sonipat', 'Yamuna Nagar',
+    ],
     color: '#fdc629',
   },
   {
-    location: 'Rajasthan',
-    sites: ['Alwar', 'Jhunjhunu'],
-    color: '#247ad1',
+    location: 'Madhya Pradesh',
+    sites: ['Gwalior'],
+    color: '#008e37',
   },
   {
     location: 'Punjab',
-    sites: ['Amritsar', 'Kapurthala', 'Rupnagar', 'Jalandhar'],
+    sites: ['Amritsar', 'Jalandhar', 'Ludhiana', 'Panchkula', 'Tricity'],
     color: '#4c1401',
+  },
+  {
+    location: 'Rajasthan',
+    sites: ['Alwar', 'Bansur', 'Behror', 'Bharatpur', 'Bhiwadi'],
+    color: '#247ad1',
   },
   {
     location: 'Uttar Pradesh',
     sites: [
-      'Bijnor',
-      'Jyotiba Phule Nagar',
-      'Muzaffarnagar',
+      'Agra', 'Aligarh', 'Amroha', 'Bareilly', 'Bijnor', 'Bulandshahr',
+      'Etah', 'Hapur', 'Jhansi', 'Kasganj', 'Mathura', 'Meerut',
+      'Modinagar', 'Moradabad', 'Muzaffarnagar', 'Najibabad', 'Rampur',
       'Saharanpur',
-      'Ghaziabad',
-      'Moradabad',
-      'Aligarh',
-      'Bulandshahr',
-      'Gautam Buddha Nagar',
-      'Meerut',
-      'Mathura',
-      'Agra',
     ],
     color: '#19b0ff',
   },
   {
     location: 'Uttarakhand',
-    sites: ['Uttarkashi', 'Tehri Garhwal', 'Dehradun', 'Haridwar'],
+    sites: ['Dehradun', 'Haldwani', 'Kashipur', 'Ramnagar', 'Rishikesh', 'Roorkee'],
     color: '#80008f',
-  },
-  {
-    location: 'Madhya Pradesh',
-    sites: ['Sheopur', 'Morena'],
-    color: '#008e37',
   },
 ];
 
@@ -73,7 +70,7 @@ export function MapSection() {
                 <h3 className="text-2xl max-md:text-xl max-sm:text font-bold cursor-default break-word">{store.location}</h3>
               </div>
               <ul className="list-none ml-12 max-md:ml-8 text-lg cursor-default text-gray-800">
-                {store.sites.map((site) => (
+                {store.sites.sort((a, b) => a.localeCompare(b)).map((site) => (
                   <li key={site} className="hover:scale-[1.03] transition-all duration-300 cursor-default">{site}</li>
                 ))}
               </ul>

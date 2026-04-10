@@ -9,7 +9,7 @@ export function FooterSection() {
         <Image
           width={500}
           height={500}
-          className="absolute w-[10vw] min-w-lg max-lg:min-w-md max-md:min-w-sm opacity-90 max-lg:-right-16 -right-20 max-md:right-10 max-sm:-right-12 -z-1 object-cover bottom-6"
+          className="absolute w-[9vw] min-w-lg max-lg:min-w-md max-md:min-w-sm opacity-90 max-lg:-right-16 -right-20 max-md:right-10 max-sm:-right-12 -z-1 object-cover -bottom-4"
           src="/footer_image.png"
           alt="footer"
         />

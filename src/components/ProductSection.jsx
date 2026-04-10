@@ -19,12 +19,12 @@ export function ProductSection({ products = [] }) {
     return acc;
   }, {});
 
-  const categories = ['White Bread', 'Health & Wellness', 'Bun & Pav', 'Flat Bread', 'Sweet Bakery', 'Rusk'];
-  const [selectedCategory, setSelectedCategory] = useState(Object.keys(allProducts)?.[0]);
+  const categories = ['Health & Wellness', 'White Bread', 'Bun & Pav', 'Flat Bread', 'Sweet Bakery', 'Rusk'];
+  const [selectedCategory, setSelectedCategory] = useState(categories?.[0].toLowerCase());
 
   return (
     <section id="product" className="my-10 container mx-auto">
-      <h2 className="heading mb-8 max-md:mb-6 max-sm:mb-4 text-primary">PRODUCT RANGE</h2>
+      <h2 className="heading mb-8 max-md:mb-6 max-sm:mb-4 text-primary">PERFECT PRODUCTS</h2>
       <div className="flex flex-col items-center ">
         <div className="flex w-fit px-2 bg-secondary py-1.5 max-md:mx-2 my-6 max-md:my-2 max-sm:px-1 justify-between text-lg rounded-lg items-center max-md:text-sm">
           {categories.map((item, index) => (
@@ -63,7 +63,7 @@ export function ProductSection({ products = [] }) {
                     {product.title.split('-')[0].trim()}
                   </span>
                   <span className="text-xs text-gray-700 min-h-5 text-center">
-                    {product.weight ? product.weight + ' gms' : ''}
+                    {product.weight ? product.weight + 'G' : ''}
                   </span>
                 </div>
               </div>
@@ -104,7 +104,7 @@ export function ProductSection({ products = [] }) {
                 className="w-full"
               >
                 {Array.isArray(allProducts[selectedCategory.toLowerCase()]) && allProducts[selectedCategory.toLowerCase()].length > 0 ?
-                  allProducts[selectedCategory.toLowerCase()]?.map((item, index) => (
+                  allProducts[selectedCategory.toLowerCase()]?.sort((a, b) => b.weight - a.weight).map((item, index) => (
                     <SwiperSlide key={item.name + '-' + index} className="">
                       <div
                         className="flex flex-col items-center w-full justify-center border border-gray-400 ring-0 focus:outline-none focus:ring-0 hover:shadow hover:shadow-black my-2 hover:scale-[1.01] transition-all duration-300 cursor-pointer"
@@ -126,7 +126,7 @@ export function ProductSection({ products = [] }) {
                             {item.title.split(' - ')[0]}
                           </span>
                           <span className="text-xs text-gray-700 min-h-5 text-center">
-                            {item.weight ? item.weight + ' gms' : ''}
+                            {item.weight ? item.weight + ' G' : ''}
                           </span>
                         </div>
                       </div>
