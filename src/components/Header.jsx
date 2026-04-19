@@ -23,7 +23,7 @@ export function Header({ products }) {
   };
   const router = useRouter();
   return (
-    <div className="h-16 z-40 flex w-full text-primary backdrop-blur-3xl bg-white/90 sticky shadow-xl top-0">
+    <div className="h-16 z-40 flex w-full text-primary backdrop-blur-3xl bg-white sticky shadow-xl top-0">
       <ul className="grid grid-cols-[1fr_auto_1fr] justify-center container overflow font-semibold h-16 z-50 items-center max-lg:hidden">
         <div className="flex text-nowrap justify-between gap-2 grow">
           <FaHome size={25} className="cursor-pointer" onClick={() => router.push('/')} />
@@ -80,7 +80,7 @@ export function Header({ products }) {
                       key={product._id}
                       className="text-wrap flex flex-row  items-center h-full cursor-pointer gap-2 text-base/snug hover:bg-primary/10 py-2 px-3"
                       onMouseDown={() => {
-                        router.push(`/${product?.slug || product?._id}`);
+                        router.push(`/product/${encodeURIComponent(product?.slug || product?._id)}`);
                       }}
                     >
                       <Image

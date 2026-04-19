@@ -12,8 +12,30 @@ const locations = [
       "Indira Complex, Industrial Area, Sector-87, Greater Faridabad, Haryana 121002",
     phones: ["09250922857", "+91-9250922830"],
     type: "factory",
-  }
+  },
+  {
+    name: "Seeta Foods Pvt. Ltd.",
+    address:
+      "Plot No. 11, 12 & 28, Industrial Area, Hatin, District Palwal, Haryana 121103",
+    phones: ["09728102335", "09250922858"],
+    type: "factory",
+  },
+  {
+    name: "Perfect Food Industries",
+    address:
+      "Plot No. 81, 93 & 94, Sector-5, IIE SIDCUL, Haridwar, Uttarakhand",
+    phones: ["9720001822"],
+    type: "factory",
+  },
+  {
+    name: "Perfect Bread Pvt. Ltd.",
+    address:
+      "Plot No. 106-111, HSIIDC Food Park, Saha, Ambala 133001",
+    phones: ["9050004305"],
+    type: "factory",
+  },
 ];
+
 
 export function ContactSection() {
   const [form, setForm] = useState({ name: '', phone: '', email: '', message: '' });
@@ -65,16 +87,17 @@ export function ContactSection() {
             <p className="text-lg text-center">0129-4871450 / 51</p>
           </div>
           <div className="col-span-2 rounded-2xl">
-            <div className="w-full border-2 h-70 rounded-lg overflow-hidden">
+            <div className="relative h-80 w-full overflow-hidden rounded-lg border-2">
               <iframe
                 title="Google Map"
                 width="100%"
                 height="100%"
                 style={{ border: 0 }}
+                className="absolute top-[-60px] left-0 h-[calc(100%+75px)] w-full min-h-0"
                 loading="lazy"
                 allowFullScreen
                 referrerPolicy="no-referrer-when-downgrade"
-                src="https://www.google.com/maps?q=L.R%20FOODS%20PVT.%20LTD.&output=embed"
+                src="https://www.google.com/maps/d/embed?mid=1Fnw2B-B6q68Qpijuzy-UVzb6bWiRay0&ehbc=2E312F&noprof=1"
               />
             </div>
           </div>
@@ -113,7 +136,7 @@ export function ContactSection() {
         </div>
         <div className="col-span-2 max-md:col-span-1">
           <h4 className="text-4xl mb-7 font-bold ml-4">Plant & Manufacturing</h4>
-          <div className="grid grid-cols-3 max-sm:grid-cols-1 max-lg:px-12 max-md:px-8 max-sm:py-8 px-20 py-10 rounded-xl gap-8 bg-[#efefef]">
+          <div className="grid grid-cols-2 max-sm:grid-cols-1 max-lg:px-12 max-md:px-8 max-sm:py-8 px-20 py-10 rounded-xl gap-8 bg-[#efefef]">
             {locations.map(location => <PlantAndManufacturer key={location.name} {...location} />)}
           </div>
         </div>
@@ -124,7 +147,7 @@ export function ContactSection() {
 
 const PlantAndManufacturer = ({ name, address, phones }) => {
   return (
-    <div className="flex gap-6 col-span-2">
+    <div className="flex gap-6">
       <MdFactory className="text-xl size-24 max-lg:size-16" />
       <div className="flex flex-col gap-2">
         <h5 className="text-xl font-bold">{name}</h5>

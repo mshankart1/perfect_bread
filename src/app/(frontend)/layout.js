@@ -4,7 +4,7 @@ import { client } from '@/sanity/lib/client';
 import { PRODUCT_QUERY } from '@/sanity/lib/queries';
 
 export default async function RootLayout({ children }) {
-  let products = await client.fetch(PRODUCT_QUERY, {}, { next: { revalidate: 120 } });
+  const products = await client.fetch(PRODUCT_QUERY, {}, { next: { revalidate: 120 } });
   return (
     <>
       <Header products={products} />

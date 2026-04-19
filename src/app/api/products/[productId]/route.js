@@ -1,15 +1,13 @@
 import { client } from '@/sanity/lib/client';
-import { SINGLE_PRODUCT_QUERY, PRODUCT_BY_SLUG_QUERY } from '@/sanity/lib/queries';
+import { PRODUCT_BY_KEY_QUERY } from '@/sanity/lib/queries';
+
+const fetchOptions = { next: { revalidate: 120 } };
 
 export async function GET(request, { params }) {
   try {
     const { productId } = await params;
-
-    let product = await client.fetch(PRODUCT_BY_SLUG_QUERY, { slug: productId });
-
-    if (!product) {
-      product = await client.fetch(SINGLE_PRODUCT_QUERY, { id: productId });
-    }
+    const key = decodeURIComponent(String(productId));
+    const product = await client.fetch(PRODUCT_BY_KEY_QUERY, { key }, fetchOptions);
 
     if (!product) {
       return new Response(JSON.stringify({ error: 'Product not found' }), {

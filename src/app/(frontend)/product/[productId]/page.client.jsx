@@ -2,26 +2,21 @@
 
 import { Collapse, SwiperNavButton } from '@/components';
 import Image from 'next/image';
+import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import { FaDroplet } from 'react-icons/fa6';
 import { FaFlask } from 'react-icons/fa';
 import { GiPalmTree } from 'react-icons/gi';
-import { useRouter } from 'next/navigation';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/navigation';
-import { toHTML } from '@portabletext/to-html';
-import { getBlockContentHtml } from '@/helpers';
 
-export function ProductClient({ product }) {
+export function ProductClient({ product, ingredientsHtml }) {
   const router = useRouter();
   const [currentImage, setCurrentImage] = useState(product?.images?.[0]);
   const color = product?.color || '#cb1f2b';
-
-
-
-  const html = getBlockContentHtml(product.ingredients, color);
+  const related = product?.related ?? [];
 
   return (
     <>
@@ -34,6 +29,7 @@ export function ProductClient({ product }) {
               priority
               height={1000}
               width={1000}
+              sizes="(max-width: 768px) 100vw, 50vw"
               className="w-full aspect-square object-cover border-2"
               style={{ borderColor: color }}
             />
@@ -44,10 +40,10 @@ export function ProductClient({ product }) {
                     key={image?._key}
                     src={image?.asset?.url || null}
                     alt={image?.alt || image?._key}
-                    priority
                     onClick={() => setCurrentImage(image)}
-                    height={1000}
-                    width={1000}
+                    height={200}
+                    width={200}
+                    sizes="(max-width: 768px) 20vw, 10vw"
                     className={`w-full cursor-pointer aspect-square object-cover ${image._key == currentImage._key ? 'border-2' : 'border-1'}`}
                     style={{ borderColor: image._key == currentImage._key ? 'var(--color-primary)' : color }}
                   />
@@ -59,38 +55,28 @@ export function ProductClient({ product }) {
               {product?.heading}
             </h1>
             <h3 className="text-3xl font-bold" style={{ color: color }}>
-              ({product?.weight ? product?.weight + ' gms' : ''})
+              ({product?.weight ? product?.weight + ' G' : ''})
             </h3>
             <p className="text-lg mt-2 whitespace-pre-line" style={{ color: color }}>
               {product?.subtitle}
             </p>
-            {/* Health Benefits */}
-            {product.category.toLowerCase() !== 'rusk' && (
+            {product?.category?.toLowerCase() !== 'rusk' && (
               <div className="grid grid-cols-3 max-lg:grid-cols-2 [&>div]:pt-5 mt-1">
-                <div
-                  className="flex flex-col border-primary items-center px-4 justify-center gap-5 border-2 border-l-0 max-xs:border-r-0 max-xs:col-span-1"
-                // style={{ borderColor: color }}
-                >
+                <div className="flex flex-col border-primary items-center px-4 justify-center gap-5 border-2 border-l-0 max-xs:border-r-0 max-xs:col-span-1">
                   <div className="relative bg-primary text-white rounded-full w-fit p-3">
                     <FaFlask size={20} />
                     <div className="absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 bg-white rotate-45 rounded-full z-2 w-8 h-0.5 flex items-center justify-center"></div>
                   </div>
                   <span className="text-lg text-center min-h-16">No Preservatives</span>
                 </div>
-                <div
-                  className="flex flex-col items-center px-4 border-primary justify-center gap-5 border-2 border-l-0 max-lg:border-r-0 max-xs:border-t-0 max-xs:col-span-1"
-                // style={{ borderColor: color }}
-                >
+                <div className="flex flex-col items-center px-4 border-primary justify-center gap-5 border-2 border-l-0 max-lg:border-r-0 max-xs:border-t-0 max-xs:col-span-1">
                   <div className="relative bg-primary text-white rounded-full w-fit p-3">
                     <FaDroplet size={20} />
                     <div className="absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 bg-white rotate-45 rounded-full z-2 w-8 h-0.5 flex items-center  justify-center"></div>
                   </div>
                   <span className="text-lg text-center min-h-16">Zero Cholesterol Trans Fat</span>
                 </div>
-                <div
-                  className="flex flex-col items-center px-4 justify-center gap-5 border-2 border-primary border-x-0 max-lg:border-t-0 max-lg:col-span-2 max-xs:col-span-1"
-                // style={{ borderColor: color }}
-                >
+                <div className="flex flex-col items-center px-4 justify-center gap-5 border-2 border-primary border-x-0 max-lg:border-t-0 max-lg:col-span-2 max-xs:col-span-1">
                   <div className="relative bg-primary text-white rounded-full w-fit p-3">
                     <GiPalmTree size={20} />
                     <div className="absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 bg-white rotate-45 rounded-full z-2 w-8 h-0.5 flex items-center justify-center"></div>
@@ -109,39 +95,39 @@ export function ProductClient({ product }) {
               <Image
                 src={'/ecom-partners/instamart.png'}
                 alt="Instamart"
-                priority
                 width={500}
                 height={500}
+                sizes="(max-width: 768px) 50vw, 25vw"
                 className="w-full aspect-video object-contain"
               />
               <Image
                 src={'/ecom-partners/flipkart-minutes.png'}
                 alt="Flipkart Minutes"
-                priority
                 width={500}
                 height={500}
+                sizes="(max-width: 768px) 50vw, 25vw"
                 className="w-full aspect-video object-contain"
               />
               <Image
                 src={'/ecom-partners/big-basket.png'}
                 alt="Big Basket"
-                priority
                 width={500}
                 height={500}
+                sizes="(max-width: 768px) 50vw, 25vw"
                 className="w-full aspect-video object-contain"
               />
               <Image
                 src={'/ecom-partners/blinkit.png'}
                 alt="Blinkit"
-                priority
                 width={500}
                 height={500}
+                sizes="(max-width: 768px) 50vw, 25vw"
                 className="w-full aspect-video object-contain"
               />
             </div>
             <div className="flex flex-col gap-2">
               <Collapse heading={'INGREDIENTS'}>
-                <div dangerouslySetInnerHTML={{ __html: html }} className="text-center flex flex-col gap-3 px-4 py-3" />
+                <div dangerouslySetInnerHTML={{ __html: ingredientsHtml }} className="text-center flex flex-col gap-3 px-4 py-3" />
               </Collapse>
               {product?.nutritionalInformation?.length > 0 && (
                 <Collapse heading={'NUTRITIONAL - INFORMATION'}>
@@ -174,73 +160,65 @@ export function ProductClient({ product }) {
           </div>
         </div>
       </div>
-      <div className="w-full bg-yellow-400 pt-16 max-md:pt-10 max-sm:pt-8 pb-4">
-        <div className="w-full px-16 max-md:px-10 max-sm:px-6 bg-white container rounded-t-4xl grid grid-cols-3 max-sm:grid-cols-1 gap-6">
-          <h2 className="text-4xl col-span-3 mt-6 font-bold text-center" style={{ color: color }}>
-            SIMILAR PRODUCTS
-          </h2>
-          <div className="col-span-3 slider-container w-full m-0 p-0 overflow-hidden relative">
-            <Swiper
-              modules={[Navigation]}
-              spaceBetween={16}
-              slidesPerView={2}
-              navigation={{
-                prevEl: '.swiper-button-prev-product',
-                nextEl: '.swiper-button-next-product',
-              }}
-              loop={true}
-              speed={500}
-              breakpoints={{
-                1280: {
-                  slidesPerView: 3,
-                  spaceBetween: 16,
-                },
-                1024: {
-                  slidesPerView: 3,
-                  spaceBetween: 16,
-                },
-                768: {
-                  slidesPerView: 2,
-                  spaceBetween: 16,
-                },
-                640: {
-                  slidesPerView: 2,
-                  spaceBetween: 16,
-                },
-              }}
-              className="w-full"
-            >
-              {product?.related?.map((related, index) => (
-                <SwiperSlide key={related.name + '-' + index}>
-                  <div
-                    className="hover:scale-[1.02] cursor-pointer transition-all duration-300 border border-gray-400 mb-4"
-                    onClick={() => router.push(`/${related?.slug || related?._id}`)}
-                  >
-                    <Image
-                      src={related.imageUrl || null}
-                      alt={related?._id}
-                      width={500}
-                      height={500}
-                      priority
-                      className="w-full object-cover aspect-[1]"
-                    />
-                    <div className="flex flex-col pt-2 px-2 pb-4 max-md:min-h-28 min-h-26 justify-center">
-                      <span className="font-bold text-lg mask-clip-fill  text-center">
-                        {related.title.split(' - ')[0]}
-                      </span>
-                      <span className="text-lg text-gray-700 min-h-5 text-center">
-                        {`(${related.weight ? related.weight + ' gms' : ''})`}
-                      </span>
+      {related.length > 0 && (
+        <div className="w-full bg-yellow-400 pt-16 max-md:pt-10 max-sm:pt-8 pb-4">
+          <div className="w-full px-16 max-md:px-10 max-sm:px-6 bg-white container rounded-t-4xl grid grid-cols-3 max-sm:grid-cols-1 gap-6">
+            <h2 className="text-4xl col-span-3 mt-6 font-bold text-center" style={{ color: color }}>
+              SIMILAR PRODUCTS
+            </h2>
+            <div className="col-span-3 slider-container w-full m-0 p-0 overflow-hidden relative">
+              <Swiper
+                modules={[Navigation]}
+                spaceBetween={16}
+                slidesPerView={2}
+                navigation={{
+                  prevEl: '.swiper-button-prev-product',
+                  nextEl: '.swiper-button-next-product',
+                }}
+                loop={true}
+                speed={500}
+                breakpoints={{
+                  1280: { slidesPerView: 3, spaceBetween: 16 },
+                  1024: { slidesPerView: 3, spaceBetween: 16 },
+                  768: { slidesPerView: 2, spaceBetween: 16 },
+                  640: { slidesPerView: 2, spaceBetween: 16 },
+                }}
+                className="w-full"
+              >
+                {related.map((relatedItem, index) => (
+                  <SwiperSlide key={`${relatedItem._id}-${index}`}>
+                    <div
+                      className="hover:scale-[1.02] cursor-pointer transition-all duration-300 border border-gray-400 mb-4"
+                      onClick={() =>
+                        router.push(`/product/${encodeURIComponent(relatedItem?.slug || relatedItem?._id)}`)
+                      }
+                    >
+                      <Image
+                        src={relatedItem.imageUrl || null}
+                        alt={relatedItem?._id}
+                        width={500}
+                        height={500}
+                        sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
+                        className="w-full object-cover aspect-[1]"
+                      />
+                      <div className="flex flex-col pt-2 px-2 pb-4 max-md:min-h-28 min-h-26 justify-center">
+                        <span className="font-bold text-lg mask-clip-fill  text-center">
+                          {relatedItem.title.split(' - ')[0]}
+                        </span>
+                        <span className="text-lg text-gray-700 min-h-5 text-center">
+                          {`(${relatedItem.weight ? relatedItem.weight + ' gms' : ''})`}
+                        </span>
+                      </div>
                     </div>
-                  </div>
-                </SwiperSlide>
-              ))}
-            </Swiper>
-            <SwiperNavButton direction="prev" swiperClass="swiper-button-prev-product" />
-            <SwiperNavButton direction="next" swiperClass="swiper-button-next-product" />
+                  </SwiperSlide>
+                ))}
+              </Swiper>
+              <SwiperNavButton direction="prev" swiperClass="swiper-button-prev-product" />
+              <SwiperNavButton direction="next" swiperClass="swiper-button-next-product" />
+            </div>
           </div>
         </div>
-      </div>
+      )}
     </>
   );
 }

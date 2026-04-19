@@ -1,15 +1,14 @@
 'use client';
 import Image from 'next/image';
+import Link from 'next/link';
 import { useState } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Pagination } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/navigation';
-import { useRouter } from 'next/navigation';
 import { SwiperNavButton } from './ui';
 
 export function ProductSection({ products = [] }) {
-  const router = useRouter();
   const [showAll, setShowAll] = useState(false);
   const allProducts = products?.reduce((acc, val) => {
     if (!acc[val?.category.toLowerCase()]) {
@@ -45,17 +44,18 @@ export function ProductSection({ products = [] }) {
         {showAll ? (
           <div className="grid grid-cols-4 max-md:grid-cols-2 max-md:px-2 max-lg:grid-cols-3 gap-4">
             {products.map((product, index) => (
-              <div
+              <Link
                 key={product.name + '-' + index}
+                href={`/product/${encodeURIComponent(product?.slug || product?._id)}`}
+                prefetch
                 className="border  border-gray-400 hover:shadow-md hover:shadow-black/60 hover:scale-[1.01] aspect-[0.9] max-md:aspect-[0.95] transition-all duration-300 cursor-pointer"
-                onClick={() => router.push(`product/${encodeURI(product?.slug) || product?._id}`)}
               >
                 <Image
                   src={product.imageUrl || null}
                   alt={product.title}
                   width={500}
                   height={500}
-                  priority
+                  sizes="(max-width: 768px) 50vw, 25vw"
                   className="w-full object-cover aspect-[1]"
                 />
                 <div className="flex flex-col px-2 pb-4 items-center max-md:min-h-26 min-h-20 justify-center">
@@ -66,7 +66,7 @@ export function ProductSection({ products = [] }) {
                     {product.weight ? product.weight + 'G' : ''}
                   </span>
                 </div>
-              </div>
+              </Link>
             ))}
           </div>
         ) : (
@@ -80,7 +80,6 @@ export function ProductSection({ products = [] }) {
                   prevEl: '.swiper-button-prev-custom',
                   nextEl: '.swiper-button-next-custom',
                 }}
-                loop={true}
                 centerInsufficientSlides={true}
                 speed={500}
                 breakpoints={{
@@ -106,19 +105,17 @@ export function ProductSection({ products = [] }) {
                 {Array.isArray(allProducts[selectedCategory.toLowerCase()]) && allProducts[selectedCategory.toLowerCase()].length > 0 ?
                   allProducts[selectedCategory.toLowerCase()]?.sort((a, b) => b.weight - a.weight).map((item, index) => (
                     <SwiperSlide key={item.name + '-' + index} className="">
-                      <div
+                      <Link
+                        href={`/product/${encodeURIComponent(item.slug || item._id)}`}
+                        prefetch
                         className="flex flex-col items-center w-full justify-center border border-gray-400 ring-0 focus:outline-none focus:ring-0 hover:shadow hover:shadow-black my-2 hover:scale-[1.01] transition-all duration-300 cursor-pointer"
-                        onClick={(e) => {
-                          e.preventDefault();
-                          router.push(`product/${item.slug || item._id}`);
-                        }}
                       >
                         <Image
                           src={item.imageUrl || null}
                           alt={item.title}
                           width={500}
                           height={500}
-                          priority
+                          sizes="(max-width: 640px) 33vw, (max-width: 1024px) 25vw, 20vw"
                           className="w-full h-full object-cover aspect-[0.9] max-md:aspect-[0.95]"
                         />
                         <div className="flex flex-col px-2 pb-4 items-center max-md:min-h-26 min-h-20 justify-center">
@@ -129,7 +126,7 @@ export function ProductSection({ products = [] }) {
                             {item.weight ? item.weight + ' G' : ''}
                           </span>
                         </div>
-                      </div>
+                      </Link>
                     </SwiperSlide>
                   )
                   ) : (
