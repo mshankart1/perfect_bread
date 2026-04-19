@@ -18,7 +18,7 @@ export async function AboutSection() {
         </div>
         <div className="col-span-3 max-lg:col-span-5 text-center">
           <div className="text-primary">
-            <span className="font-lightmoon text-4xl/relaxed font-bold max-md:text-3xl"> OUR HOT </span> <br className="max-lg:hidden" />
+            <span className="font-lightmoon text-4xl/relaxed font-bold max-md:text-3xl"> OUR HOT </span>
             <span className="font-impact text-6xl max-md:text-3xl">BAKING STORY</span>
             <hr className="border-b-2 border-primary w-3/4 max-w-sm mx-auto my-2" />
           </div>
