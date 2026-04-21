@@ -206,7 +206,7 @@ export function ProductClient({ product, ingredientsHtml }) {
                           {relatedItem.title.split(' - ')[0]}
                         </span>
                         <span className="text-lg text-gray-700 min-h-5 text-center">
-                          {`(${relatedItem.weight ? relatedItem.weight + ' gms' : ''})`}
+                          {`(${relatedItem.weight ? relatedItem.weight + ' G' : ''})`}
                         </span>
                       </div>
                     </div>
