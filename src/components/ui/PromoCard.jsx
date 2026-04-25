@@ -1,48 +1,53 @@
 "use client";
 import Image from "next/image";
-import { urlFor } from "@/helpers";
-import { useRouter } from "next/navigation";
+import { urlFor, getBlockContentHtml } from "@/helpers";
 
 export function PromoCard({
   title,
   image,
-  readMoreLink,
+  description = "",
+  organization = "",
+  date = "",
   className = ""
 }) {
-  const router = useRouter();
   return (
     <div
       className={`
-        overflow-hidden ${className} group border-r-neutral-400 border-r pr-4
-        md:[&:nth-child(3n)]:border-r
-        md:[&:nth-child(2n)]:border-r-0
-        lg:[&:nth-child(2n)]:border-r
-        lg:[&:nth-child(3n)]:border-r-0
+        ${className} group bg-white rounded-lg shadow-md p-4 flex flex-col md:flex-row gap-4 w-full
+        hover:shadow-xl hover:-translate-y-1 transition-all duration-300 ease-in-out
       `}
     >
-      <div className="aspect-square rounded-lg overflow-hidden cursor-pointer" onClick={() => router.push(readMoreLink)}>
+      {/* Image (smaller) */}
+      <div className="flex-shrink-0 w-full md:w-48 h-48 relative overflow-hidden rounded-md">
         <Image
           src={urlFor(image).url()}
-          alt={image.alt || "Promotional content"}
-          width={800}
-          height={600}
-          className="w-full h-auto object-cover object-center group-hover:scale-105 transition-all duration-300 aspect-square"
+          alt={image.alt || title}
+          fill
+          className="object-cover"
         />
       </div>
-      {/* Bottom Text Section */}
-      <div className="px-4 py-5">
-        <h2 className="text-xl md:text-2xl font-archivo font-bold tracking-tight text-neutral-800 text-center mb-4 line-clamp-2 text-ellipsis overflow-hidden cursor-pointer" onClick={() => router.push(readMoreLink)}>
+
+      {/* Content */}
+      <div className="flex-1 flex flex-col">
+        <h2 className="text-2xl font-archivo font-bold text-neutral-800 mb-2 line-clamp-2">
           {title}
         </h2>
-        <div className="text-center">
+        {organization && (
+          <p className="text-primary font-semibold mb-1">{organization}</p>
+        )}
+        {date && (
+          <p className="text-sm text-neutral-600 mb-2">
+            {new Date(date).toLocaleDateString('en-IN', { day: '2-digit', month: 'short', year: 'numeric' })}
+          </p>
+        )}
+        {description && (
           <div
-            onClick={() => router.push(readMoreLink)}
-            className="text-neutral-800 font-medium text-lg underline group-hover:text-neutral-600 transition-colors cursor-pointer"
-          >
-            READ MORE
-          </div>
-        </div>
+            className="text-neutral-700 text-sm"
+            dangerouslySetInnerHTML={{ __html: getBlockContentHtml(description, '#cb1f2b') }}
+          />
+        )}
       </div>
     </div>
   );
 }
+

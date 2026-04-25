@@ -8,19 +8,19 @@ import { FaHamburger, FaHome } from 'react-icons/fa';
 
 export function Header({ products }) {
   const [isOpen, setIsOpen] = useState(false);
-  const [search, setSearch] = useState('');
-  const [focus, setFocus] = useState(false);
-  const [searchResults, setSearchResults] = useState(products);
+  // const [search, setSearch] = useState('');
+  // const [focus, setFocus] = useState(false);
+  // const [searchResults, setSearchResults] = useState(products);
 
-  const handleSearch = async (e) => {
-    e.preventDefault();
-    setSearch(e.target.value);
-    if (!e.target.value) {
-      setSearchResults(products);
-    }
-    const results = products.filter((product) => product.title.toLowerCase().includes(search.toLowerCase()));
-    setSearchResults(results);
-  };
+  // const handleSearch = async (e) => {
+  //   e.preventDefault();
+  //   setSearch(e.target.value);
+  //   if (!e.target.value) {
+  //     setSearchResults(products);
+  //   }
+  //   const results = products.filter((product) => product.title.toLowerCase().includes(search.toLowerCase()));
+  //   setSearchResults(results);
+  // };
   const router = useRouter();
   return (
     <div className="h-16 z-40 flex w-full text-primary backdrop-blur-3xl bg-white sticky shadow-xl top-0">
@@ -55,6 +55,9 @@ export function Header({ products }) {
             <Link href={'/#recipe'}>Recipes</Link>
           </div>
           <div className="capitalize text-center">
+            <Link href={'/awards-achievements'}>Awards & Achievements</Link>
+          </div>
+          <div className="capitalize text-center">
             <Link href={'/blog'}>Blog</Link>
           </div>
           <div className="capitalize text-center">
@@ -62,43 +65,6 @@ export function Header({ products }) {
           </div>
           <div className="capitalize text-center">
             <Link href={'/#contact'}>Contact Us</Link>
-          </div>
-          <div className="relative">
-            <input
-              type="text"
-              onChange={handleSearch}
-              placeholder="Search....."
-              onFocus={() => setFocus(true)}
-              onBlur={() => setFocus(false)}
-              className="border rounded-lg px-2 py-1.5 w-40 placeholder:font-medium focus:outline-none"
-            />
-            <div className="absolute right-0 rounded-lg gap-4 max-h-100 overflow-y-auto scroll-smooth top-[100%] w-full min-w-sm [&>*]:border-b [&>*]:border-gray-600 [&>*]:last:border-b-0 flex-column bg-white font-medium shadow-[0px_4px_10px_0_rgba(0,0,0,0.4)]">
-              {focus &&
-                (searchResults.length ? (
-                  searchResults.map((product) => (
-                    <div
-                      key={product._id}
-                      className="text-wrap flex flex-row  items-center h-full cursor-pointer gap-2 text-base/snug hover:bg-primary/10 py-2 px-3"
-                      onMouseDown={() => {
-                        router.push(`/product/${encodeURIComponent(product?.slug || product?._id)}`);
-                      }}
-                    >
-                      <Image
-                        src={product.imageUrl || null}
-                        alt={product.title}
-                        width={500}
-                        height={500}
-                        className="w-10 h-10 object-cover rounded-full"
-                      />
-                      <div className='text-gray-600'>{product.title}</div>
-                    </div>
-                  ))
-                ) : (
-                  <div className="text-wrap flex flex-row items-center h-full justify-center gap-2 text-base/snug hover:bg-primary/10 py-2 px-3">
-                    No results found
-                  </div>
-                ))}
-            </div>
           </div>
         </div>
       </ul>
@@ -131,6 +97,9 @@ export function Header({ products }) {
             </Link>
             <Link href={'/#recipe'} className="capitalize text-left w-full block">
               Recipes
+            </Link>
+            <Link href={'/awards-achievements'} className="capitalize text-left w-full block">
+              Awards & Achievements
             </Link>
             <Link href={'/blog'} className="capitalize text-left w-full block">
               Blog

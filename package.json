@@ -13,6 +13,7 @@
     "@sanity/block-content-to-html": "^2.0.0",
     "@sanity/icons": "^3.7.0",
     "@sanity/image-url": "^1.1.0",
+    "@sanity/ui": "^2.16.22",
     "@sanity/vision": "^3.87.1",
     "@tailwindcss/typography": "^0.5.16",
     "next": "^15.5.7",

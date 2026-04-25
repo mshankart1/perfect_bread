@@ -5,10 +5,10 @@ export async function AboutSection() {
     <div className='relative isolate'>
       <div
         aria-hidden="true"
-        className='pointer-events-none absolute inset-0 bg-[url("/about_bg.avif")] bg-cover bg-center opacity-60'
+        className='pointer-events-none absolute inset-0 bg-[url("/about_bg.avif")] bg-cover bg-center opacity-20'
       />
       <Image src='/bread.png' alt='bread' width={500} height={500} className='absolute -bottom-10 w-68 max-md:w-60 max-sm:w-44 z-10 right-0 object-cover' />
-      <section id="about" className="relative z-10 grid-cols-5 grid py-16 max-md:py-10 max-sm:py-6 gap-20 max-md:gap-10 max-sm:gap-4 max-sm:px-6 px-8 container">
+      <section id="about" className="relative z-10 grid-cols-5 grid py-16 max-md:py-10 max-sm:py-6 gap-20 max-md:gap-10 max-sm:gap-6 max-sm:px-6 px-8 container">
         <div className='w-full col-span-2 max-lg:col-span-5 max-lg:w-4/7 max-md:w-2/3 overflow-hidden mx-auto '>
           <div
             className="border-6 border-primary aspect-[1/1.2] w-full border-b-0"
@@ -22,12 +22,12 @@ export async function AboutSection() {
         <div className="col-span-3 max-lg:col-span-5 text-center">
           <div className="text-primary">
             <span className="font-lightmoon text-5xl/relaxed font-bold max-md:text-3xl"> OUR HOT </span> <br />
-            <span className="font-impact text-7xl max-md:text-3xl">BAKING STORY</span>
-            <hr className="border-b-2 border-primary max-lg:w-3/4 max-w-md mx-auto my-2" />
+            <span className="font-impact text-7xl mt-2 max-md:text-5xl underline underline-offset-8">BAKING STORY</span>
+            {/* <hr className="border-b-2 border-primary max-lg:w-3/4 max-w-md mx-auto my-2" /> */}
           </div>
-          <div className="text-accent mt-5 max-md:mt-1 max-lg:mb-6 max-md:text-2xl max-lg:text-center">
-            <span className="text-4xl max-lg:text-3xl font-roboto">CRAFTED BY</span>
-            <div className="font-story-milky text-6xl max-md:text-3xl mt-2 max-md:mt-0 max-lg:inline max-lg:ml-2">
+          <div className="mt-5 max-lg:mb-6 max-md:mb-3 flex flex-col gap-2 ">
+            <div className="text-4xl max-lg:text-3xl font-roboto">CRAFTED BY</div>
+            <div className="font-story-milky text-6xl max-md:text-4xl">
               MR. PERFECT MAN
             </div>
           </div>

@@ -8,7 +8,7 @@ export default async function BlogPage() {
   return (
     <div className="bg-[#fff9ef]">
       <div className="container py-16 px-4">
-        <h2 className="text-4xl font-bold text-neutral-800 text-center mb-8 underline underline-offset-8">BLOGS</h2>
+        <h2 className="text-5xl font-bold text-neutral-800 text-center mb-8 font-archivo">BLOGS</h2>
 
         {result?.length > 0 ? (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 [&>*]:px-4 gap-y-8">

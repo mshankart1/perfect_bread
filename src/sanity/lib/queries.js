@@ -117,3 +117,25 @@ export const BLOG_BY_SLUG_QUERY = defineQuery(`
     date
   }
 `);
+
+export const AWARD_QUERY = defineQuery(`*[_type == "award" && !(_id in path("drafts.**"))] | order(date desc){
+  _id,
+  title,
+  "slug": slug.current,
+  image,
+  organization,
+  date,
+  description
+}`);
+
+export const AWARD_BY_SLUG_QUERY = defineQuery(`
+  *[_type == "award" && !(_id in path("drafts.**")) && slug.current == $slug][0]{
+    _id,
+    title,
+    "slug": slug.current,
+    image,
+    organization,
+    date,
+    description
+  }
+`);
