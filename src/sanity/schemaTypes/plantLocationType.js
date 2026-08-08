@@ -43,8 +43,7 @@ export const plantLocationType = defineType({
       title: 'Certification',
       type: 'string',
       description:
-        'Shown on the plant card between Production Center and FSSAI. Example: AN ISO 9001:2015 & HACCP CERTIFIED COMPANY',
-      initialValue: 'AN ISO 9001:2015 & HACCP CERTIFIED COMPANY',
+        'Optional. Shown on the plant card between Production Center and FSSAI when set. Example: AN ISO 9001:2015 & HACCP CERTIFIED COMPANY',
     }),
     defineField({
       name: 'licenseText',

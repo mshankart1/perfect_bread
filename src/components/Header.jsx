@@ -22,6 +22,8 @@ export function Header({ products }) {
   //   setSearchResults(results);
   // };
   const router = useRouter();
+  const closeMenu = () => setIsOpen(false);
+
   return (
     <div className="h-16 z-40 flex w-full text-primary backdrop-blur-3xl bg-white sticky shadow-xl top-0">
       <nav
@@ -78,7 +80,7 @@ export function Header({ products }) {
         <Image
           src="/perfect_logo.png"
           alt="logo"
-          className="absolute left-2 z-10 top-0 rounded-full object-cover h-28 w-28 border cursor-pointer"
+          className="absolute left-2 z-10 top-0.5 rounded-full object-cover h-22 w-22 border cursor-pointer"
           width={1000}
           height={1000}
           onClick={() => router.push('/')}
@@ -88,7 +90,13 @@ export function Header({ products }) {
         </span>
         {/* Dropdown Navbar for mobile view */}
         {isOpen && (
-          <div onBlurCapture={() => setIsOpen(false)} className="absolute right-0 *:hover:bg-primary/40 *:py-2 *:px-4 top-full transition-all duration-300 ease-in-out mt-0 w-full pt-10 text-black bg-white shadow-lg rounded-b-lg z-0 p-4 px-0 flex flex-col gap-0">
+          <div
+            onBlurCapture={closeMenu}
+            onClick={(e) => {
+              if (e.target.closest('a')) closeMenu();
+            }}
+            className="absolute right-0 *:hover:bg-primary/40 *:py-2 *:px-4 top-full transition-all duration-300 ease-in-out mt-0 w-full pt-10 text-black bg-white shadow-lg rounded-b-lg z-0 p-4 px-0 flex flex-col gap-0"
+          >
             <Link href={'/#about'} className="capitalize text-left w-full block">
               About Us
             </Link>

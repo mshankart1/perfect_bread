@@ -4,7 +4,6 @@ import Image from 'next/image';
 import { useMemo, useState } from 'react';
 import { MdFactory, MdInfoOutline } from 'react-icons/md';
 import {
-  DEFAULT_PLANT_CERTIFICATION,
   PLANT_FEATURE_ICON_PATHS,
   PLANT_FEATURE_SUBTITLES,
 } from '@/lib/plantsManufacturers';
@@ -15,21 +14,22 @@ function DetailRow({ label, value }) {
   if (!value) return null;
 
   return (
-    <div className="grid grid-cols-[minmax(9.5rem,11.5rem)_1fr] gap-x-3 text-[0.92rem] leading-6 text-[#2c211d] sm:grid-cols-[minmax(11.5rem,13rem)_1fr] sm:text-[0.95rem]">
-      <dt className="font-semibold text-[#2c211d]">
-        {label} <span aria-hidden="true">:</span>
+    <div className="grid grid-cols-1 gap-0.5 text-[0.9rem] leading-relaxed text-[#2c211d] sm:grid-cols-[minmax(11.5rem,13rem)_1fr] sm:gap-x-3 sm:gap-y-0 sm:text-[0.95rem] sm:leading-6">
+      <dt className="text-[0.7rem] font-bold uppercase tracking-[0.1em] text-[#8a7a70] sm:text-[0.95rem] sm:font-semibold sm:normal-case sm:tracking-normal sm:text-[#2c211d]">
+        {label}
+        <span className="hidden sm:inline" aria-hidden="true">
+          {' '}
+          :
+        </span>
       </dt>
-      <dd className="wrap-break-word text-[#3a2f2a]">{value}</dd>
+      <dd className="min-w-0 wrap-break-word text-[#3a2f2a]">{value}</dd>
     </div>
   );
 }
 
-function resolveCertification(plant, pageDefault) {
-  if (typeof plant.certification === 'string') {
-    return plant.certification.trim();
-  }
-
-  return (pageDefault || DEFAULT_PLANT_CERTIFICATION).trim();
+function resolveCertification(plant) {
+  if (typeof plant.certification !== 'string') return '';
+  return plant.certification.trim();
 }
 
 export function PlantsManufacturersPage({ page, plants }) {
@@ -50,7 +50,7 @@ export function PlantsManufacturersPage({ page, plants }) {
     const term = search.trim().toLocaleLowerCase();
 
     return plants.filter((plant) => {
-      const certification = resolveCertification(plant, page.defaultCertification);
+      const certification = resolveCertification(plant);
       const searchableText = [
         plant.companyName,
         plant.state,
@@ -70,7 +70,7 @@ export function PlantsManufacturersPage({ page, plants }) {
         (unit === ALL || plant.unitLabel === unit)
       );
     });
-  }, [plants, search, state, unit, page.defaultCertification]);
+  }, [plants, search, state, unit]);
 
   return (
     <main className="bg-[#fff8ee] font-poppins text-[#2c211d]">
@@ -215,7 +215,7 @@ export function PlantsManufacturersPage({ page, plants }) {
           </p>
         </div>
 
-        <div className="mt-7 space-y-5" aria-live="polite">
+        <div className="mt-6 space-y-4 sm:mt-7 sm:space-y-5" aria-live="polite">
           {visiblePlants.length > 0 ? (
             visiblePlants.map((plant) => {
               const productionCenter = plant.productionCenter || plant.address;
@@ -223,32 +223,31 @@ export function PlantsManufacturersPage({ page, plants }) {
                 Boolean(plant.productionCenter) &&
                 Boolean(plant.address) &&
                 plant.productionCenter.trim() !== plant.address.trim();
-              const certification = resolveCertification(
-                plant,
-                page.defaultCertification,
-              );
+              const certification = resolveCertification(plant);
 
               return (
                 <article
                   key={plant._id}
-                  className="rounded-xl border border-[#e8d9c4] bg-white shadow-[0_8px_24px_rgba(80,40,20,0.06)]"
+                  className="overflow-hidden rounded-2xl border border-[#e8d9c4] bg-white shadow-[0_6px_20px_rgba(80,40,20,0.08)] sm:rounded-xl sm:shadow-[0_8px_24px_rgba(80,40,20,0.06)]"
                 >
-                  <div className="flex flex-wrap items-start justify-between gap-3 border-b border-[#f0e4d4] px-5 py-4 sm:px-6">
-                    <h3 className="flex min-w-0 items-center gap-3 text-base font-bold uppercase tracking-wide text-[#2c211d] sm:text-lg">
-                      <span className="grid size-9 shrink-0 place-items-center rounded-md bg-primary text-white">
+                  <div className="flex flex-col gap-3 border-b border-[#f0e4d4] px-4 py-4 sm:flex-row sm:flex-wrap sm:items-start sm:justify-between sm:gap-3 sm:px-6">
+                    <h3 className="flex min-w-0 items-start gap-3 text-[0.95rem] font-bold uppercase tracking-wide text-[#2c211d] sm:items-center sm:text-lg">
+                      <span className="mt-0.5 grid size-9 shrink-0 place-items-center rounded-md bg-primary text-white sm:mt-0">
                         <MdFactory aria-hidden="true" className="size-5" />
                       </span>
-                      <span className="wrap-break-word">{plant.companyName}</span>
+                      <span className="min-w-0 wrap-break-word leading-snug">
+                        {plant.companyName}
+                      </span>
                     </h3>
                     {plant.unitLabel && (
-                      <span className="rounded-full bg-primary px-3 py-1 text-xs font-bold uppercase tracking-wide text-white">
+                      <span className="w-fit shrink-0 rounded-full bg-primary px-3 py-1 text-[0.7rem] font-bold uppercase tracking-wide text-white sm:text-xs">
                         {plant.unitLabel}
                       </span>
                     )}
                   </div>
 
-                  <div className="px-5 py-5 sm:px-6">
-                    <dl className="space-y-2.5">
+                  <div className="px-4 py-4 sm:px-6 sm:py-5">
+                    <dl className="space-y-3.5 sm:space-y-2.5">
                       <DetailRow label="State" value={plant.state} />
                       <DetailRow label="Production Center" value={productionCenter} />
                       {showAddress && <DetailRow label="Address" value={plant.address} />}
@@ -258,12 +257,12 @@ export function PlantsManufacturersPage({ page, plants }) {
 
                     {plant.mapUrl && (
                       <>
-                        <div className="mt-5 border-t border-[#f0e4d4]" />
+                        <div className="mt-4 border-t border-[#f0e4d4] sm:mt-5" />
                         <a
                           href={plant.mapUrl}
                           target="_blank"
                           rel="noreferrer"
-                          className="mt-5 inline-flex items-center justify-center rounded-full bg-primary px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-[#a91721] focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
+                          className="mt-4 flex w-full min-h-11 items-center justify-center rounded-full bg-primary px-5 py-3 text-sm font-semibold text-white shadow-[0_4px_12px_rgba(184,28,38,0.22)] transition hover:bg-[#a91721] focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 sm:mt-5 sm:inline-flex sm:w-auto sm:min-h-0 sm:py-2.5 sm:shadow-none"
                         >
                           {page.directionsLabel}
                         </a>
@@ -274,7 +273,7 @@ export function PlantsManufacturersPage({ page, plants }) {
               );
             })
           ) : (
-            <div className="rounded-xl border border-dashed border-[#d9c7aa] bg-white px-6 py-14 text-center text-[#6a5a51]">
+            <div className="rounded-2xl border border-dashed border-[#d9c7aa] bg-white px-5 py-12 text-center text-[#6a5a51] sm:rounded-xl sm:px-6 sm:py-14">
               {page.emptyState}
             </div>
           )}
