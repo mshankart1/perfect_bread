@@ -134,12 +134,12 @@ export function ContactSection() {
             </div>
           </form>
         </div>
-        <div className="col-span-2 max-md:col-span-1">
+        {/* <div className="col-span-2 max-md:col-span-1">
           <h4 className="text-4xl mb-7 font-bold ml-4">Plant & Manufacturing</h4>
           <div className="grid grid-cols-2 max-sm:grid-cols-1 max-lg:px-12 max-md:px-8 max-sm:py-8 px-20 py-10 rounded-xl gap-8 bg-[#efefef]">
             {locations.map(location => <PlantAndManufacturer key={location.name} {...location} />)}
           </div>
-        </div>
+        </div> */}
       </div>
     </section>
   );

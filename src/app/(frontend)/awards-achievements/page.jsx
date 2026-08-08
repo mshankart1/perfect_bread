@@ -1,6 +1,14 @@
 import { client } from "@/sanity/lib/client";
 import { AWARD_QUERY } from "@/sanity/lib/queries";
 import { PromoCard, ComingSoon } from "@/components";
+import { createMetadata } from "@/lib/seo";
+
+export const metadata = createMetadata({
+  title: 'Awards & Achievements',
+  description:
+    "Explore Perfect Bread's awards, certifications, and milestones earned through years of baking excellence.",
+  path: '/awards-achievements',
+});
 
 export default async function AwardsPage() {
   const result = await client.fetch(AWARD_QUERY, {}, { next: { revalidate: 120 } });

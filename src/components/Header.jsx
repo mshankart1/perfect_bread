@@ -24,8 +24,11 @@ export function Header({ products }) {
   const router = useRouter();
   return (
     <div className="h-16 z-40 flex w-full text-primary backdrop-blur-3xl bg-white sticky shadow-xl top-0">
-      <ul className="grid grid-cols-[1fr_auto_1fr] justify-center container overflow font-semibold h-16 z-50 items-center max-lg:hidden">
-        <div className="flex text-nowrap justify-between gap-2 grow">
+      <nav
+        aria-label="Primary navigation"
+        className="grid grid-cols-[1fr_auto_1fr] container px-4 font-semibold text-xs xl:text-sm h-16 z-50 items-center max-lg:hidden"
+      >
+        <div className="flex text-nowrap justify-between gap-3 items-center">
           <FaHome size={25} className="cursor-pointer" onClick={() => router.push('/')} />
           <div className="capitalize text-center">
             <Link href={'/#about'}>About Us</Link>
@@ -34,10 +37,13 @@ export function Header({ products }) {
             <Link href="/#product">Product</Link>
           </div>
           <div className="capitalize text-center">
-            <Link href={'/#journey'}>World beyond Bread</Link>
+            <Link href={'/#journey'}>World Beyond Breads</Link>
           </div>
           <div className="capitalize text-center">
             <Link href={'/#distribution'}>Distribution</Link>
+          </div>
+          <div className="capitalize text-center">
+            <Link href={'/#recipe'}>Recipes</Link>
           </div>
         </div>
         <div className="h-full relative w-[150px]">
@@ -50,24 +56,24 @@ export function Header({ products }) {
             onClick={() => router.push('/')}
           />
         </div>
-        <div className="flex justify-between gap-2 text-nowrap items-center ">
-          <div className="capitalize text-center">
-            <Link href={'/#recipe'}>Recipes</Link>
-          </div>
+        <div className="flex justify-between gap-3 text-nowrap items-center">
           <div className="capitalize text-center">
             <Link href={'/awards-achievements'}>Awards & Achievements</Link>
+          </div>
+          <div className="capitalize text-center">
+            <Link href="/plants-manufacturers">Plant & Manufacturing</Link>
           </div>
           <div className="capitalize text-center">
             <Link href={'/blog'}>Blog</Link>
           </div>
           <div className="capitalize text-center">
-            <Link href={'/#client'}>Our Client</Link>
+            <Link href={'/#client'}>Our Clients</Link>
           </div>
           <div className="capitalize text-center">
             <Link href={'/#contact'}>Contact Us</Link>
           </div>
         </div>
-      </ul>
+      </nav>
       <div className="max-lg:flex flex-row items-center px-10 max-sm:px-6 justify-end w-full hidden">
         <Image
           src="/perfect_logo.png"
@@ -90,13 +96,16 @@ export function Header({ products }) {
               Product
             </Link>
             <Link href={'/#world_beyond_bread'} className="capitalize text-left w-full block">
-              World beyond Bread
+              World Beyond Breads
             </Link>
             <Link href={'/#distribution'} className="capitalize text-left w-full block">
               Distribution
             </Link>
             <Link href={'/#recipe'} className="capitalize text-left w-full block">
               Recipes
+            </Link>
+            <Link href="/plants-manufacturers" className="capitalize text-left w-full block">
+              Plant & Manufacturing
             </Link>
             <Link href={'/awards-achievements'} className="capitalize text-left w-full block">
               Awards & Achievements
@@ -105,7 +114,7 @@ export function Header({ products }) {
               Blog
             </Link>
             <Link href={'/#client'} className="capitalize text-left w-full block">
-              Our Client
+              Our Clients
             </Link>
             <Link href={'/#contact'} className="capitalize text-left w-full block">
               Contact Us

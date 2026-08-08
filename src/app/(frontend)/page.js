@@ -14,6 +14,14 @@ import Image from 'next/image';
 import { client } from '@/sanity/lib/client';
 import { BANNER_QUERY, PRODUCT_QUERY, RECIPE_QUERY, TIMELINE_QUERY } from '@/sanity/lib/queries';
 import { Banner } from '@/components/Banner';
+import { createMetadata } from '@/lib/seo';
+
+export const metadata = createMetadata({
+  title: 'Fresh Bread & Bakery Products',
+  description:
+    'Explore fresh breads, buns, rusks, recipes, and bakery products from Perfect Bread, made with quality and care for families across India.',
+  path: '/',
+});
 
 export default async function Home() {
   let result = [];

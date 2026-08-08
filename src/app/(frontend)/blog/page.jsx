@@ -1,6 +1,14 @@
 import { client } from "@/sanity/lib/client";
 import { BLOG_QUERY } from "@/sanity/lib/queries";
 import { PromoCard, ComingSoon } from "@/components";
+import { createMetadata } from "@/lib/seo";
+
+export const metadata = createMetadata({
+  title: 'Blog',
+  description:
+    "Read stories, recipes, baking inspiration, and the latest updates from Perfect Bread.",
+  path: '/blog',
+});
 
 export default async function BlogPage() {
   const result = await client.fetch(BLOG_QUERY, {}, { next: { revalidate: 120 } });

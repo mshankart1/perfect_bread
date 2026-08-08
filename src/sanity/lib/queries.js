@@ -18,6 +18,25 @@ export const PRODUCT_QUERY = defineQuery(`*[_type == "product" && !(_id in path(
   "imageUrl": images[0].asset->url
 }`);
 
+export const SEO_ROUTES_QUERY = defineQuery(`{
+  "products": *[
+    _type == "product" &&
+    !(_id in path("drafts.**")) &&
+    defined(slug.current)
+  ]{
+    "slug": slug.current,
+    _updatedAt
+  },
+  "blogs": *[
+    _type == "blog" &&
+    !(_id in path("drafts.**")) &&
+    defined(slug.current)
+  ]{
+    "slug": slug.current,
+    _updatedAt
+  }
+}`);
+
 export const RECIPE_QUERY = defineQuery(`*[_type == "recipe" && !(_id in path("drafts.**"))] | order(sort asc, _createdAt asc){
   _id,
   title,
@@ -92,6 +111,58 @@ export const BANNER_QUERY = defineQuery(`*[_type == "banner" && !(_id in path("d
     _key,
     asset->{
       url
+    }
+  }
+}`);
+
+export const PLANTS_MANUFACTURERS_PAGE_QUERY = defineQuery(`{
+  "page": *[
+    _type == "plantsManufacturersPage" &&
+    _id == "plantsManufacturersPage" &&
+    !(_id in path("drafts.**"))
+  ][0]{
+    eyebrow,
+    title,
+    intro,
+    features[]{
+      _key,
+      label,
+      icon
+    },
+    searchPlaceholder,
+    allStatesLabel,
+    allUnitsLabel,
+    notice,
+    emptyState,
+    directionsLabel
+  },
+  "plants": *[
+    _type == "plantLocation" &&
+    !(_id in path("drafts.**")) &&
+    active != false
+  ] | order(displayOrder asc, companyName asc){
+    _id,
+    unitLabel,
+    companyName,
+    state,
+    productionCenter,
+    address,
+    certification,
+    licenseText,
+    mapUrl,
+    displayOrder
+  },
+  "primaryBanner": *[
+    _type == "banner" &&
+    !(_id in path("drafts.**")) &&
+    type == "first_banner"
+  ] | order(_createdAt asc)[0]{
+    images[]{
+      _key,
+      alt,
+      asset->{
+        url
+      }
     }
   }
 }`);

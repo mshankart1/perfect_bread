@@ -42,7 +42,7 @@ export function FooterSection() {
           <Link href="/#recipes">Recipes</Link>
           <Link href="/blog">Blog</Link>
           <Link href="/#our-clients">Our Clients</Link>
-          <Link href="/#plant">Plant</Link>
+          <Link href="/plants-manufacturers">Plants & Manufacturers</Link>
           <Link href="/#contact-us">Contact Us</Link>
         </div>
         <div className="flex flex-col max-md:col-span-3">
