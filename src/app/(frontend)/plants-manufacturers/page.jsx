@@ -1,6 +1,5 @@
 import Image from 'next/image';
 import { PlantsManufacturersPage } from '@/components/PlantsManufacturersPage';
-import { DEFAULT_PLANT_CERTIFICATION } from '@/lib/plantsManufacturers';
 import { createMetadata } from '@/lib/seo';
 import { client } from '@/sanity/lib/client';
 import { PLANTS_MANUFACTURERS_PAGE_QUERY } from '@/sanity/lib/queries';
@@ -35,7 +34,6 @@ const PAGE_FALLBACKS = {
   allUnitsLabel: 'All Unit Status',
   notice:
     'For manufacturing unit address and FSSAI Lic. No., please verify the latest details with the unit or on the FSSAI portal.',
-  defaultCertification: DEFAULT_PLANT_CERTIFICATION,
   emptyState: 'No manufacturing units match your filters.',
   directionsLabel: 'Get Directions',
 };

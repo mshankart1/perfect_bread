@@ -1,6 +1,3 @@
-export const DEFAULT_PLANT_CERTIFICATION =
-  'AN ISO 9001:2015 & HACCP CERTIFIED COMPANY';
-
 export const PLANT_FEATURE_ICONS = [
   {
     title: 'Manufacturing Network',
