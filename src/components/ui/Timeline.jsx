@@ -12,19 +12,13 @@ export function Timeline({ timeline }) {
   return (
     <div className="w-full h-full my-5 container slider-container relative px-4 md:px-16 [&>*]:p-0 m-0 overflow-hidden">
       <Swiper
-        modules={[Navigation, Autoplay]}
+        modules={[Navigation]}
         spaceBetween={16}
         slidesPerView={2}
         navigation={{
           prevEl: '.swiper-button-prev-timeline',
           nextEl: '.swiper-button-next-timeline',
         }}
-        autoplay={{
-          delay: 5000,
-          disableOnInteraction: false,
-          pauseOnMouseEnter: false,
-        }}
-        loop={true}
         speed={500}
         breakpoints={{
           1280: {

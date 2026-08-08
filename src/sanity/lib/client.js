@@ -6,5 +6,6 @@ export const client = createClient({
   projectId,
   dataset,
   apiVersion,
-  useCdn: false, // Set to false if statically generating pages, using ISR or tag-based revalidation
+  // CDN caches reads at the edge; ISR/revalidate on fetch still controls freshness in Next.
+  useCdn: process.env.NODE_ENV === 'production',
 })
