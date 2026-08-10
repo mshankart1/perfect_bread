@@ -6,7 +6,9 @@
     "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "sanity:seed": "node src/sanity/seed/index.mjs",
+    "seed:sanity": "node src/sanity/seed/index.mjs"
   },
   "dependencies": {
     "@portabletext/to-html": "^2.0.14",
