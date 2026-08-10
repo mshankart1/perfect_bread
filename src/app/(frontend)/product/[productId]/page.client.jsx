@@ -21,8 +21,8 @@ export function ProductClient({ product, ingredientsHtml }) {
   return (
     <>
       <div className="container">
-        <div className="grid grid-cols-2 max-md:grid-cols-1 max-lg:px-4 my-5 mt-20 gap-x-10 max-md:mt-14">
-          <div className="w-full">
+        <div className="grid grid-cols-2 max-md:grid-cols-1 max-lg:px-4 my-5 mt-20 gap-x-10 max-md:mt-14 items-start">
+          <div className="w-full md:sticky md:top-36 self-start">
             <Image
               src={currentImage?.asset?.url || null}
               alt={currentImage?.alt || currentImage?._key}
@@ -60,7 +60,7 @@ export function ProductClient({ product, ingredientsHtml }) {
             <p className="text-lg mt-2 whitespace-pre-line" style={{ color: color }}>
               {product?.subtitle}
             </p>
-            {product?.category?.toLowerCase() !== 'rusk' && (
+            {product?.category?.toLowerCase() == 'health & wellness' && (
               <div className="grid grid-cols-3 max-lg:grid-cols-2 [&>div]:pt-5 mt-1">
                 <div className="flex flex-col border-primary items-center px-4 justify-center gap-5 border-2 border-l-0 max-xs:border-r-0 max-xs:col-span-1">
                   <div className="relative bg-primary text-white rounded-full w-fit p-3">
@@ -144,8 +144,12 @@ export function ProductClient({ product, ingredientsHtml }) {
                         {product?.nutritionalInformation?.map((info) => (
                           <tr key={info._key} className="even:bg-gray-50 odd:bg-white">
                             <td className="px-4 py-2 border-b border-gray-400 text-lg text-wrap text-left">{info.name}</td>
-                            <td className="px-4 py-2 border-b text-base border-gray-400 text-gray-500 text-right">{info.quantity}</td>
-                            <td className="px-4 py-2 border-b text-base border-gray-400 text-gray-500 text-right">{info.rta || '-'}</td>
+                            <td className="px-4 py-2 border-b text-base border-gray-400 text-gray-500 text-right">
+                              {Number.isFinite(Number(info.quantity)) ? Number(info.quantity).toFixed(2) : (info.quantity ?? '')}
+                            </td>
+                            <td className="px-4 py-2 border-b text-base border-gray-400 text-gray-500 text-right">
+                              {Number.isFinite(Number(info.rta)) ? Number(info.rta).toFixed(2) : (info.rta ?? '-')}
+                            </td>
                           </tr>
                         ))}
                       </tbody>
